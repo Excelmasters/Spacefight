@@ -1,2 +1,4 @@
 # Spacefight
-Project for DFG
+school project
+moin
+ich hab was geändert
