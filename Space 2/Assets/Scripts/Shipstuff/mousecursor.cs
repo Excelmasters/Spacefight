@@ -11,6 +11,7 @@ public class mousecursor : MonoBehaviour
     private int flipy;
     private int flipz;
     private int factor;
+    public GameObject kugel;
     private Vector3 posi;
     // Start is called before the first frame update
     void Start()
@@ -56,7 +57,7 @@ public class mousecursor : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            cursor.GetComponent<MeshRenderer>().enabled = true;
+            //cursor.GetComponent<MeshRenderer>().enabled = true;
             if (hit.collider.gameObject.tag == "buildingcube")
             {
                 if (Input.GetMouseButtonDown(1))
@@ -84,7 +85,7 @@ public class mousecursor : MonoBehaviour
                 posi = hit.point + (hit.normal * factor);
                 Debug.Log(hit.normal);
 
-
+                kugel.transform.position = new Vector3((int)(posi.x + 0.5f), (int)(posi.y + 0.5f), (int)(posi.z + 0.5f));
                 cursor.transform.position = new Vector3((int)(posi.x+0.5f),(int)(posi.y+0.5f),(int)(posi.z + 0.5f));
 
 
