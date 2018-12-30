@@ -631,6 +631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 534669904}
   cursor: {fileID: 671907593}
+  ss: {fileID: 1651182105}
 --- !u!114 &534669908
 MonoBehaviour:
   m_ObjectHideFlags: 0

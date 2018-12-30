@@ -10,18 +10,15 @@ public class mousecursor : MonoBehaviour
     private int facx = 1;
     private int facy = 1;
     private int facz = 1;
+    private int ssx = 1;
     public GameObject ss;
     private Vector3 posi;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
     void Update()
 
-    {       
+    {
+        StopShip();
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
@@ -72,6 +69,15 @@ public class mousecursor : MonoBehaviour
     }
     public void StopShip()
     {
+        if (ss.GetComponent<Rigidbody>().position.x < 0)
+        {
+            ssx = -1;
+        }
+        else
+        {
+            ssx = 1;
+        }
         ss.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        ss.GetComponent<Rigidbody>().position = new Vector3((int)(ss.GetComponent<Rigidbody>().position.x + 0.5f*ssx), (int)(ss.GetComponent<Rigidbody>().position.y + 0.5f), (int)(ss.GetComponent<Rigidbody>().position.z + 0.5f));
     }
 }

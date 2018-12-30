@@ -26,16 +26,15 @@ public class Createcube : MonoBehaviour
         {
 
                 GameObject cube = Object.Instantiate(prefab) as GameObject;
-                cube.transform.parent = ss.transform;
-                cube.transform.position = new Vector3(ss.transform.position.x + cursor.transform.position.x, ss.transform.position.y + cursor.transform.position.y, ss.transform.position.z + cursor.transform.position.z);
-            
+            cube.transform.position = cursor.transform.position;
+            cube.transform.parent = ss.transform;
         }
         if (Input.GetMouseButton(0) & Input.GetKey("q"))
         {
 
             GameObject cube = Object.Instantiate(prefab) as GameObject;
+            cube.transform.position = cursor.transform.position;
             cube.transform.parent = ss.transform;
-            cube.transform.position = new Vector3(ss.transform.position.x + cursor.transform.position.x, ss.transform.position.y + cursor.transform.position.y, ss.transform.position.z + cursor.transform.position.z);
 
         }
 
