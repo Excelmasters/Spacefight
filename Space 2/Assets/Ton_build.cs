@@ -5,9 +5,14 @@ using UnityEngine;
 public class Ton_build : MonoBehaviour
 {
     public GameObject build;
+    public GameObject cube;
+    public GameObject ramp;
     // Update is called once per frame
     void Update()
     {
-        
+        build.SetActive(true);
+        cube.SetActive(false);
+        ramp.SetActive(false);
+        enabled = false;
     }
 }
