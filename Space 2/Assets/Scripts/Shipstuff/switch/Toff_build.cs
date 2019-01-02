@@ -8,12 +8,12 @@ public class Toff_build : MonoBehaviour
     public GameObject cube;
     public GameObject Gamemanager;
     public GameObject ramp;
-    public GameObject Canvas;
+    public GameObject canvas;
+  //  public GameObject Canvas;
 
-    // Update is called once per frame
     void Update()
     {
-        Gamemanager.GetComponent<Ton_build>().enabled = false;
+        canvas.GetComponent<Ton_build>().enabled = false;
         build.SetActive(false);
         cube.SetActive(true);
         ramp.SetActive(true);
