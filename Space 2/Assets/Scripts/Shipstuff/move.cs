@@ -28,6 +28,7 @@ public class move : MonoBehaviour
             if (Input.GetKey("space")) { this.GetComponent<Rigidbody>().AddForce(0, 1 * speed * Time.deltaTime * factor, 0); }
             if (Input.GetKey("left shift")) { this.GetComponent<Rigidbody>().AddForce(0, -1 * speed * Time.deltaTime * factor, 0); }
         }
+
     }
-    
+
 }

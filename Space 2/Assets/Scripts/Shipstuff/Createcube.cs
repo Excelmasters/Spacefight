@@ -7,81 +7,49 @@ using System.Threading;
 
 public class Createcube : MonoBehaviour
 {
-    public GameObject prefab;
-    private int positionx = 0;
-    private int positiony = 0;
-    private int positionz = 0;
     public GameObject cursor;
     public GameObject ss;
-    private int sol = 1;
+    public GameObject[] buildingblocks;
+    public int buildingblocknumber = 0;
 
-    void deletemesh()
-    {
-
-    }
     void Update()
     {
-        cursor.GetComponent<Rigidbody>().freezeRotation = true;
+        cursor.GetComponent<Rigidbody>().freezeRotation = false;
         if (Input.GetMouseButtonDown(0) & Input.GetKey("q") == false)
         {
 
-                GameObject cube = Object.Instantiate(prefab) as GameObject;
+            GameObject cube = Object.Instantiate(buildingblocks[buildingblocknumber]) as GameObject;
             cube.transform.position = cursor.transform.position;
+            cube.transform.rotation = cursor.transform.rotation;
             cube.transform.parent = ss.transform;
         }
         if (Input.GetMouseButton(0) & Input.GetKey("q"))
         {
 
-            GameObject cube = Object.Instantiate(prefab) as GameObject;
+            GameObject cube = Object.Instantiate(buildingblocks[buildingblocknumber]) as GameObject;
             cube.transform.position = cursor.transform.position;
             cube.transform.parent = ss.transform;
-
         }
 
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown("d") && Input.GetKey("left shift"))
         {
-            deletemesh();
+            cursor.transform.Rotate(0, 90, 0);
+            Debug.Log("hi");
         }
-
-
-
-
-        if (Input.GetKeyDown("a"))
+        if (Input.GetKeyDown("a") && Input.GetKey("left shift"))
         {
-            positionx = positionx - 1 * sol;
+            cursor.transform.Rotate(0, -90, 0);
         }
-        if (Input.GetKeyDown("d"))
+        if (Input.GetKeyDown("w") && Input.GetKey("left shift"))
         {
-            positionx = positionx + 1 * sol;
-
+            cursor.transform.Rotate(90, 0, 0);
         }
-        if (Input.GetKeyDown("s"))
+        if (Input.GetKeyDown("s") && Input.GetKey("left shift"))
         {
-            positionz = positionz - 1 * sol;
-        }
-        if (Input.GetKeyDown("w"))
-        {
-            positionz = positionz + 1 * sol;
-
-        }
-        if (Input.GetKeyDown("left shift"))
-        {
-            positiony = positiony - 1 * sol;
-        }
-        if (Input.GetKeyDown("space"))
-        {
-            positiony = positiony + 1 * sol;
-
+            cursor.transform.Rotate(-90, 0, 0);
         }
 
-
-        if (Input.GetMouseButtonDown(2) == true)
-        {
-            cursor.GetComponent<Renderer>().enabled = false;
-            enabled = false;
-
-        }
     }
 
 }
