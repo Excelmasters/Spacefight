@@ -35,7 +35,6 @@ public class Createcube : MonoBehaviour
         if (Input.GetKeyDown("d") && Input.GetKey("left shift"))
         {
             cursor.transform.Rotate(0, 90, 0);
-            Debug.Log("hi");
         }
         if (Input.GetKeyDown("a") && Input.GetKey("left shift"))
         {
