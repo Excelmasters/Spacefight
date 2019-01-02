@@ -9,7 +9,6 @@ public class Toff_build : MonoBehaviour
     public GameObject Gamemanager;
     public GameObject ramp;
     public GameObject canvas;
-  //  public GameObject Canvas;
 
     void Update()
     {

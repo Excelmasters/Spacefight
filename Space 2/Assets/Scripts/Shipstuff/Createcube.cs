@@ -7,8 +7,6 @@ using System.Threading;
 
 public class Createcube : MonoBehaviour
 {
-    public GameObject prefabcube;
-    public GameObject ramp;
     public GameObject cursor;
     public GameObject ss;
     public GameObject[] buildingblocks;
