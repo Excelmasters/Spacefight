@@ -5,9 +5,10 @@ using UnityEngine;
 public class Tetraeder : MonoBehaviour
 {
     Vector3[] vertices;
-    int[] triangles;
-    int [] oldtri;
+    int[] triangles; 
     public int radius;
+    private int x;
+    private int h;
     Mesh body;
     [Range(1,20)]
     public int resolution;
@@ -16,7 +17,7 @@ public class Tetraeder : MonoBehaviour
     {
         GameObject Planet = new GameObject("Planet", typeof(MeshFilter), typeof(MeshRenderer));
         Vector3[] vertices = new Vector3[4*resolution];
-
+        int[] oldtri = new int[3];
 
         body = new Mesh();
 
@@ -39,16 +40,21 @@ public class Tetraeder : MonoBehaviour
 
             
         };
-        for (int x = 0; x < triangles.Length/3; x ++)
+       for (x = 0; x <  triangles.Length/3; x ++)
         {
+
             for (int y = 0; y < 3; y++)
             {
-                oldtri[y] = triangles[x * 3 + y]; 
+                oldtri[y] = (triangles[x * 3 + y]);
             }
 
             
         }
-
+        h = 0;
+        while (h < oldtri.Length)
+        {
+            Debug.Log(oldtri[h]);
+        }
 
 
 
