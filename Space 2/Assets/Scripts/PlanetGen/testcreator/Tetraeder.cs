@@ -7,11 +7,13 @@ public class Tetraeder : MonoBehaviour
     Vector3[] vertices;
     int[] triangles;
     Mesh body;
+    [Range(1,20)]
+    public int resolution;
     // Start is called before the first frame update
     void Start()
     {
         GameObject Planet = new GameObject("Planet", typeof(MeshFilter), typeof(MeshRenderer));
-
+        Vector3[] vertices = new Vector3[4*resolution];
 
 
         body = new Mesh();
