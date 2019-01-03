@@ -11,7 +11,6 @@ public class Createcube : MonoBehaviour
     public GameObject ss;
     public GameObject[] buildingblocks;
     public int buildingblocknumber = 0;
-    private int x = 0;
 
     void Update()
     {
@@ -23,8 +22,6 @@ public class Createcube : MonoBehaviour
             cube.transform.position = cursor.transform.position;
             cube.transform.rotation = cursor.transform.rotation;
             cube.transform.parent = ss.transform;
-            x = x + 1;
-            Debug.Log(x);
         }
         if (Input.GetMouseButton(0) & Input.GetKey("q"))
         {
@@ -32,8 +29,6 @@ public class Createcube : MonoBehaviour
             GameObject cube = Object.Instantiate(buildingblocks[buildingblocknumber]) as GameObject;
             cube.transform.position = cursor.transform.position;
             cube.transform.parent = ss.transform;
-                x = x + 1;
-            Debug.Log(x);
         }
 
 

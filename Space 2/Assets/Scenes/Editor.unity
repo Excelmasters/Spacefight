@@ -358,7 +358,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 10
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -399,6 +399,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &201945200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6255416177298962225, guid: 43bf91c053d26c74691eb6a97a737a2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1288236160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &201945201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201945200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a780bb6b3fc4f3d489dfaea485f0adcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &275228973
 GameObject:
   m_ObjectHideFlags: 0
