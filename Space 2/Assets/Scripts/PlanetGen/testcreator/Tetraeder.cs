@@ -6,6 +6,7 @@ public class Tetraeder : MonoBehaviour
 {
     Vector3[] vertices;
     int[] triangles;
+    public int radius;
     Mesh body;
     [Range(1,20)]
     public int resolution;
@@ -37,6 +38,15 @@ public class Tetraeder : MonoBehaviour
 
             
         };
+       // for (int x = 4; x < resolution * 4; x++)
+        //{
+            Debug.Log(triangles[4]);
+       // }
+
+
+
+
+
         body.vertices = vertices;
         body.triangles = triangles;
 
