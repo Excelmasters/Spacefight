@@ -15,16 +15,15 @@ public class Tetraeder : MonoBehaviour
 
 
         body = new Mesh();
-        body.vertices = vertices;
-        body.triangles = triangles;
 
         Planet.GetComponent<MeshFilter>().mesh = body;
 
         vertices = new Vector3[]
         {
-            new Vector3(0, 0),
-            new Vector3(1, 0),
-            new Vector3(1, 1)
+            new Vector3(-0.5f,0,-0.5f), //adding the negative of both vectors, divide it by 2
+            new Vector3(1,0,0),
+            new Vector3(0,0,1),
+            new Vector3(0,1,0)
         };/*
         vertices[0] = new Vector3(0, 0);
         vertices[1] = new Vector3(0, 0);
@@ -32,10 +31,17 @@ public class Tetraeder : MonoBehaviour
         */
         triangles = new int[]
         {
-            0,1,2
-        };
+            0,1,2,
+            2,1,3,
+            0,3,1,
+            3,0,2
 
-        
+            
+        };
+        body.vertices = vertices;
+        body.triangles = triangles;
+
+
 
         Planet.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Standard"));
         body.RecalculateNormals();
