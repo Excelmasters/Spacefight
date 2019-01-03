@@ -24,11 +24,8 @@ public class Tetraeder : MonoBehaviour
             new Vector3(1,0,0),
             new Vector3(0,0,1),
             new Vector3(0,1,0)
-        };/*
-        vertices[0] = new Vector3(0, 0);
-        vertices[1] = new Vector3(0, 0);
-        vertices[2] = new Vector3(1, 1);
-        */
+        };
+
         triangles = new int[]
         {
             0,1,2,
