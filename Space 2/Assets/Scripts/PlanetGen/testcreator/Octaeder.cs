@@ -103,10 +103,12 @@ public class Octaeder : MonoBehaviour
                 //cube.transform.position = newmid[c];
                 vertices.Add(newmid[c]);
             }
-
+            int a = new int();
+            a =  vertices.Count -1;
+            Debug.Log("a ist gleich    " + a); 
             for (int d = 0; d < 4; d++)
             {
-                //triangles.Add(vertices.Count-1-d);
+                triangles.Add(a-d);
 
             }
 
