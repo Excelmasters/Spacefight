@@ -12,7 +12,7 @@ public class Octaeder : MonoBehaviour
     private int h;
     int[] oldtri;
     Mesh body;
-    [Range(1, 20)]
+    [Range(0, 20)]
     public int resolution;
     // Start is called before the first frame update
     void Start()
@@ -129,19 +129,30 @@ public class Octaeder : MonoBehaviour
 
 
 
-                if (go > 2)                                                                                     //doesnt work properly
-                {
-                    for (int delete = 0; delete < Mathf.Pow(4, go - 1) * 3 - 2; delete++)
+                if (go != 2)
+                {/*
+                    for (int delete = 0; delete < 4; delete++)
                     {
+                        Debug.Log(delete);
                         triangles.Remove(delete);
-                    }
+                    }*/
+                    Debug.Log("HI");
+                    triangles.Remove(0);
+                    triangles.Remove(1);
+                    triangles.Remove(3);
+                    triangles.Remove(4);
+                    triangles.Remove(5);
+                    triangles.Remove(6);
+                    triangles.Remove(7);
+                    triangles.Remove(8);
                 }
+                
 
 
 
 
 
-                Debug.Log("HI");
+               
 
 
 
