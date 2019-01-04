@@ -27,10 +27,10 @@ public class Tetraeder : MonoBehaviour
 
         vertices = new Vector3[]
         {
-            new Vector3(-0.50f,0,-0.50f), //adding the negative of both vectors, divide it by 2
-            new Vector3(1,0,0),                     //integrate the radius here
-            new Vector3(0,0,1),
-            new Vector3(0,1,0)
+            new Vector3(-0.5f,0,-Mathf.Sqrt(0.75f)).normalized, //adding the negative of both vectors, divide it by 2
+            new Vector3(1,0,0).normalized,                     //integrate the radius here
+            new Vector3(-0.5f,0,Mathf.Sqrt(0.75f)).normalized,
+            new Vector3(0,1,0).normalized
         };
 
         triangles = new int[]
