@@ -15,7 +15,7 @@ public class Octaeder : MonoBehaviour
     [Range(1, 20)]
     public int resolution;
     // Start is called before the first frame update
-    void GenPlanet()
+    void Start()
     {
         GameObject Planet = new GameObject("Planet", typeof(MeshFilter), typeof(MeshRenderer));
 
@@ -76,6 +76,7 @@ public class Octaeder : MonoBehaviour
 
         for (int go = 0; go < resolution; go++)
         {
+            
 
             int trianglepointscount = triangles.Count;
 
@@ -124,7 +125,17 @@ public class Octaeder : MonoBehaviour
                 triangles.Add(a - 0);
                 triangles.Add(a - 1);
 
-               
+
+
+
+
+                if (go > 2)                                                                                     //doesnt work properly
+                {
+                    for (int delete = 0; delete < Mathf.Pow(4, go - 1) * 3 - 2; delete++)
+                    {
+                        triangles.Remove(delete);
+                    }
+                }
 
 
 
@@ -136,11 +147,11 @@ public class Octaeder : MonoBehaviour
 
 
 
-                for (int i = 0; i < vertices.Count; i++)                                                                          //Test wheather all vertices are added correctly
+               /* for (int i = 0; i < vertices.Count; i++)                                                                          //Test whether all vertices are added correctly
                 {
                     GameObject cube = Object.Instantiate(prefab) as GameObject;
                     cube.transform.position = vertices[i];
-                }
+                }*/
 
             }
             verticesarray = vertices.ToArray();
