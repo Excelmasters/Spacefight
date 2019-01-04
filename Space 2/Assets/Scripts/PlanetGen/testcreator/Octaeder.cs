@@ -105,22 +105,26 @@ public class Octaeder : MonoBehaviour
             }
             int a = new int();
             a =  vertices.Count -1;
-            Debug.Log("a ist gleich    " + a); 
-            for (int d = 0; d < 4; d++)
+
+
+            for (int e = 0; e < 3; e++)                                                                                                         //`????????????
             {
-                triangles.Add(a-d);
+                //triangles.Add(a-e);
 
             }
+            Debug.Log("HI");
+            triangles.Add(4);
+            triangles.Add(5);
+            triangles.Add(6);
 
 
 
 
 
-           for (int i = 0; i < vertices.Count; i++)                                                                          //Test wheather all vertices are added correctly
+            for (int i = 0; i < vertices.Count; i++)                                                                          //Test wheather all vertices are added correctly
             {
                 GameObject cube = Object.Instantiate(prefab) as GameObject;
                 cube.transform.position = vertices[i];
-                Debug.Log(i);
             }
 
         }
