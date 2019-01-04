@@ -76,9 +76,9 @@ public class Octaeder : MonoBehaviour
 
 
 
+        int trianglepointscount = triangles.Count;
 
-
-        for (x = 0; x < triangles.Count/3; x++)                      //looping through each surface  
+        for (x = 0; x < 1; x++)                      //looping through each surface  
         {
 
             for (int y = 0; y < 3; y++)                             //looping through each vertices of that surface 
@@ -109,13 +109,27 @@ public class Octaeder : MonoBehaviour
 
             for (int e = 0; e < 3; e++)                                                                                                         //`????????????
             {
-                //triangles.Add(a-e);
+                triangles.Add(a-2+e);
 
             }
+
+            triangles.Add(x * 3 + 1);
+            triangles.Add(a-1);
+            triangles.Add(a-2);
+
+            triangles.Add(x * 3);
+            triangles.Add(a - 2);
+            triangles.Add(a - 0);
+
+            triangles.Add(x * 3 +4 );
+            triangles.Add(a - 0);
+            triangles.Add(a - 1);
+
+
+
+
+
             Debug.Log("HI");
-            triangles.Add(4);
-            triangles.Add(5);
-            triangles.Add(6);
 
 
 
@@ -128,6 +142,7 @@ public class Octaeder : MonoBehaviour
             }
 
         }
+
         Vector3[] verticesarray = vertices.ToArray(); 
         body.vertices = verticesarray;
         int[] trianglearray = triangles.ToArray();
