@@ -15,7 +15,7 @@ public class Octaeder : MonoBehaviour
     [Range(1, 20)]
     public int resolution;
     // Start is called before the first frame update
-    void Start()
+    void GenPlanet()
     {
         GameObject Planet = new GameObject("Planet", typeof(MeshFilter), typeof(MeshRenderer));
 
@@ -23,6 +23,7 @@ public class Octaeder : MonoBehaviour
         int[] oldtri = new int[1325];
         List<Vector3> vertices = new List<Vector3>();
         List<int> triangles = new List<int>();
+        Vector3[] verticesarray = vertices.ToArray();
 
 
         Planet.GetComponent<MeshFilter>().mesh = body;
@@ -73,77 +74,81 @@ public class Octaeder : MonoBehaviour
         triangles.Add(2);
 
 
-
-
-
-        int trianglepointscount = triangles.Count;
-
-        for (x = 0; x < 1; x++)                      //looping through each surface  
+        for (int go = 0; go < resolution; go++)
         {
 
-            for (int y = 0; y < 3; y++)                             //looping through each vertices of that surface 
+            int trianglepointscount = triangles.Count;
+
+            for (x = 0; x < trianglepointscount / 3; x++)                      //looping through each surface  
             {
-                oldtri[y] = triangles[x * 3 + y];
+
+                for (int y = 0; y < 3; y++)                             //looping through each vertices of that surface 
+                {
+                    oldtri[y] = triangles[x * 3 + y];
+
+                }
+                Vector3[] newmid = new Vector3[3];                              //initiating the Vector3 for new Midpoints
+
+
+                newmid[0] = (vertices[oldtri[0]] + vertices[oldtri[1]]) / 2;
+                newmid[1] = (vertices[oldtri[1]] + vertices[oldtri[2]]) / 2;
+                newmid[2] = (vertices[oldtri[2]] + vertices[oldtri[0]]) / 2;
+
+
+
+                for (int c = 0; c < 3; c++)                                 //getting the vertices to have the same distance to the origin (which is equal to the radius)
+
+                {
+                    newmid[c] = newmid[c].normalized;                                                               //integrate the radius here
+                    vertices.Add(newmid[c]);
+                }
+                int a = new int();
+                a = vertices.Count - 1;
+
+
+                for (int e = 0; e < 3; e++)                                                                                                         //`????????????
+                {
+                    triangles.Add(a - 2 + e);
+
+                }
+
+                triangles.Add(oldtri[1]);
+                triangles.Add(a - 1);
+                triangles.Add(a - 2);
+
+                triangles.Add(oldtri[0]);
+                triangles.Add(a - 2);
+                triangles.Add(a - 0);
+
+                triangles.Add(oldtri[2]);
+                triangles.Add(a - 0);
+                triangles.Add(a - 1);
+
+               
+
+
+
+
+
+                Debug.Log("HI");
+
+
+
+
+
+                for (int i = 0; i < vertices.Count; i++)                                                                          //Test wheather all vertices are added correctly
+                {
+                    GameObject cube = Object.Instantiate(prefab) as GameObject;
+                    cube.transform.position = vertices[i];
+                }
 
             }
-            Vector3[] newmid = new Vector3[3];                              //initiating the Vector3 for new Midpoints
-
-
-            newmid[0] = (vertices[oldtri[0]] + vertices[oldtri[1]]) / 2;
-            newmid[1] = (vertices[oldtri[1]] + vertices[oldtri[2]]) / 2;
-            newmid[2] = (vertices[oldtri[2]] + vertices[oldtri[0]]) / 2;
-
-
-
-            for (int c = 0; c < 3; c++)                                 //getting the vertices to have the same distance to the origin (which is equal to the radius)
-
-            {
-                newmid[c] = newmid[c].normalized;                                                               //integrate the radius here
-                //GameObject cube = Object.Instantiate(prefab) as GameObject;
-                //cube.transform.position = newmid[c];
-                vertices.Add(newmid[c]);
-            }
-            int a = new int();
-            a =  vertices.Count -1;
-
-
-            for (int e = 0; e < 3; e++)                                                                                                         //`????????????
-            {
-                triangles.Add(a-2+e);
-
-            }
-
-            triangles.Add(x * 3 + 1);
-            triangles.Add(a-1);
-            triangles.Add(a-2);
-
-            triangles.Add(x * 3);
-            triangles.Add(a - 2);
-            triangles.Add(a - 0);
-
-            triangles.Add(x * 3 +4 );
-            triangles.Add(a - 0);
-            triangles.Add(a - 1);
-
-
-
-
-
-            Debug.Log("HI");
-
-
-
-
-
-            for (int i = 0; i < vertices.Count; i++)                                                                          //Test wheather all vertices are added correctly
-            {
-                GameObject cube = Object.Instantiate(prefab) as GameObject;
-                cube.transform.position = vertices[i];
-            }
-
+            verticesarray = vertices.ToArray();
         }
 
-        Vector3[] verticesarray = vertices.ToArray(); 
+
+
+        verticesarray = vertices.ToArray(); 
         body.vertices = verticesarray;
         int[] trianglearray = triangles.ToArray();
          body.triangles = trianglearray;
