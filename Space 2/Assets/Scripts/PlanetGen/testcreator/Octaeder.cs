@@ -137,14 +137,14 @@ public class Octaeder : MonoBehaviour
                         triangles.Remove(delete);
                     }*/
                     Debug.Log("HI");
-                    triangles.Remove(0);
+                   /* triangles.Remove(0);
                     triangles.Remove(1);
                     triangles.Remove(3);
                     triangles.Remove(4);
                     triangles.Remove(5);
                     triangles.Remove(6);
                     triangles.Remove(7);
-                    triangles.Remove(8);
+                    triangles.Remove(8);*/
                 }
                 
 
