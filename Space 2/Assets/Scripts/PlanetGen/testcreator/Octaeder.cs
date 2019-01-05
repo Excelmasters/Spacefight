@@ -6,6 +6,7 @@ public class Octaeder : MonoBehaviour
 {
     public GameObject prefab;
     Vector3[] newmid;
+    public GameObject Planet;
     public int radius;
     private int x;
     private float hi;
@@ -14,10 +15,18 @@ public class Octaeder : MonoBehaviour
     Mesh body;
     [Range(0, 7)]
     public int resolution;
-    // Start is called before the first frame update
-    void Start()
+
+
+
+
+
+    void OnValidate()
     {
-        GameObject Planet = new GameObject("Planet", typeof(MeshFilter), typeof(MeshRenderer));
+        // GameObject Planet = new GameObject("Planet", typeof(MeshFilter), typeof(MeshRenderer));
+
+        if (Planet.GetComponent<MeshFilter>() == null) { Planet.AddComponent<MeshFilter>(); }
+        if (Planet.AddComponent<MeshRenderer>() == null) { Planet.AddComponent<MeshFilter>(); }
+
 
         body = new Mesh();
         int[] oldtri = new int[1325];
@@ -27,19 +36,7 @@ public class Octaeder : MonoBehaviour
         body.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
 
 
-        Planet.GetComponent<MeshFilter>().mesh = body;
-
-        /* vertices = new Vector3
-         {
-              new Vector3(1,0,1).normalized,
-              new Vector3(1,0,-1).normalized,
-              new Vector3(-1,0,-1).normalized,
-              new Vector3(-1,0,1).normalized,
-              new Vector3(0,1,0).normalized,
-              new Vector3(0,-1,0).normalized,
-
-         };*/
-
+        Planet.GetComponent<MeshFilter>().mesh = body;                          //creating an octaeder
         vertices.Add(new Vector3(1, 0, 1).normalized);
         vertices.Add(new Vector3(1, 0, -1).normalized);
         vertices.Add(new Vector3(-1, 0, -1).normalized);
@@ -76,7 +73,7 @@ public class Octaeder : MonoBehaviour
 
         Debug.Log(triangles.Count / 3);;
 
-        for (int go = 0; go < resolution; go++)
+        for (int go = 0; go < resolution; go++)                                                         //resolution loop (essentially just repeats the process)
         {
             
 
@@ -99,10 +96,10 @@ public class Octaeder : MonoBehaviour
 
 
 
-                for (int c = 0; c < 3; c++)                                 //getting the vertices to have the same distance to the origin (which is equal to the radius)
+                for (int c = 0; c < 3; c++)                                
 
                 {
-                    newmid[c] = newmid[c].normalized;                                                               //integrate the radius here
+                    newmid[c] = newmid[c].normalized;                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
                     vertices.Add(newmid[c]);
                 }
                 int a = new int();
@@ -127,28 +124,13 @@ public class Octaeder : MonoBehaviour
                 triangles.Add(a - 0);
                 triangles.Add(a - 1);
 
+   
 
 
 
+            
 
-                
-                
-                   
-                   
-                
-                
-
-
-
-
-
-               
-
-
-
-
-
-               /* for (int i = 0; i < vertices.Count; i++)                                                                          //Test whether all vertices are added correctly
+               /* for (int i = 0; i < vertices.Count; i++)                                                                          //Test whether all vertices are added correctly (lowers performance drastically)
                 {
                     GameObject cube = Object.Instantiate(prefab) as GameObject;
                     cube.transform.position = vertices[i];
@@ -183,6 +165,7 @@ public class Octaeder : MonoBehaviour
          body.triangles = trianglearray;
         Planet.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Standard"));
         body.RecalculateNormals();
+        Planet.transform.localScale = new Vector3(radius, radius, radius);
 
 
     }
