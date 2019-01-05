@@ -12,7 +12,7 @@ public class Octaeder : MonoBehaviour
     private int h;
     int[] oldtri;
     Mesh body;
-    [Range(0, 20)]
+    [Range(0, 7)]
     public int resolution;
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,7 @@ public class Octaeder : MonoBehaviour
         List<Vector3> vertices = new List<Vector3>();
         List<int> triangles = new List<int>();
         Vector3[] verticesarray = vertices.ToArray();
+        body.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
 
 
         Planet.GetComponent<MeshFilter>().mesh = body;
@@ -73,6 +74,7 @@ public class Octaeder : MonoBehaviour
         triangles.Add(5);
         triangles.Add(2);
 
+        Debug.Log(triangles.Count / 3);;
 
         for (int go = 0; go < resolution; go++)
         {
@@ -129,23 +131,11 @@ public class Octaeder : MonoBehaviour
 
 
 
-                if (go != 2)
-                {/*
-                    for (int delete = 0; delete < 4; delete++)
-                    {
-                        Debug.Log(delete);
-                        triangles.Remove(delete);
-                    }*/
-                    Debug.Log("HI");
-                   /* triangles.Remove(0);
-                    triangles.Remove(1);
-                    triangles.Remove(3);
-                    triangles.Remove(4);
-                    triangles.Remove(5);
-                    triangles.Remove(6);
-                    triangles.Remove(7);
-                    triangles.Remove(8);*/
-                }
+                
+                
+                   
+                   
+                
                 
 
 
@@ -165,11 +155,28 @@ public class Octaeder : MonoBehaviour
                 }*/
 
             }
+
+
+             for (int delete = triangles.Count/3; delete>-1; delete--)
+             {
+                if (delete < 8 * Mathf.Pow(4, go)*3)
+                {
+                    triangles.RemoveAt(delete);
+                }
+
+             }
+
+
+            Debug.Log(triangles.Count/3);
+
+
+
             verticesarray = vertices.ToArray();
+            body.RecalculateNormals();
         }
 
-
-
+        Vector3[] zero = new Vector3[0];
+        verticesarray = zero;
         verticesarray = vertices.ToArray(); 
         body.vertices = verticesarray;
         int[] trianglearray = triangles.ToArray();
