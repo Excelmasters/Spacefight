@@ -15,7 +15,7 @@ public class Octaeder : MonoBehaviour
     private int h;
     int[] oldtri;
     Mesh body;
-    [Range(0, 8)]
+    [Range(0, 7)]
     public int resolution;
 
 
