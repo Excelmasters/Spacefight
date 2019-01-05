@@ -10,6 +10,8 @@ public class Octaeder : MonoBehaviour
     public int radius;
     private int x;
     private float hi;
+    [Range(0, 1000)]
+    public float ra;
     private int h;
     int[] oldtri;
     Mesh body;
@@ -99,14 +101,15 @@ public class Octaeder : MonoBehaviour
                 for (int c = 0; c < 3; c++)                                
 
                 {
-                    newmid[c] = newmid[c].normalized;                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
+                    newmid[c] = newmid[c].normalized;
+                    //newmid[c] = newmid[c].normalized * Mathf.PerlinNoise(1.00f+ra,1.00f-ra);                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
                     vertices.Add(newmid[c]);
                 }
                 int a = new int();
                 a = vertices.Count - 1;
 
 
-                for (int e = 0; e < 3; e++)                                                                                                         //`????????????
+                for (int e = 0; e < 3; e++)                                                                                                        
                 {
                     triangles.Add(a - 2 + e);
 
