@@ -10,6 +10,7 @@ public class Octaeder : MonoBehaviour
     public int radius;
     private int x;
     private float hi;
+    private int watch;
     [Range(0, 1000)]
     public float ra;
     private int h;
@@ -102,8 +103,11 @@ public class Octaeder : MonoBehaviour
 
                 {
                     newmid[c] = newmid[c].normalized;
-                    //newmid[c] = newmid[c].normalized * Mathf.PerlinNoise(1.00f+ra,1.00f-ra);                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
-                    vertices.Add(newmid[c]);
+                   //newmid[c] = newmid[c].normalized * Random.Range(1.01f,-1.01f);                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
+
+                        vertices.Add(newmid[c]);
+
+
                 }
                 int a = new int();
                 a = vertices.Count - 1;
