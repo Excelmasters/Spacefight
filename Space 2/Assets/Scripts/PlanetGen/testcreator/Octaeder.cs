@@ -9,7 +9,16 @@ public class Octaeder : MonoBehaviour
     public GameObject Planet;
     public int radius;
     private int x;
+<<<<<<< HEAD
+=======
+    private float hi;
+<<<<<<< HEAD
+    private int watch;
+    [Range(0, 1000)]
+=======
+>>>>>>> b23537c5cee7f05f45aaf1b7b5b3c0e5b3289708
     [Range(0, 1)]
+>>>>>>> e559572b07af5df2c8088dc8cdbf4bbc64b4bf57
     public float ra;
     int[] oldtri;
     Mesh body;
@@ -99,11 +108,26 @@ public class Octaeder : MonoBehaviour
                 for (int c = 0; c < 3; c++)                                
 
                 {
+<<<<<<< HEAD
                     newmid[c] = newmid[c].normalized;
                     // newmid[c] = newmid[c].normalized * Random.Range(1.00f+ra,1.00f-ra);
                     //newmid[c] = newmid[c].normalized * Mathf.PerlinNoise(1.00f+ra,1.00f-ra);                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
                     vertices.Add(newmid[c]);
 
+=======
+<<<<<<< HEAD
+                    newmid[c] = newmid[c].normalized;
+                   //newmid[c] = newmid[c].normalized * Random.Range(1.01f,-1.01f);                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
+
+                        vertices.Add(newmid[c]);
+
+
+=======
+                   // newmid[c] = newmid[c].normalized * Random.Range(1.00f+ra,1.00f-ra);
+                    //newmid[c] = newmid[c].normalized * Mathf.PerlinNoise(1.00f+ra,1.00f-ra);                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
+                    vertices.Add(newmid[c]);
+>>>>>>> e559572b07af5df2c8088dc8cdbf4bbc64b4bf57
+>>>>>>> b23537c5cee7f05f45aaf1b7b5b3c0e5b3289708
                 }
                 int a = new int();
                 a = vertices.Count - 1;
