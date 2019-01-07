@@ -34,7 +34,7 @@ public class TerrainFace
                 int i = x + y * resolution;
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);
                 Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
-                Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
+                Vector3 pointOnUnitSphere = pointOnUnitCube;            //here
                 vertices[i] = pointOnUnitSphere;
 
                 if (x != resolution - 1 && y != resolution - 1)
