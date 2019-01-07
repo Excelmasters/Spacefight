@@ -9,10 +9,8 @@ public class Octaeder : MonoBehaviour
     public GameObject Planet;
     public int radius;
     private int x;
-    private float hi;
     [Range(0, 1)]
     public float ra;
-    private int h;
     int[] oldtri;
     Mesh body;
     [Range(0, 7)]
@@ -101,9 +99,11 @@ public class Octaeder : MonoBehaviour
                 for (int c = 0; c < 3; c++)                                
 
                 {
-                   // newmid[c] = newmid[c].normalized * Random.Range(1.00f+ra,1.00f-ra);
+                    newmid[c] = newmid[c].normalized;
+                    // newmid[c] = newmid[c].normalized * Random.Range(1.00f+ra,1.00f-ra);
                     //newmid[c] = newmid[c].normalized * Mathf.PerlinNoise(1.00f+ra,1.00f-ra);                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
                     vertices.Add(newmid[c]);
+
                 }
                 int a = new int();
                 a = vertices.Count - 1;
@@ -115,8 +115,8 @@ public class Octaeder : MonoBehaviour
 
                 }
 
-                triangles.Add(oldtri[1]);
-                triangles.Add(a - 1);
+                  triangles.Add(oldtri[1]);
+                 triangles.Add(a - 1);
                 triangles.Add(a - 2);
 
                 triangles.Add(oldtri[0]);
@@ -160,7 +160,6 @@ public class Octaeder : MonoBehaviour
             verticesarray = vertices.ToArray();
             body.RecalculateNormals();
         }
-
         Vector3[] zero = new Vector3[0];
         verticesarray = zero;
         verticesarray = vertices.ToArray(); 
