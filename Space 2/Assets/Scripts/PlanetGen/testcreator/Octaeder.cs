@@ -10,8 +10,12 @@ public class Octaeder : MonoBehaviour
     public int radius;
     private int x;
     private float hi;
+<<<<<<< HEAD
     private int watch;
     [Range(0, 1000)]
+=======
+    [Range(0, 1)]
+>>>>>>> e559572b07af5df2c8088dc8cdbf4bbc64b4bf57
     public float ra;
     private int h;
     int[] oldtri;
@@ -82,7 +86,7 @@ public class Octaeder : MonoBehaviour
 
             int trianglepointscount = triangles.Count;
 
-            for (x = 0; x < trianglepointscount / 3; x++)                      //looping through each surface  
+            for (x = 0; x < trianglepointscount / 3 ; x++)                      //looping through each surface  
             {
 
                 for (int y = 0; y < 3; y++)                             //looping through each vertices of that surface 
@@ -102,12 +106,18 @@ public class Octaeder : MonoBehaviour
                 for (int c = 0; c < 3; c++)                                
 
                 {
+<<<<<<< HEAD
                     newmid[c] = newmid[c].normalized;
                    //newmid[c] = newmid[c].normalized * Random.Range(1.01f,-1.01f);                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
 
                         vertices.Add(newmid[c]);
 
 
+=======
+                   // newmid[c] = newmid[c].normalized * Random.Range(1.00f+ra,1.00f-ra);
+                    //newmid[c] = newmid[c].normalized * Mathf.PerlinNoise(1.00f+ra,1.00f-ra);                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
+                    vertices.Add(newmid[c]);
+>>>>>>> e559572b07af5df2c8088dc8cdbf4bbc64b4bf57
                 }
                 int a = new int();
                 a = vertices.Count - 1;
@@ -156,8 +166,9 @@ public class Octaeder : MonoBehaviour
              }
 
 
-            Debug.Log(triangles.Count/3);
+            Debug.Log(triangles.Count/3 + " Dreiecke");
 
+            Debug.Log(vertices.Count + " vertices");
 
 
             verticesarray = vertices.ToArray();
