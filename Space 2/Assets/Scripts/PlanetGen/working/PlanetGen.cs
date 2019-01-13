@@ -2,30 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Octaeder_Test : MonoBehaviour
+public class PlanetGen : MonoBehaviour
 {
     public GameObject prefab;
     Vector3[] newmid;
     public GameObject Planet;
-    public int radius;
+    [Range(0, 10)]
+    public float radius;
+
     public Material medal;
     private int x;
     int[] trip;
     [Range(0, 1)]
     public float ra;
+    [Range(0, 1)]
+    public float ra2;
     int[] oldtri;
     Mesh body;
     [Range(0, 7)]
     public int resolution;
+    Noise noise = new Noise();
 
 
 
     static Hashtable verticeshash;
 
 
+    public float Terrain(Vector3 vertice)
+    {
+        float terrainvalue = (noise.Evaluate(vertice)) * ra2;
+        return terrainvalue;
+
+    }
 
 
-    void Start()
+
+    void OnValidate()
     {
         // GameObject Planet = new GameObject("Planet", typeof(MeshFilter), typeof(MeshRenderer));
 
@@ -228,16 +240,16 @@ public class Octaeder_Test : MonoBehaviour
         }*/
 
 
-        for (int c = 0; c < vertices.Count; c++) { 
-        vertices[c] = vertices[c].normalized * Random.Range(1.00f + ra, 1.00f - ra); }
-
-
-
-
-        /*for (int c = 0; c < vertices.Count; c++)
+        
+        for (int c = 0; c < vertices.Count; c++)
         {
-            vertices[c] = vertices[c].normalized * Mathf.PerlinNoise(1.00f + ra, 1.00f - ra);
-        }*/
+            vertices[c] = vertices[c].normalized;
+            vertices[c] = vertices[c] * (Terrain(vertices[c])+1);
+        }
+        for (int c = 0; c < vertices.Count; c++) { 
+        vertices[c] = vertices[c] * Random.Range(1.00f + ra, 1.00f - ra); }
+
+
 
 
 
