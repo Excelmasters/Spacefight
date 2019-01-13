@@ -8,6 +8,7 @@ public class Octaeder_Test : MonoBehaviour
     Vector3[] newmid;
     public GameObject Planet;
     public int radius;
+    public Material medal;
     private int x;
     int[] trip;
     [Range(0, 1)]
@@ -24,7 +25,7 @@ public class Octaeder_Test : MonoBehaviour
 
 
 
-    void OnValidate()
+    void Start()
     {
         // GameObject Planet = new GameObject("Planet", typeof(MeshFilter), typeof(MeshRenderer));
 
@@ -40,7 +41,7 @@ public class Octaeder_Test : MonoBehaviour
         List<int> triangles = new List<int>();
         Vector3[] verticesarray = vertices.ToArray();
         body.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
-        int h =  new int();
+        int h = new int();
         int j = new int();
         int k = new int();
 
@@ -115,7 +116,7 @@ public class Octaeder_Test : MonoBehaviour
 
                 {
                     newmid[c] = newmid[c].normalized;
-                     //newmid[c] = newmid[c].normalized * Random.Range(1.00f+ra,1.00f-ra);
+
                     //newmid[c] = newmid[c].normalized * Mathf.PerlinNoise(1.00f+ra,1.00f-ra);                                                              //getting the vertices to have the same distance to the origin (which is equal to the radius) 
 
 
@@ -138,16 +139,16 @@ public class Octaeder_Test : MonoBehaviour
                     if (vertices.Contains(newmid[c]))
                     {
                         trip[c] = vertices.IndexOf(newmid[c]);
-                        int g =  new int();
+                        int g = new int();
 
                         g = g + 1;
                         if (g > 1) { Debug.Log(g + "  points do exist"); }
-                        
+
                     }
                     else
                     {
                         vertices.Add(newmid[c]);
-                       // trip[c] = vertices.Count - 1;
+                        // trip[c] = vertices.Count - 1;
                         trip[c] = vertices.IndexOf(newmid[c]);
                     }
                     /*
@@ -162,19 +163,19 @@ public class Octaeder_Test : MonoBehaviour
                 }
                 int a = new int();
                 a = vertices.Count - 1;
-                
+
 
                 for (int e = 0; e < 3; e++)
                 {
                     triangles.Add(trip[e]);
 
                 }
-                
+
                 triangles.Add(oldtri[1]);
                 triangles.Add(trip[1]);
                 triangles.Add(trip[0]);
 
-                
+
                 /*triangles.Add(oldtri[0]);             //wrong direction
                 triangles.Add(trip[2]);
                 triangles.Add(trip[0]);*/
@@ -184,18 +185,18 @@ public class Octaeder_Test : MonoBehaviour
                 triangles.Add(oldtri[0]);
 
 
-                
+
                 triangles.Add(oldtri[2]);
                 triangles.Add(trip[2]);
                 triangles.Add(trip[1]);
-                
 
 
 
 
 
 
-                 
+
+
             }
 
 
@@ -220,14 +221,23 @@ public class Octaeder_Test : MonoBehaviour
 
 
 
-        for (int i = 0; i < vertices.Count; i++)                                                                          //Test whether all vertices are added correctly (lowers performance drastically)
+        /*for (int i = 0; i < vertices.Count; i++)                                                                          //Test whether all vertices are added correctly (lowers performance drastically)
         {
             GameObject cube = Object.Instantiate(prefab) as GameObject;
             cube.transform.position = vertices[i];
-        }
+        }*/
+
+
+        for (int c = 0; c < vertices.Count; c++) { 
+        vertices[c] = vertices[c].normalized * Random.Range(1.00f + ra, 1.00f - ra); }
 
 
 
+
+        /*for (int c = 0; c < vertices.Count; c++)
+        {
+            vertices[c] = vertices[c].normalized * Mathf.PerlinNoise(1.00f + ra, 1.00f - ra);
+        }*/
 
 
 
@@ -241,7 +251,7 @@ public class Octaeder_Test : MonoBehaviour
         body.vertices = verticesarray;
         int[] trianglearray = triangles.ToArray();
         body.triangles = trianglearray;
-        Planet.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Standard"));
+        Planet.GetComponent<MeshRenderer>().material = medal;
         body.RecalculateNormals();
         Planet.transform.localScale = new Vector3(radius, radius, radius);
 
