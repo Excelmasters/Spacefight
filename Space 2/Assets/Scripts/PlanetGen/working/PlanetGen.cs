@@ -18,7 +18,7 @@ public class PlanetGen : MonoBehaviour
     [Range(0, 1)]
     public float amplitude;
     [Range(0,10)]
-    public float roughness = 2;
+    public float frequenzy = 2;
     [Range(1,6)]
     public int numsurfaces;
     public float persistence = 0.5f;
@@ -27,6 +27,7 @@ public class PlanetGen : MonoBehaviour
     Mesh body;
     [Range(0, 6)]
     public int resolution;
+    public Vector3 center;
     Noise noise = new Noise();
 
 
@@ -36,19 +37,20 @@ public class PlanetGen : MonoBehaviour
 
     public float Terrain(Vector3 vertice)
     {
-        //float terrainvalue = (noise.Evaluate(vertice * roughness)+1) * amplitude;
-        float terrainvalue = 0;
+        float terrainvalue = (noise.Evaluate(vertice * frequenzy + center)+1) * amplitude;
+        /*float terrainvalue = 0;
         float depth = amplitude;
-        roughness = Baseroughness;
+        frequenzy = Baseroughness;
         for (int i = 0; i< numsurfaces; i++)
         {
-            terrainvalue += (noise.Evaluate(vertice * roughness) + 1) * depth;
+            terrainvalue += (noise.Evaluate(vertice * frequenzy + center) + 1) * depth;
             depth *= 0.5f;
-            roughness *= 0.6f;
+            frequenzy *= 0.6f;
+
             
         }
 
-        return terrainvalue;
+     */   return terrainvalue;
     }
 
 
