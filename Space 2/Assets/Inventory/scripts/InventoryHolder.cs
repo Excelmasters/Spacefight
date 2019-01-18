@@ -14,8 +14,8 @@ public class InventoryHolder : MonoBehaviour
     {
         numSlots = width * height;
         slots = new ItemSlot[numSlots]; // Slots werden erstellt
-        
     }
+
     private int GetPosition(int x, int y)
     {
         if (x < 0 || y < 0 || x >= width || y >= height)
@@ -35,6 +35,7 @@ public class InventoryHolder : MonoBehaviour
 
             return slots[position];
     }
+
     public void SetSlot(int x, int y, ItemSlot newSlot)
     {
         int position = GetPosition(x, y);
