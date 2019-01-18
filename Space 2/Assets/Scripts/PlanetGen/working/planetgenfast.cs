@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlanetGen : MonoBehaviour
+public class planetgenfast : MonoBehaviour
 {
-    public GameObject prefab;
+    /*public GameObject prefab;
     Vector3[] newmid;
     public GameObject Planet;
     [Range(0, 10)]
     public float radius;
 
-    public Material medal;
+    public Material medal;          
     List<Vector3> store = new List<Vector3>();
     private int x;
     int[] trip;
@@ -20,9 +20,9 @@ public class PlanetGen : MonoBehaviour
     public float mininum;
     [Range(0, 1)]
     public float amplitude;
-    [Range(0,10)]
+    [Range(0, 10)]
     public float frequenzy = 1;
-    [Range(0,10)]
+    [Range(0, 10)]
     public int numsurfaces = 1;
 
     [Range(0, 1)]
@@ -41,25 +41,24 @@ public class PlanetGen : MonoBehaviour
 
 
 
-    static Hashtable verticeshash;
-
 
 
 
 
     private void OnValidate()
     {
-        if(store.Count == 0)
+        if (store.Count == 0)
         {
             store = Sphere();
             Debug.Log("nicht da ");
         }
-        else {
+        else
+        {
             Debug.Log("schon da ");
             for (int c = 0; c < store.Count; c++)
             {
                 store[c] = store[c].normalized;
-                store[c] = store[c] * (Terrain(store[c])+1);
+                store[c] = store[c] * (Terrain(store[c]) + 1);
             }
             for (int c = 0; c < store.Count; c++)
             {
@@ -86,10 +85,10 @@ public class PlanetGen : MonoBehaviour
         float terrainvalue = 0;
         float basefre = frequenzy;
         float depth = amplitude;
-        for (int i = 0; i< numsurfaces; i++)
+        for (int i = 0; i < numsurfaces; i++)
         {
-           float k = (noise.Evaluate(vertice * basefre + center));
-           terrainvalue += (k+1) * 0.5f * depth; 
+            float k = (noise.Evaluate(vertice * basefre + center));
+            terrainvalue += (k + 1) * 0.5f * depth;
 
             basefre *= Baseroughness;
             depth *= persistence;
@@ -101,20 +100,7 @@ public class PlanetGen : MonoBehaviour
 
 
 
-        /*float terrainvalue = 0;
-        float depth = amplitude;
-        frequenzy = Baseroughness;
-        for (int i = 0; i< numsurfaces; i++)
-        {
-            terrainvalue += (noise.Evaluate(vertice * frequenzy + center) + 1) * depth;
-            depth *= 0.5f;
-            frequenzy *= 0.6f;
-
-            
-        }
-
-     */
-        //return terrainvalue;
+        
     }
 
 
@@ -129,30 +115,23 @@ public class PlanetGen : MonoBehaviour
 
         body = new Mesh();
         int[] trip = new int[3];
-        verticeshash = new Hashtable();
         int[] oldtri = new int[1325];
-        List<Vector3> vertices = new List<Vector3>();
+        Dictionary<int, Vector3> vertices = new Dictionary<int, Vector3>();
         List<int> triangles = new List<int>();
-        Vector3[] verticesarray = vertices.ToArray();
+        Vector3[] verticesarray = (new List<Vector3>(vertices.Values)).ToArray();
         body.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
         int h = new int();
         int j = new int();
         int k = new int();
 
-        Planet.GetComponent<MeshFilter>().mesh = body;                          //creating an octaeder
-        vertices.Add(new Vector3(1, 0, 1).normalized);
-        vertices.Add(new Vector3(1, 0, -1).normalized);
-        vertices.Add(new Vector3(-1, 0, -1).normalized);
-        vertices.Add(new Vector3(-1, 0, 1).normalized);
-        vertices.Add(new Vector3(0, 1, 0).normalized);
-        vertices.Add(new Vector3(0, -1, 0).normalized);
+        
 
-        /*verticeshash.Add(0, new Vector3(1, 0, 1).normalized);
-        verticeshash.Add(1, new Vector3(1, 0, -1).normalized);
-        verticeshash.Add(2, new Vector3(-1, 0, -1).normalized);
-        verticeshash.Add(3, new Vector3(-1, 0, 1).normalized);
-        verticeshash.Add(4, new Vector3(0, 1, 0).normalized);
-        verticeshash.Add(5, new Vector3(0, -1, 0).normalized);*/
+        vertices.Add(0, new Vector3(1, 0, 1).normalized);
+        vertices.Add(1, new Vector3(1, 0, -1).normalized);
+        vertices.Add(2, new Vector3(-1, 0, -1).normalized);
+        vertices.Add(3, new Vector3(-1, 0, 1).normalized);
+        vertices.Add(4, new Vector3(0, 1, 0).normalized);
+        vertices.Add(5, new Vector3(0, -1, 0).normalized);
 
 
 
@@ -202,7 +181,7 @@ public class PlanetGen : MonoBehaviour
 
                 newmid[0] = (vertices[oldtri[0]] + vertices[oldtri[1]]) / 2;
                 newmid[1] = (vertices[oldtri[1]] + vertices[oldtri[2]]) / 2;
-                newmid[2] = (vertices[oldtri[2]] + vertices[oldtri[0]]) / 2;
+                newmid[2] = vertices[oldtri[2]] + vertices[oldtri[0]]) / 2;
 
 
 
@@ -220,19 +199,11 @@ public class PlanetGen : MonoBehaviour
 
 
 
-                    /*if (verticeshash.ContainsValue(newmid[c]))
-                    {
-                        verticeshash.
-                    }
-                    else
-                    {
-                        vertices.Add(newmid[c]);
-                        verticeshash.Add(verticeshash.Count, newmid[c]);
-                    }*/
+                    
 
-                    if (vertices.Contains(newmid[c]))
+                    if (vertices.ContainsValue(newmid[c]))
                     {
-                        trip[c] = vertices.IndexOf(newmid[c]);
+                        trip[c] = vertices.Keys(newmid[c]);
                         int g = new int();
 
                         g = g + 1;
@@ -245,11 +216,6 @@ public class PlanetGen : MonoBehaviour
                         // trip[c] = vertices.Count - 1;
                         trip[c] = vertices.IndexOf(newmid[c]);
                     }
-                    /*
-                    vertices.Add(newmid[c]);
-                    trip[c] = vertices.IndexOf(newmid[c]);
-                    */
-
 
 
 
@@ -270,9 +236,6 @@ public class PlanetGen : MonoBehaviour
                 triangles.Add(trip[0]);
 
 
-                /*triangles.Add(oldtri[0]);             //wrong direction
-                triangles.Add(trip[2]);
-                triangles.Add(trip[0]);*/
 
                 triangles.Add(trip[0]);
                 triangles.Add(trip[2]);
@@ -312,33 +275,6 @@ public class PlanetGen : MonoBehaviour
             verticesarray = vertices.ToArray();
             body.RecalculateNormals();
         }
-
-
-
-        /*for (int i = 0; i < vertices.Count; i++)                                                                          //Test whether all vertices are added correctly (lowers performance drastically)
-        {
-            GameObject cube = Object.Instantiate(prefab) as GameObject;
-            cube.transform.position = vertices[i];
-        }*/
-
-
-        
-        /*for (int c = 0; c < vertices.Count; c++)
-        {
-            vertices[c] = vertices[c].normalized;
-            vertices[c] = vertices[c] * (Terrain(vertices[c])+1);
-        }
-        for (int c = 0; c < vertices.Count; c++) { 
-        vertices[c] = vertices[c] * Random.Range(1.00f + ra, 1.00f - ra); }*/
-
-
-
-
-
-
-
-
-
         Vector3[] zero = new Vector3[0];
         verticesarray = zero;
         verticesarray = vertices.ToArray();
@@ -351,7 +287,7 @@ public class PlanetGen : MonoBehaviour
 
         return vertices;
     }
-    
 
+    */
 }
 

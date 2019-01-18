@@ -1,22 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class tester : MonoBehaviour
+public static class IDictionaryExtensions
 {
-    // Start is called before the first frame update
-    void Start()
+    public class tester : MonoBehaviour
     {
-        List<int> triangles = new List<int>();
-        for (int x = 0; x < 5; x++)
+        // Start is called before the first frame update
+        void Start()
         {
-          if (triangles.Contains(1) != true)
-            {
-                triangles.Add(1);
-            }
-        }
-        Debug.Log(triangles.Count + "  Elements in list");
-    }
+            Dictionary<int, Vector3> dictionary = new Dictionary<int, Vector3>();
+            dictionary.Add(0, new Vector3(1, 1, 1));
+            dictionary.Add(2, new Vector3(1, 1, 1));
+            dictionary.Add(1, new Vector3(1, 1, 1));
+            Debug.Log(dictionary.Keys);
 
+            foreach (KeyValuePair<int, Vector3> pair in dictionary)
+                if (dictionary.Values.Equals(pair.Value)) ;
+            {
+                Debug.Log("2");
+            }
+
+        }
+    }
 
 }
