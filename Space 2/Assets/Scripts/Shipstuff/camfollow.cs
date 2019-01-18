@@ -21,4 +21,5 @@ public class camfollow : MonoBehaviour
         mc.enabled = false;
         cursor.GetComponent<MeshRenderer>().enabled = false;
     }
+ 
 }
