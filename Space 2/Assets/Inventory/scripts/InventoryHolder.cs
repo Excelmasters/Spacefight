@@ -9,42 +9,43 @@ public class InventoryHolder : MonoBehaviour
 
     private int numSlots;
 
-    private ItemSlot[] slots;
+    private ItemSlot[] slots; //Array mit dem Namen "slots"
+
     void Awake()
     {
-        numSlots = width * height;
+        numSlots = width * height;      //Anzahl der Slots wird berechnet
         slots = new ItemSlot[numSlots]; // Slots werden erstellt
     }
 
-    private int GetPosition(int x, int y)
+    private int GetPosition(int x, int y) //Position wird gesucht
     {
-        if (x < 0 || y < 0 || x >= width || y >= height)
+        if (x < 0 || y < 0 || x >= width || y >= height) //Sicherung, dass keine falsche Angaben gemacht werden
             return -1;
         return y * width + x;
     }
 
-    public ItemSlot GetSlot(int x, int y)
+    public ItemSlot GetSlot(int x, int y) //Zugriff auf bestimmte Slots
     {
         int position = GetPosition(x, y);
 
-        if (position < 0)
+        if (position < 0) //ist die eingegebene Position negativ gibt es eine Fehlermeldung
         {
             Debug.LogWarning("InventoryHolder: Invalid position!");
             return null;
         }
 
-            return slots[position];
+            return slots[position]; //die Position des Slots wird ausgegeben
     }
 
-    public void SetSlot(int x, int y, ItemSlot newSlot)
+    public void SetSlot(int x, int y, ItemSlot newSlot) // festlegen eines Slots (x, y, Name)
     {
-        int position = GetPosition(x, y);
+        int position = GetPosition(x, y); //position wird abgefragt
 
-        if (position < 0)
+        if (position < 0) //wenn die position negativ ist wird eine Fehlermeldung ausgegeben
         {
             Debug.LogWarning("InventoryHolder: Invalid position!");
             return;
         }
-        slots[position] = newSlot;
+        slots[position] = newSlot; //ist alles korrekt wird dieser Slot erstellt
     }
 }
