@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlanetGen : MonoBehaviour
 {
     public GameObject prefab;
@@ -11,19 +12,32 @@ public class PlanetGen : MonoBehaviour
     public float radius;
 
     public Material medal;
+    List<Vector3> store = new List<Vector3>();
     private int x;
     int[] trip;
     [Range(0, 1)]
     public float ra;
+    [Range(0,1)]
+    public float mininum;
     [Range(0, 1)]
     public float depth;
     [Range(0,10)]
-    public float roughness;
-    public Vector3 centre;
+    public float frequenzy = 1;
+    [Range(0,10)]
+    public int numsurfaces = 1;
+
+    [Range(0, 1)]
+    public float persistence = 0.6f;
+
+    [Range(0, 10)]
+    public float Baseroughness = 2;
+
+
     int[] oldtri;
     Mesh body;
-    [Range(0, 6)]
-    public int resolution;
+    [Range(0, 8)]
+    public int resolution = 4;
+    public Vector3 center;
     Noise noise = new Noise();
 
 
@@ -31,16 +45,115 @@ public class PlanetGen : MonoBehaviour
     static Hashtable verticeshash;
 
 
-    public float Terrain(Vector3 vertice)
+
+
+
+    /*private void OnValidate()
+     {
+         if(store.Count == 0)
+         {
+             store = Sphere();
+         }
+         else {
+             for (int c = 0; c < store.Count; c++)
+             {
+                 store[c] = store[c].normalized;
+                 store[c] = store[c] * (Terrain(store[c])+1);
+             }
+             for (int c = 0; c < store.Count; c++)
+             {
+                 store[c] = store[c] * Random.Range(1.00f + ra, 1.00f - ra);
+             }
+
+
+
+
+
+
+             Vector3[] verticesarray = new Vector3[0];
+             Vector3[] zero = new Vector3[0];
+             verticesarray = zero;
+             verticesarray = store.ToArray();
+             body.vertices = verticesarray;
+
+         }
+
+
+
+     }*/
+    private void Start()
     {
-        float terrainvalue = (noise.Evaluate(vertice * roughness + centre)+1) * depth;
+        center = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1));
+            store = Sphere();
+
+            for (int c = 0; c < store.Count; c++)
+            {
+                store[c] = store[c].normalized;
+                store[c] = store[c] * (Terrain(store[c]) + 1);
+            }
+            for (int c = 0; c < store.Count; c++)
+            {
+                store[c] = store[c] * Random.Range(1.00f + ra, 1.00f - ra);
+            }
+
+
+
+
+
+
+            Vector3[] verticesarray = new Vector3[0];
+            Vector3[] zero = new Vector3[0];
+            verticesarray = zero;
+            verticesarray = store.ToArray();
+            body.vertices = verticesarray;
+
+        }
+
+
+
+
+
+
+
+        public float Terrain(Vector3 vertice)
+    {
+        float terrainvalue = 0;
+        float basefre = frequenzy;
+        float depth = amplitude;
+        for (int i = 0; i< numsurfaces; i++)
+        {
+           float k = (noise.Evaluate(vertice * basefre + center));
+           terrainvalue += (k+1) * 0.5f * depth; 
+
+            basefre *= Baseroughness;
+            depth *= persistence;
+
+        }
+        terrainvalue = Mathf.Max(0, terrainvalue - mininum);
         return terrainvalue;
 
+
+
+
+        /*float terrainvalue = 0;
+        float depth = amplitude;
+        frequenzy = Baseroughness;
+        for (int i = 0; i< numsurfaces; i++)
+        {
+            terrainvalue += (noise.Evaluate(vertice * frequenzy + center) + 1) * depth;
+            depth *= 0.5f;
+            frequenzy *= 0.6f;
+
+            
+        }
+
+     */
+        //return terrainvalue;
     }
 
 
 
-    void OnValidate()
+    public List<Vector3> Sphere()
     {
         // GameObject Planet = new GameObject("Planet", typeof(MeshFilter), typeof(MeshRenderer));
 
@@ -243,17 +356,14 @@ public class PlanetGen : MonoBehaviour
         }*/
 
 
-        
-        for (int c = 0; c < vertices.Count; c++)
+
+        /*for (int c = 0; c < vertices.Count; c++)
         {
             vertices[c] = vertices[c].normalized;
             vertices[c] = vertices[c] * (Terrain(vertices[c])+1);
         }
         for (int c = 0; c < vertices.Count; c++) { 
-        vertices[c] = vertices[c] * Random.Range(1.00f + ra, 1.00f - ra); }
-
-
-
+        vertices[c] = vertices[c] * Random.Range(1.00f + ra, 1.00f - ra); }*/
 
 
 
@@ -271,6 +381,17 @@ public class PlanetGen : MonoBehaviour
         Planet.transform.localScale = new Vector3(radius, radius, radius);
 
 
+      /*  Color[] colors = new Color[store.Count];
+        for (int i = 0; i < store.Count; i++)
+            colors[i] = Color.Lerp(Color.red, Color.green, store[i].y);
+        body.colors = colors;*/
+
+
+
+
+        return vertices;
     }
+    
+
 }
 

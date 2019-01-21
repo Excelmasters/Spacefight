@@ -5,13 +5,26 @@ using UnityEngine;
 public class Planet : MonoBehaviour
 {
 
-    [Range(2, 15)]
+    [Range(2, 256)]
     public int resolution = 10;
 
     [SerializeField, HideInInspector]
     MeshFilter[] meshFilters;
     TerrainFace[] terrainFaces;
-    public Material metall;
+    Noise noise = new Noise();
+    [Range(0, 10)]
+    public float frequenzy;
+    [Range(0, 10)]
+    public float Baseroughness;
+    [Range(0, 1)]
+    public float amplitude;
+    public Vector3 center;
+    [Range(0, 1)]
+    public float persistence;
+    [Range(0, 1)]
+    public float minimum;
+    [Range(0, 10)]
+    public int numsurfaces;
 
     private void OnValidate()
     {
@@ -36,7 +49,7 @@ public class Planet : MonoBehaviour
                 GameObject meshObj = new GameObject("mesh");
                 meshObj.transform.parent = transform;
 
-                meshObj.AddComponent<MeshRenderer>().sharedMaterial = metall;
+                meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
             }
@@ -53,5 +66,3 @@ public class Planet : MonoBehaviour
         }
     }
 }
-
-

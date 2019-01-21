@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class TerrainFace
 {
-
+    MeshFilter[] meshFilters;
+    TerrainFace[] terrainFaces;
+    Noise noise = new Noise();
+    [Range(0, 10)]
+    public float frequenzy;
+    [Range(0, 10)]
+    public float Baseroughness;
+    [Range(0, 1)]
+    public float amplitude;
+    public Vector3 center;
+    [Range(0, 1)]
+    public float persistence;
+    [Range(0, 1)]
+    public float minimum;
+    [Range(0, 10)]
+    public int numsurfaces;
     Mesh mesh;
     int resolution;
     Vector3 localUp;
@@ -34,7 +49,18 @@ public class TerrainFace
                 int i = x + y * resolution;
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);
                 Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
-                Vector3 pointOnUnitSphere = pointOnUnitCube;            //here
+
+
+
+                Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
+                for (int c = 0; c < vertices.Length; c++)
+                {
+                    pointOnUnitSphere *= (Terrain(pointOnUnitSphere) + 1);
+                }
+
+
+
+
                 vertices[i] = pointOnUnitSphere;
 
                 if (x != resolution - 1 && y != resolution - 1)
@@ -55,16 +81,25 @@ public class TerrainFace
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
     }
+
+
+
+    public float Terrain(Vector3 vertice)
+    {
+        float terrainvalue = 0;
+        float basefre = frequenzy;
+        float depth = amplitude;
+        for (int i = 0; i < numsurfaces; i++)
+        {
+            float k = (noise.Evaluate(vertice * basefre + center));
+            terrainvalue += (k + 1) * 0.5f * depth;
+
+            basefre *= Baseroughness;
+            depth *= persistence;
+
+        }
+        terrainvalue = Mathf.Max(0, terrainvalue - minimum);
+        return terrainvalue;
+    }
+
 }
-
-
-    
-
-
-
-    
-
-
-
-
-
