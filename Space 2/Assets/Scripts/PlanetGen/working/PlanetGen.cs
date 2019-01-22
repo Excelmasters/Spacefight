@@ -11,6 +11,7 @@ public class PlanetGen : MonoBehaviour
     [Range(0, 10)]
     public float radius;
 
+
     public Material medal;
     List<Vector3> store = new List<Vector3>();
     private int x;

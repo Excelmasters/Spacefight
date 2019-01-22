@@ -60,6 +60,7 @@ public class Cubesphere : MonoBehaviour
 
         private void OnValidate()
     {
+        mesh.Clear();
         if (Planet.GetComponent<MeshFilter>() == null) { Planet.AddComponent<MeshFilter>(); }
         if (Planet.AddComponent<MeshRenderer>() == null) { Planet.AddComponent<MeshFilter>(); }
         foreach (Transform child in Planet.transform)

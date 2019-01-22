@@ -63,6 +63,7 @@ public class Planet : MonoBehaviour
         foreach (TerrainFace face in terrainFaces)
         {
             face.ConstructMesh();
+            
         }
     }
 }

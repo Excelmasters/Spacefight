@@ -9,6 +9,7 @@ public class TerrainFace
     Noise noise = new Noise();
     [Range(0, 10)]
     public float frequenzy;
+    GameObject prefab = GameObject.FindWithTag("ball");
     [Range(0, 10)]
     public float Baseroughness;
     [Range(0, 1)]
@@ -76,9 +77,19 @@ public class TerrainFace
                 }
             }
         }
+        for (int j = 0; j < vertices.Length; j++)
+        {
+            vertices[j] = vertices[j] * Random.Range(1.05f, 0.95f);
+        }
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
+        for (int c = 0; c < vertices.Length; c++)                                                                          //Test whether all vertices are added correctly (lowers performance drastically)
+        {
+           // GameObject ball = Object.Instantiate(prefab) as GameObject;
+            //ball.transform.position = vertices[c];
+            // cube.transform.parent = Planet.transform;
+        }
         mesh.RecalculateNormals();
     }
 
