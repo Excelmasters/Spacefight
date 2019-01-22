@@ -6,6 +6,7 @@ TagManager:
   tags:
   - buildingcube
   - Accident
+  - ball
   layers:
   - Default
   - TransparentFX
