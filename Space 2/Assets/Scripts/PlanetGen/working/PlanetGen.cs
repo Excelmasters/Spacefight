@@ -119,7 +119,6 @@ public class PlanetGen : MonoBehaviour
     {
         float terrainvalue = 0;
         float basefre = frequenzy;
-        float depth = amplitude;
         for (int i = 0; i< numsurfaces; i++)
         {
            float k = (noise.Evaluate(vertice * basefre + center));

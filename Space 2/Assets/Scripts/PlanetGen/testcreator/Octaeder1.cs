@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Octaeder : MonoBehaviour
+public class Octaeder1 : MonoBehaviour
 {
     public GameObject prefab;
     Vector3[] newmid;

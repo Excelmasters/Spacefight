@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Cubesphere : MonoBehaviour
 {
-    public GameObject prefab;
+    private GameObject prefab;
     public GameObject Planet;
     public GameObject Gen;
     public float radius;
@@ -37,7 +37,7 @@ public class Cubesphere : MonoBehaviour
     [Range(0, 10)]
     public float Baseroughness = 2;
 
-
+    public GameObject Prefab { get => prefab; set => prefab = value; }
 
     public float Terrain(Vector3 vertice)
     {
@@ -136,6 +136,15 @@ public class Cubesphere : MonoBehaviour
             // cube.transform.parent = Planet.transform;
          }*/
         Debug.Log(vertices.Count / 3);
+
+
+
+
+
+
+
+
+
 
 
         Vector3[] verticesarray = new Vector3[vertices.Count];
