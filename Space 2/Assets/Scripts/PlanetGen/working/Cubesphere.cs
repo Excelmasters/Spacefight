@@ -116,10 +116,10 @@ public class Cubesphere : MonoBehaviour
             {
                 vertices[i] = vertices[i].normalized;
             }
-            for (int i = 0; i < vertices.Count; i++)
+           /* for (int i = 0; i < vertices.Count; i++)
             {
                 vertices[i] = vertices[i] * (Terrain(vertices[i]) + 1);
-            }
+            }*/
 
 
 
@@ -174,7 +174,6 @@ public class Cubesphere : MonoBehaviour
             int[] trianglearray = triangles.ToArray();
             mesh.triangles = trianglearray;
             Gen.GetComponent<MeshRenderer>().material = medal;
-            Gen.transform.position = new Vector3(-0.5f, -0.5f, -0.5f);
             mesh.RecalculateNormals();
         }
             
@@ -183,8 +182,7 @@ public class Cubesphere : MonoBehaviour
         {
             if (Gen.transform.childCount < 6)
             {
-                meshObj = new GameObject();
-                meshObj = new GameObject("mesh" + i);
+                meshObj = new GameObject("mesh" + (i+1));
                 meshObj.transform.parent = Gen.transform;
                 meshObj.AddComponent<MeshRenderer>().sharedMaterial = medal;
                 meshObj.AddComponent<MeshFilter>();
@@ -192,6 +190,12 @@ public class Cubesphere : MonoBehaviour
         }
         for (int i = 0; i < 6; i++)
         {
+
+
+            for (int gh = 0; gh < mesh.vertices.Length; gh++)
+            {
+                mesh.vertices[gh] = mesh.vertices[gh] * (Terrain(mesh.vertices[gh]) + 1);
+            }
             Gen.transform.GetChild(i).GetComponent<MeshFilter>().mesh = mesh;
         }
 
@@ -199,8 +203,10 @@ public class Cubesphere : MonoBehaviour
 
 
 
+        
 
 
+        
             if (doesexist == false)
         {
             Gen.transform.GetChild(0).position = new Vector3(0, 0, 0);
