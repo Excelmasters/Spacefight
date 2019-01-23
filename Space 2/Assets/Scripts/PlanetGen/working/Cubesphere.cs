@@ -30,7 +30,7 @@ public class Cubesphere : MonoBehaviour
     public float frequenzy = 1;
     [Range(0, 10)]
     public int numsurfaces = 1;
-
+    public float minimum;
     [Range(0, 1)]
     public float persistence = 0.6f;
 
@@ -48,23 +48,24 @@ public class Cubesphere : MonoBehaviour
 
 
 
-    public float Terrain(Vector3 vertice)
+    public Vector3 Terrain(Vector3 vertice)
     {
+      // center.x = Random.Range(-1f, 1f);
+        //center.z = Random.Range(-1f, 1f);
+        //center.y = Random.Range(-1f, 1f);
 
-        float terrainvalue = 0;
-        float basefre = frequenzy;
-        float depth = amplitude;
-        for (int i = 0; i < numsurfaces; i++)
-        {
-            float k = (noise.Evaluate(vertice * basefre + center));
-            terrainvalue += (k + 1) * 0.5f * depth;
 
-            basefre *= Baseroughness;
-            depth *= persistence;
 
-        }
-        terrainvalue = Mathf.Max(0, terrainvalue - mininum);
-        return terrainvalue;
+
+
+
+
+        float TerrainValue = (noise.Evaluate(vertice * Baseroughness + center) * amplitude);
+        float elevation = TerrainValue;
+        TerrainValue = Mathf.Max(0, TerrainValue - minimum);
+        return vertice * (elevation + 1);
+
+        
     }
 
 
@@ -80,13 +81,14 @@ public class Cubesphere : MonoBehaviour
 
 
 
-    private void OnValidate()
+    public Mesh MakeMesh()
     {
+
 
         Mesh mesh = new Mesh();
         for (int f = 0; f < 6; f++)
         {
-            
+
             if (Gen.GetComponent<MeshFilter>() == null) { Gen.AddComponent<MeshFilter>(); }
             if (Gen.AddComponent<MeshRenderer>() == null) { Gen.AddComponent<MeshFilter>(); }
 
@@ -95,18 +97,32 @@ public class Cubesphere : MonoBehaviour
             List<int> triangles = new List<int>();
             mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
             vertices.Clear();
-            //vertices.Add(new Vector3(0, 0, 0));
-            //vertices.Add(new Vector3(1, 0, 0));
-            // vertices.Add(new Vector3(1, 1, 0));
-            //vertices.Add(new Vector3(0, 1, 0));
+
+
+
+
+
+
+
 
 
             for (int i = 0; i < resolution + 1; i++)
             {
                 for (int h = 0; h < resolution + 1; h++)
                 {
-                    vertices.Add(new Vector3((float)h / resolution * size - 0.5f, (float)i / resolution * size - 0.5f, 0 - 0.5f));
+                    Vector3 PointonCube = (new Vector3((float)h / resolution * size - 0.5f, (float)i / resolution * size - 0.5f, 0 - 0.5f));
+                    Vector3 PointOnUnitSphere = PointonCube.normalized;
+
+                    vertices.Add(Terrain(PointOnUnitSphere));
+
+
                 }
+
+
+
+
+
+
 
 
 
@@ -114,12 +130,12 @@ public class Cubesphere : MonoBehaviour
             }
             for (int i = 0; i < vertices.Count; i++)
             {
-                vertices[i] = vertices[i].normalized;
+                //vertices[i] = vertices[i].normalized;
             }
-           /* for (int i = 0; i < vertices.Count; i++)
-            {
-                vertices[i] = vertices[i] * (Terrain(vertices[i]) + 1);
-            }*/
+            /* for (int i = 0; i < vertices.Count; i++)
+             {
+                 vertices[i] = vertices[i] * (Terrain(vertices[i]) + 1);
+             }*/
 
 
 
@@ -175,27 +191,35 @@ public class Cubesphere : MonoBehaviour
             mesh.triangles = trianglearray;
             Gen.GetComponent<MeshRenderer>().material = medal;
             mesh.RecalculateNormals();
-        }
-            
 
-        for (int i = 0; i < 6; i++)
+        
+    
+
+
+        }
+        return mesh;
+    }
+        public void OnValidate()
+    {
+        for (int i = 0; i< 6; i++)
         {
-            if (Gen.transform.childCount < 6)
+            if (Gen.transform.childCount< 6)
             {
-                meshObj = new GameObject("mesh" + (i+1));
+                meshObj = new GameObject("mesh" + (i + 1));
                 meshObj.transform.parent = Gen.transform;
                 meshObj.AddComponent<MeshRenderer>().sharedMaterial = medal;
                 meshObj.AddComponent<MeshFilter>();
             }
         }
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i< 6; i++)
         {
 
 
-           /* for (int gh = 0; gh < mesh.vertices.Length; gh++)
-            {
-                mesh.vertices[gh] = mesh.vertices[gh] * (Terrain(mesh.vertices[gh]) + 1);
-            }*/
+            /* for (int gh = 0; gh < mesh.vertices.Length; gh++)
+             {
+                 mesh.vertices[gh] = mesh.vertices[gh] * (Terrain(mesh.vertices[gh]) + 1);
+             }*/
+            Mesh mesh = MakeMesh();
             Gen.transform.GetChild(i).GetComponent<MeshFilter>().mesh = mesh;
         }
 
@@ -203,28 +227,31 @@ public class Cubesphere : MonoBehaviour
 
 
 
+
+
+
+
+                            if (doesexist == false)
+                            {
+                                Gen.transform.GetChild(0).position = new Vector3(0, 0, 0);
+                    Gen.transform.GetChild(0).Rotate(0, -180, 0);
+
+                    Gen.transform.GetChild(1).position = new Vector3(0, 0, 0);
+                    Gen.transform.GetChild(1).Rotate(0, -90, 0);
+
+                    Gen.transform.GetChild(2).position = new Vector3(0, 0, 0);
+                    Gen.transform.GetChild(2).Rotate(0, 90, 0);
+
+                    Gen.transform.GetChild(3).position = new Vector3(0, 0, 0);
+                    Gen.transform.GetChild(3).Rotate(-90, 90, 0);
+
+                    Gen.transform.GetChild(4).position = new Vector3(0, 0, 0);
+                    Gen.transform.GetChild(4).Rotate(90, 90, 0);
+                    doesexist = true;
+                            }
+
+    }
         
-
-
-        
-            if (doesexist == false)
-        {
-            Gen.transform.GetChild(0).position = new Vector3(0, 0, 0);
-            Gen.transform.GetChild(0).Rotate(0, -180, 0);
-
-            Gen.transform.GetChild(1).position = new Vector3(0, 0, 0);
-            Gen.transform.GetChild(1).Rotate(0, -90, 0);
-
-            Gen.transform.GetChild(2).position = new Vector3(0, 0, 0);
-            Gen.transform.GetChild(2).Rotate(0, 90, 0);
-
-            Gen.transform.GetChild(3).position = new Vector3(0, 0, 0);
-            Gen.transform.GetChild(3).Rotate(-90, 90, 0);
-
-            Gen.transform.GetChild(4).position = new Vector3(0, 0, 0);
-            Gen.transform.GetChild(4).Rotate(90, 90, 0);
-            doesexist = true;
-        }
 
 
 
@@ -246,7 +273,3 @@ public class Cubesphere : MonoBehaviour
 
     }
 
-
-
-
-}
