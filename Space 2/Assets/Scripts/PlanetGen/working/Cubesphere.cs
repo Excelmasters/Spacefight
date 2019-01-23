@@ -192,10 +192,10 @@ public class Cubesphere : MonoBehaviour
         {
 
 
-            for (int gh = 0; gh < mesh.vertices.Length; gh++)
+           /* for (int gh = 0; gh < mesh.vertices.Length; gh++)
             {
                 mesh.vertices[gh] = mesh.vertices[gh] * (Terrain(mesh.vertices[gh]) + 1);
-            }
+            }*/
             Gen.transform.GetChild(i).GetComponent<MeshFilter>().mesh = mesh;
         }
 
