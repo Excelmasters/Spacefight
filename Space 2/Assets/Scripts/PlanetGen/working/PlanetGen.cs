@@ -82,7 +82,7 @@ public class PlanetGen : MonoBehaviour
 
 
      }*/
-    private void Start()
+    private void OnValidate()
     {
         center = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1));
             store = Sphere();

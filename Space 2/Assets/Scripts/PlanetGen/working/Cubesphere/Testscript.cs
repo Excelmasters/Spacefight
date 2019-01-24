@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Cubesphere : MonoBehaviour
+public class Testscript : MonoBehaviour
 {
     public GameObject prefab;
     public GameObject Gen;
@@ -50,14 +50,14 @@ public class Cubesphere : MonoBehaviour
 
     public Vector3 Terrain(Vector3 vertice)
     {
-      // center.x = Random.Range(-1f, 1f);
+        // center.x = Random.Range(-1f, 1f);
         //center.z = Random.Range(-1f, 1f);
         //center.y = Random.Range(-1f, 1f);
 
 
         float TerrainValue = (noise.Evaluate(vertice * Baseroughness) * amplitude);
         float elevation = TerrainValue;
-        return vertice * 2 *(TerrainValue + 1);
+        return vertice * 2 * (TerrainValue + 1);
     }
 
 
@@ -124,10 +124,10 @@ public class Cubesphere : MonoBehaviour
             {
                 //vertices[i] = vertices[i].normalized;
             }
-             for (int i = 0; i < vertices.Count - resolution; i++)
-             {
-                 vertices[i] = (Terrain(vertices[i]));
-             }
+            for (int i = 0; i < vertices.Count - resolution; i++)
+            {
+                vertices[i] = (Terrain(vertices[i]));
+            }
 
 
 
@@ -184,18 +184,18 @@ public class Cubesphere : MonoBehaviour
             Gen.GetComponent<MeshRenderer>().material = medal;
             mesh.RecalculateNormals();
 
-        
-    
+
+
 
 
         }
         return mesh;
     }
-        public void OnValidate()
+    public void OnValidate()
     {
-        for (int i = 0; i< 6; i++)
+        for (int i = 0; i < 6; i++)
         {
-            if (Gen.transform.childCount< 6)
+            if (Gen.transform.childCount < 6)
             {
                 meshObj = new GameObject("mesh" + (i + 1));
                 meshObj.transform.parent = Gen.transform;
@@ -203,7 +203,7 @@ public class Cubesphere : MonoBehaviour
                 meshObj.AddComponent<MeshFilter>();
             }
         }
-        for (int i = 0; i< 6; i++)
+        for (int i = 0; i < 6; i++)
         {
 
 
@@ -223,45 +223,45 @@ public class Cubesphere : MonoBehaviour
 
 
 
-                            if (doesexist == false)
-                            {
-                                Gen.transform.GetChild(0).position = new Vector3(0, 0, 0);
-                    Gen.transform.GetChild(0).Rotate(0, -180, 0);
+        if (doesexist == false)
+        {
+            Gen.transform.GetChild(0).position = new Vector3(0, 0, 0);
+            Gen.transform.GetChild(0).Rotate(0, -180, 0);
 
-                    Gen.transform.GetChild(1).position = new Vector3(0, 0, 0);
-                    Gen.transform.GetChild(1).Rotate(0, -90, 0);
+            Gen.transform.GetChild(1).position = new Vector3(0, 0, 0);
+            Gen.transform.GetChild(1).Rotate(0, -90, 0);
 
-                    Gen.transform.GetChild(2).position = new Vector3(0, 0, 0);
-                    Gen.transform.GetChild(2).Rotate(0, 90, 0);
+            Gen.transform.GetChild(2).position = new Vector3(0, 0, 0);
+            Gen.transform.GetChild(2).Rotate(0, 90, 0);
 
-                    Gen.transform.GetChild(3).position = new Vector3(0, 0, 0);
-                    Gen.transform.GetChild(3).Rotate(-90, 90, 0);
+            Gen.transform.GetChild(3).position = new Vector3(0, 0, 0);
+            Gen.transform.GetChild(3).Rotate(-90, 90, 0);
 
-                    Gen.transform.GetChild(4).position = new Vector3(0, 0, 0);
-                    Gen.transform.GetChild(4).Rotate(90, 90, 0);
-                    doesexist = true;
-                            }
-
-    }
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            Gen.transform.GetChild(4).position = new Vector3(0, 0, 0);
+            Gen.transform.GetChild(4).Rotate(90, 90, 0);
+            doesexist = true;
+        }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
