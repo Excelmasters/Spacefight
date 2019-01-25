@@ -214,15 +214,16 @@ public class CubeSphere2 : MonoBehaviour
             Mesh mesh = MakeMesh();
             Gen.transform.GetChild(i).GetComponent<MeshFilter>().mesh = mesh;
         }
-     /*   for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 6; i++)
         {
             mesh = Gen.GetComponent<MeshFilter>().mesh;
+            mesh = 
             Vector3[] vertices = mesh.vertices[mesh.vertices.Length];
             for(int u = 0; u < mesh.vertices.Length; u++)
             {
                 vertices[u] = Terrain(vertices[u]);
             }
-        }*/
+        }
 
 
 
