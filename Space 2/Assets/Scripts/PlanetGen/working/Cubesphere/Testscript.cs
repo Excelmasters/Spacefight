@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Testscript : MonoBehaviour
 {
+     
     public GameObject prefab;
     public GameObject Gen;
     private GameObject meshObj;
@@ -17,7 +18,7 @@ public class Testscript : MonoBehaviour
     public int size;
     public bool doesexist = false;
 
-
+    ShapeGenerator shapeGenerator;
 
 
     [Range(0, 1)]
@@ -41,7 +42,35 @@ public class Testscript : MonoBehaviour
 
 
 
+    public Testscript(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp)
+    {
+        this.shapeGenerator = shapeGenerator;
 
+    }
+    public Vector3 CalculatePointOnPlanet(Vector3 pointOnUnitSphere)
+    {
+        float firstLayerValue = 0;
+        float elevation = 0;
+
+        if (noiseFilters.Length > 0)
+        {
+            firstLayerValue = noiseFilters[0].Evaluate(pointOnUnitSphere);
+            if (settings.noiseLayers[0].enabled)
+            {
+                elevation = firstLayerValue;
+            }
+        }
+
+        for (int i = 1; i < noiseFilters.Length; i++)
+        {
+            if (settings.noiseLayers[i].enabled)
+            {
+                float mask = (settings.noiseLayers[i].useFirstLayerAsMask) ? firstLayerValue : 1;
+                elevation += noiseFilters[i].Evaluate(pointOnUnitSphere) * mask;
+            }
+        }
+        return pointOnUnitSphere * settings.planetRadius * (1 + elevation);
+    }
 
 
 
@@ -96,17 +125,15 @@ public class Testscript : MonoBehaviour
 
 
 
-
-
             for (int i = 0; i < resolution + 1; i++)
             {
                 for (int h = 0; h < resolution + 1; h++)
                 {
+
                     Vector3 PointonCube = (new Vector3((float)h / resolution * size - 0.5f, (float)i / resolution * size - 0.5f, 0 - 0.5f));
                     Vector3 PointOnUnitSphere = PointonCube.normalized;
                     // vertices.Add(Terrain(PointOnUnitSphere));
-                    vertices.Add(PointOnUnitSphere);
-
+                    vertices.Add(shapeGenerator.CalculatePointOnPlanet(PointOnUnitSphere));
 
                 }
 
@@ -120,14 +147,14 @@ public class Testscript : MonoBehaviour
 
 
             }
-            for (int i = 0; i < vertices.Count; i++)
+           /* for (int i = 0; i < vertices.Count; i++)
             {
                 //vertices[i] = vertices[i].normalized;
             }
-            for (int i = 0; i < vertices.Count - resolution; i++)
+            for (int i = 0; i < vertices.Count; i++)
             {
-                vertices[i] = (Terrain(vertices[i]));
-            }
+                vertices[i] = ((vertices[i]));
+            }*/
 
 
 
