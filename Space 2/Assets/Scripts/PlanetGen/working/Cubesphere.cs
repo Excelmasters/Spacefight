@@ -124,7 +124,7 @@ public class Cubesphere : MonoBehaviour
             {
                 //vertices[i] = vertices[i].normalized;
             }
-             for (int i = 0; i < vertices.Count - resolution; i++)
+             for (int i = 0; i < vertices.Count; i++)
              {
                  vertices[i] = (Terrain(vertices[i]));
              }
