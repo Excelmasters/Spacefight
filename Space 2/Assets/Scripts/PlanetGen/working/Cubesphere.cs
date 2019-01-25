@@ -47,7 +47,6 @@ public class Cubesphere : MonoBehaviour
 
 
 
-
     public Vector3 Terrain(Vector3 vertice)
     {
       // center.x = Random.Range(-1f, 1f);

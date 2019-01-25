@@ -11,7 +11,7 @@ public class CubeSphere2 : MonoBehaviour
     public float radius;
     [Range(0, 500)]
     public int resolution;
-    public Vector3 center;
+    private Vector3 center;
     Noise noise = new Noise();
     public Material medal;
     public int size;
@@ -19,20 +19,24 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-
+    NoiseFilter[] noiseFilters;
+    NoiseFilter[] noiseLayers;
     [Range(0, 1)]
     public float ra;
     [Range(0, 1)]
     public float mininum;
-    [Range(0, 1)]
-    public float amplitude;
-    [Range(0, 10)]
-    public float frequenzy = 1;
+    
+    private float amplitude;
+    private float frequenzy;
     [Range(0, 10)]
     public int numsurfaces = 1;
     public float minimum;
     [Range(0, 1)]
     public float persistence = 0.6f;
+    [Range(0, 10)]
+    public float roughness;
+    [Range(0, 10)]
+    public float strength;
 
     [Range(0, 10)]
     public float Baseroughness = 2;
@@ -46,20 +50,28 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
+    
 
 
-    public Vector3 Terrain(Vector3 vertice)
+
+
+    public float Terrain(Vector3 point)
     {
-        // center.x = Random.Range(-1f, 1f);
-        //center.z = Random.Range(-1f, 1f);
-        //center.y = Random.Range(-1f, 1f);
+        float noiseValue = 0;
+        float frequency = Baseroughness;
+        float amplitude = 1;
 
+        for (int i = 0; i < numsurfaces; i++)
+        {
+            float v = noise.Evaluate(point * frequency + center);
+            noiseValue += (v + 1) * .5f * amplitude;
+            frequency *= roughness;
+            amplitude *= persistence;
+        }
 
-        float TerrainValue = (noise.Evaluate(vertice * Baseroughness) * amplitude);
-        float elevation = TerrainValue;
-        return vertice * 2 * (TerrainValue + 1);
+      //  noiseValue = Mathf.Max(0, noiseValue - settings.minValue);
+        return noiseValue * strength;
     }
-
 
 
 
@@ -120,15 +132,7 @@ public class CubeSphere2 : MonoBehaviour
 
 
             }
-            for (int i = 0; i < vertices.Count; i++)
-            {
-                //vertices[i] = vertices[i].normalized;
-            }
-           /* for (int i = 0; i < vertices.Count - resolution; i++)
-            {
-                vertices[i] = (Terrain(vertices[i]));
-            }*/
-
+            
 
 
 
@@ -212,17 +216,19 @@ public class CubeSphere2 : MonoBehaviour
                  mesh.vertices[gh] = mesh.vertices[gh] * (Terrain(mesh.vertices[gh]) + 1);
              }*/
             Mesh mesh = MakeMesh();
-            Gen.transform.GetChild(i).GetComponent<MeshFilter>().mesh = mesh;
-        }
-        for (int i = 0; i < 6; i++)
-        {
-            mesh = Gen.GetComponent<MeshFilter>().mesh;
-            mesh = 
-            Vector3[] vertices = mesh.vertices[mesh.vertices.Length];
-            for(int u = 0; u < mesh.vertices.Length; u++)
+            Vector3[] vertices = mesh.vertices;
+            center.x = Random.Range(0f, 5f);
+            center.y = Random.Range(0f, 5f);
+            center.z = Random.Range(0f, 5f);
+            for (int u = 0; u < vertices.Length; u++)
             {
-                vertices[u] = Terrain(vertices[u]);
+                vertices[u] = Terrain(mesh.vertices[u]) * mesh.vertices[u];
+                //vertices[u] = vertices[u] * Random.Range(1.5f, 0.5f);
+
             }
+            mesh.vertices = vertices;
+
+            Gen.transform.GetChild(i).GetComponent<MeshFilter>().mesh = mesh;
         }
 
 
@@ -252,6 +258,9 @@ public class CubeSphere2 : MonoBehaviour
         }
 
     }
+
+
+
 
 
 
