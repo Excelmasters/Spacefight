@@ -20,9 +20,6 @@ public class CubeSphere2 : MonoBehaviour
     public bool doesexist = false;
 
 
-
-    NoiseFilter[] noiseFilters;
-    NoiseFilter[] noiseLayers;
     [Range(0, 1)]
     public float ra;
     [Range(0, 1)]
@@ -111,9 +108,10 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
+        GameObject ball5 = Object.Instantiate(prefab) as GameObject;
+        ball5.transform.position = Vector3.zero;
 
-
-        for (int k = 0; k < 6; k++)
+        for (int k = 0; k < 2; k++)
         {
 
 
@@ -131,7 +129,12 @@ public class CubeSphere2 : MonoBehaviour
             {
                 for (int y = 0; y < resolution; y++)
                 {
-                    vertices.Add(AxisA * x/resolution * 2 + AxisB * y/resolution * 2);
+                    int i = x + y * resolution;
+                    Vector2 percent = new Vector2(x, y) / (resolution - 1);
+
+                    Vector3 pointOnUnitCube = normal[k] + (percent.x - .5f) * 2 * AxisA + (percent.y - .5f) * 2 * AxisB;
+                    vertices.Add(pointOnUnitCube);
+
                 }
 
             }
@@ -146,7 +149,7 @@ public class CubeSphere2 : MonoBehaviour
         
 
 
-                for (int i   = 0; i < 6; i++)
+                for (int i   = 0; i < 2; i++)
         {
             GameObject ball = Object.Instantiate(prefab) as GameObject;
             ball.transform.position = normal[i];
