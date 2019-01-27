@@ -10,9 +10,9 @@ public class CubeSphere2 : MonoBehaviour
     public GameObject Gen;
     private GameObject meshObj;
     public float radius;
-    [Range(0, 10)]
-    public int resolution = 4;
-    private Vector3 center;
+    [Range(0, 1000)]
+    public int resolution = 30;
+    public Vector3 center;
     Noise noise = new Noise();
     public Material medal;
     public int size;
@@ -20,54 +20,57 @@ public class CubeSphere2 : MonoBehaviour
     public bool doesexist = false;
 
 
-    [Range(0, 1)]
-    public float ra;
-    [Range(0, 1)]
-    public float mininum;
-    
-    public float amplitude;
-    public float frequenzy;
-    [Range(0, 10)]
-    public int numsurfaces = 1;
+    [Range(0,5)]
+    public float startingfrequenzy;
+   // [Range(1,5)]
+   // public float startingheight;
+    [Range(1,10)]
+    public int numsurfaces;
+    [Range(1,5)]
+    public float frequenzychange;
+    [Range(0,1)]
+    public float heightchange;
+    [Range(1, 10)]
+    public float depth;
+    [Range(0,3)]
     public float minimum;
-    [Range(0, 1)]
-    public float persistence = 0.6f;
-    [Range(0, 10)]
-    public float roughness;
-    [Range(0, 10)]
-    public float strength;
-
-    [Range(0, 10)]
-    public float Baseroughness = 2;
-
-    public GameObject Prefab { get => prefab; set => prefab = value; }
 
 
 
 
 
 
+    /*public float Terrain(Vector3 vertice)
+    {
+        float terrainvalue = 0;
+        for (int i = 0; i < numsurfaces; i++)
+        {
+            float k = (noise.Evaluate(vertice * frequenzy + center));
+            terrainvalue += (k + 1) * 0.5f * amplitude;
 
+            frequenzy *= Baseroughness;
+            amplitude *= persistence;
 
-
-
-
-
-
+        }
+        terrainvalue = Mathf.Max(0, terrainvalue - mininum);
+       Debug.Log(terrainvalue * strength);
+        return terrainvalue * strength;
+    }*/
     public Vector3 Terrain(Vector3 vertice)
     {
-        // center.x = Random.Range(-1f, 1f);
-        //center.z = Random.Range(-1f, 1f);
-        //center.y = Random.Range(-1f, 1f);
-
-
-        float TerrainValue = (noise.Evaluate((vertice * Baseroughness)) * amplitude);
-        float elevation = TerrainValue;
-        return vertice * (TerrainValue + 1);
+        float terrainvalue = 0;
+        float roughness = startingfrequenzy;
+        float amplitude = 1;
+        for (int i = 0; i < numsurfaces; i++)
+        {
+            float terrainfactor = noise.Evaluate(vertice * roughness + center);
+            terrainvalue += (terrainfactor + 1) * 0.25f * amplitude;
+            roughness = roughness * frequenzychange;
+            amplitude = amplitude * heightchange;
+        }
+        terrainvalue = Mathf.Max(0, terrainvalue - minimum);
+        return (terrainvalue+1) * vertice * depth;
     }
-
-
-
 
 
 
@@ -83,11 +86,11 @@ public class CubeSphere2 : MonoBehaviour
     {
         normal = new Vector3[6];
         normal[0] = Vector3.up;
-        normal[1] = new Vector3(-1,0,0);
-        normal[2] = new Vector3(0, 1, 0);
-        normal[3] = new Vector3(0, -1, 0);
-        normal[4] = new Vector3(0, 0, 1);
-        normal[5] = new Vector3(0, 0, -1);
+        normal[1] = Vector3.down;
+        normal[2] = Vector3.left;
+        normal[3] = Vector3.right;
+        normal[4] = Vector3.forward;
+        normal[5] = Vector3.back;
 
         Mesh mesh = new Mesh();
 
@@ -101,59 +104,63 @@ public class CubeSphere2 : MonoBehaviour
             mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
             vertices.Clear();
 
-
-
-
-
-
-
-
-        GameObject ball5 = Object.Instantiate(prefab) as GameObject;
-        ball5.transform.position = Vector3.zero;
-
-        for (int k = 0; k < 2; k++)
+        for (int k = 0; k < 6; k++)
         {
 
 
             Vector3 AxisA = new Vector3(normal[k].y, normal[k].z, normal[k].x);
             Vector3 AxisB = Vector3.Cross(normal[k] , AxisA);
 
-           /* GameObject ball2 = Object.Instantiate(prefab2) as GameObject;
-            ball2.transform.position = AxisA ;
+            /* GameObject ball2 = Object.Instantiate(prefab2) as GameObject;
+             ball2.transform.position = AxisA ;
 
-            GameObject ball3 = Object.Instantiate(prefab2) as GameObject;
-            ball3.transform.position = AxisB;*/
+             GameObject ball3 = Object.Instantiate(prefab2) as GameObject;
+             ball3.transform.position = AxisB;*/
 
-
-            for (int y = 0; x < resolution; x++)
+            for (int y = 0; y < resolution; y++)
             {
-                for (int x = 0; y < resolution; y++)
+                for (int x = 0; x < resolution; x++)
                 {
                     Vector2 percent = new Vector2(x, y) / (resolution - 1);
-                    Vector3 pointOnUnitCube = normal[k] + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
+                    Vector3 pointOnUnitCube = normal[k] + (percent.x - .5f) * 2 * AxisA + (percent.y - .5f) * 2 * AxisB;
                     Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                    vertices.Add(pointOnUnitSphere);
+                    vertices.Add(Terrain(pointOnUnitSphere));
+
+
+
+
+
+
+
                 }
 
             }
-            for(int x = 0; x < vertices.Count; x++)
+
+
+
+
+            for (int h = 0; h < resolution - 1; h++)
             {
-                GameObject ball4 = Object.Instantiate(prefab2) as GameObject;
-                ball4.transform.position = vertices[x];
+
+                for (int i = 0; i < resolution - 1; i++)
+                {
+                    triangles.Add(0 + i + h * resolution + k * resolution * resolution);
+                    triangles.Add(1 + i + h * resolution + k * resolution * resolution);
+                    triangles.Add(resolution + i + 1 + h * resolution + k * resolution * resolution);
+
+                    triangles.Add(resolution + i + 1 + h * resolution + k * resolution * resolution);
+                    triangles.Add(resolution + i + h * resolution + k * resolution * resolution);
+                    triangles.Add(0 + i + h * resolution + k * resolution * resolution);
+
+
+
+                }
             }
+
+
         }
 
 
-        
-
-
-                for (int i   = 0; i < 2; i++)
-        {
-            GameObject ball = Object.Instantiate(prefab) as GameObject;
-            ball.transform.position = normal[i];
-        }
-
-            
 
 
 
@@ -161,6 +168,19 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
+         /* for (int h = 0; h < resolution-1; h++)
+          {
+              for (int i = 0; i < resolution-1; i++)
+              {
+                  triangles.Add((i) + h * (resolution + 1));
+                  triangles.Add((i + resolution + 1 + 1) + h * (resolution + 1));
+                  triangles.Add((i + 1) + h * (resolution + 1));
+                  triangles.Add((i) + h * (resolution + 1));
+                  triangles.Add((i + resolution + 1) + h * (resolution + 1));
+                  triangles.Add((i + resolution + 1 + 1) + h * (resolution + 1));
+              }
+
+          }*/
 
 
 
@@ -168,56 +188,7 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-            /* for (int h = 0; h < resolution; h++)
-             {
-                 for (int i = 0; i < resolution; i++)
-                 {
-                     triangles.Add((i) + h * (resolution + 1));
-                     triangles.Add((i + resolution + 1 + 1) + h * (resolution + 1));
-                     triangles.Add((i + 1) + h * (resolution + 1));
-                     triangles.Add((i) + h * (resolution + 1));
-                     triangles.Add((i + resolution + 1) + h * (resolution + 1));
-                     triangles.Add((i + resolution + 1 + 1) + h * (resolution + 1));
-                 }
-
-             }*/
-
-
-
-
-
-
-
-
-
-            /*for (int c = 0; c < vertices.Count; c++)                                                                          //Test whether all vertices are added correctly (lowers performance drastically)
-            {
-                GameObject ball = Object.Instantiate(prefab) as GameObject;
-                ball.transform.position = vertices[c];
-               // cube.transform.parent = Planet.transform;
-            }*/
-            //Debug.Log(vertices.Count / 3);
-
-
-
-
-
-
-
-
-            mesh.Clear();
+        mesh.Clear();
             Vector3[] verticesarray = new Vector3[vertices.Count];
             verticesarray = vertices.ToArray();
             mesh.vertices = verticesarray;
@@ -226,9 +197,7 @@ public class CubeSphere2 : MonoBehaviour
             Gen.GetComponent<MeshRenderer>().material = medal;
             mesh.RecalculateNormals();
 
-            Gen.GetComponent<MeshFilter>().mesh = mesh;
-            
-        
+        Gen.GetComponent<MeshFilter>().mesh = mesh;
 
 
 
@@ -238,7 +207,8 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-      
+
+
 
     }
 
