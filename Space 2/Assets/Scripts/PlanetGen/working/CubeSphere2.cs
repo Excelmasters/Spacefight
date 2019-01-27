@@ -11,7 +11,7 @@ public class CubeSphere2 : MonoBehaviour
     private GameObject meshObj;
     public float radius;
     [Range(0, 10)]
-    public int resolution;
+    public int resolution = 4;
     private Vector3 center;
     Noise noise = new Noise();
     public Material medal;
@@ -85,7 +85,7 @@ public class CubeSphere2 : MonoBehaviour
     public void OnValidate()
     {
         normal = new Vector3[6];
-        normal[0] = new Vector3(1,0,0);
+        normal[0] = Vector3.up;
         normal[1] = new Vector3(-1,0,0);
         normal[2] = new Vector3(0, 1, 0);
         normal[3] = new Vector3(0, -1, 0);
@@ -127,11 +127,14 @@ public class CubeSphere2 : MonoBehaviour
             ball3.transform.position = AxisB;*/
 
 
-            for (int x = 0; x < resolution; x++)
+            for (int y = 0; x < resolution; x++)
             {
-                for (int y = 0; y < resolution; y++)
+                for (int x = 0; y < resolution; y++)
                 {
-                    vertices.Add(AxisA * x/resolution * 2 + AxisB * y/resolution * 2);
+                    Vector2 percent = new Vector2(x, y) / (resolution - 1);
+                    Vector3 pointOnUnitCube = normal[k] + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
+                    Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
+                    vertices.Add(pointOnUnitSphere);
                 }
 
             }
@@ -237,24 +240,7 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-       /* if (doesexist == false)
-        {
-            Gen.transform.GetChild(0).position = new Vector3(0, 0, 0);
-            Gen.transform.GetChild(0).Rotate(0, -180, 0);
-
-            Gen.transform.GetChild(1).position = new Vector3(0, 0, 0);
-            Gen.transform.GetChild(1).Rotate(0, -90, 0);
-
-            Gen.transform.GetChild(2).position = new Vector3(0, 0, 0);
-            Gen.transform.GetChild(2).Rotate(0, 90, 0);
-
-            Gen.transform.GetChild(3).position = new Vector3(0, 0, 0);
-            Gen.transform.GetChild(3).Rotate(-90, 90, 0);
-
-            Gen.transform.GetChild(4).position = new Vector3(0, 0, 0);
-            Gen.transform.GetChild(4).Rotate(90, 90, 0);
-            doesexist = true;
-        }*/
+      
 
     }
 
