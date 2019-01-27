@@ -12,5 +12,6 @@ public class stopmove : MonoBehaviour
         this.GetComponent<Transform>().position = new Vector3(300, 0, 400) + pos;
 
         this.GetComponent<Rigidbody>().freezeRotation = true;
+        this.transform.Rotate(0, 0.05f, 0);
     }
 }

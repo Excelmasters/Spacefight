@@ -79,8 +79,11 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-    public void OnValidate()
+    public void Start()
     {
+        center = new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), Random.Range(-10f, 10f));
+
+
         Gen = this.gameObject;
         normal = new Vector3[6];
         normal[0] = Vector3.up;
