@@ -5,16 +5,13 @@ using UnityEngine;
 
 public class CubeSphere2 : MonoBehaviour
 {
-    public GameObject prefab;
-    public GameObject prefab2;
-    public GameObject Gen;
+
+    private GameObject Gen;
     private GameObject meshObj;
-    public float radius;
     [Range(0, 1000)]
     public int resolution = 30;
     public Vector3 center;
     Noise noise = new Noise();
-    public Material medal;
     public int size;
     public Vector3[] normal;
     public bool doesexist = false;
@@ -84,6 +81,7 @@ public class CubeSphere2 : MonoBehaviour
 
     public void OnValidate()
     {
+        Gen = this.gameObject;
         normal = new Vector3[6];
         normal[0] = Vector3.up;
         normal[1] = Vector3.down;
@@ -168,19 +166,7 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-         /* for (int h = 0; h < resolution-1; h++)
-          {
-              for (int i = 0; i < resolution-1; i++)
-              {
-                  triangles.Add((i) + h * (resolution + 1));
-                  triangles.Add((i + resolution + 1 + 1) + h * (resolution + 1));
-                  triangles.Add((i + 1) + h * (resolution + 1));
-                  triangles.Add((i) + h * (resolution + 1));
-                  triangles.Add((i + resolution + 1) + h * (resolution + 1));
-                  triangles.Add((i + resolution + 1 + 1) + h * (resolution + 1));
-              }
-
-          }*/
+       
 
 
 
@@ -188,14 +174,31 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-        mesh.Clear();
+             mesh.Clear();
+
+
+
+
             Vector3[] verticesarray = new Vector3[vertices.Count];
             verticesarray = vertices.ToArray();
             mesh.vertices = verticesarray;
             int[] trianglearray = triangles.ToArray();
             mesh.triangles = trianglearray;
-            Gen.GetComponent<MeshRenderer>().material = medal;
-            mesh.RecalculateNormals();
+
+
+
+
+
+       
+
+
+
+
+
+
+
+
+        mesh.RecalculateNormals();
 
         Gen.GetComponent<MeshFilter>().mesh = mesh;
 
