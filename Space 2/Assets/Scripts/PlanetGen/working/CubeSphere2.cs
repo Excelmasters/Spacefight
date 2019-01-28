@@ -15,6 +15,7 @@ public class CubeSphere2 : MonoBehaviour
     public int size;
     public Vector3[] normal;
     public bool doesexist = false;
+    public Material spherematerial;
 
 
     [Range(0,5)]
@@ -176,7 +177,7 @@ public class CubeSphere2 : MonoBehaviour
 
 
              mesh.Clear();
-
+        Gen.GetComponent<MeshRenderer>().sharedMaterial = spherematerial;
 
 
 
