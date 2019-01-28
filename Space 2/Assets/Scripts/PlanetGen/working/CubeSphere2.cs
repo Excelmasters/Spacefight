@@ -16,7 +16,13 @@ public class CubeSphere2 : MonoBehaviour
     public Vector3[] normal;
     public bool doesexist = false;
     public Material spherematerial;
+    public Gradient gradient;
+    private float v;
+    Texture2D texture;
+    const int textureResolution = 50;
 
+    public float Min { get; private set; }
+    public float Max { get; private set; }
 
     [Range(0,5)]
     public float startingfrequenzy;
@@ -28,10 +34,14 @@ public class CubeSphere2 : MonoBehaviour
     public float frequenzychange;
     [Range(0,1)]
     public float heightchange;
-    [Range(1, 10)]
-    public float depth;
+    public float radius;
     [Range(0,3)]
     public float minimum;
+
+
+
+
+
 
 
 
@@ -54,8 +64,20 @@ public class CubeSphere2 : MonoBehaviour
        Debug.Log(terrainvalue * strength);
         return terrainvalue * strength;
     }*/
+
+    
+        
+
+
+
+
+
+
+
     public Vector3 Terrain(Vector3 vertice)
-    {
+    {    
+
+
         float terrainvalue = 0;
         float roughness = startingfrequenzy;
         float amplitude = 1;
@@ -67,7 +89,19 @@ public class CubeSphere2 : MonoBehaviour
             amplitude = amplitude * heightchange;
         }
         terrainvalue = Mathf.Max(0, terrainvalue - minimum);
-        return (terrainvalue+1) * vertice * depth;
+        v = (terrainvalue + 1);
+
+        if (v > Max)
+        {
+            Max = v;
+        }
+        if (v < Min)
+        {
+            Min = v;
+        }
+
+
+        return v * vertice;
     }
 
 
@@ -82,6 +116,22 @@ public class CubeSphere2 : MonoBehaviour
 
     public void OnValidate()
     {
+            texture = new Texture2D(textureResolution, 1);
+        
+        Color[] colours = new Color[textureResolution];
+
+        for (int i = 0; i < textureResolution; i++)
+        {
+            colours[i] = gradient.Evaluate(i / (textureResolution - 1f));
+        }
+        texture.SetPixels(colours);
+        texture.Apply();
+        spherematerial.SetTexture("_TextureOfPlanet", texture);
+
+
+        v = 0;
+        Min = 1;
+        Max = 1;
         center = new Vector3(Random.Range(10f, -10f), Random.Range(10f, -10f), Random.Range(10f, -10f));
         Gen = this.gameObject;
         normal = new Vector3[6];
@@ -177,31 +227,21 @@ public class CubeSphere2 : MonoBehaviour
 
 
              mesh.Clear();
+
+
+
+
         Gen.GetComponent<MeshRenderer>().sharedMaterial = spherematerial;
-
-
+        Gen.GetComponent<MeshRenderer>().sharedMaterial.SetVector("_HeightofVertice", new Vector4(Min, Max));
 
             Vector3[] verticesarray = new Vector3[vertices.Count];
             verticesarray = vertices.ToArray();
             mesh.vertices = verticesarray;
             int[] trianglearray = triangles.ToArray();
             mesh.triangles = trianglearray;
-
-
-
-
-
-       
-
-
-
-
-
-
-
-
+        Debug.Log("Das Minimum ist " + Min);
+        Debug.Log("Das Maximum ist " + Max);
         mesh.RecalculateNormals();
-
         Gen.GetComponent<MeshFilter>().mesh = mesh;
 
 
