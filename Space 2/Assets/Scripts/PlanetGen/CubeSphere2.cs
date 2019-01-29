@@ -15,8 +15,6 @@ public class CubeSphere2 : MonoBehaviour
     public int size;
     public Vector3[] normal;
     public bool doesexist = false;
-
-
     [Range(0, 5)]
     public float startingfrequenzy = 0.6f;
     [Range(1, 10)]
@@ -30,7 +28,16 @@ public class CubeSphere2 : MonoBehaviour
     public float minimum = 0.4f;
 
 
-    public Material spherematerial = (Material)Resources.Load("PlanetMaterial.mat", typeof(Material));
+
+
+
+
+
+
+    public Material spherematerial;
+
+
+
 
 
 
@@ -82,9 +89,7 @@ public class CubeSphere2 : MonoBehaviour
 
 
     public Vector3 Terrain(Vector3 vertice)
-    {    
-
-
+    {
         float terrainvalue = 0;
         float roughness = startingfrequenzy;
         float amplitude = 1;
@@ -123,7 +128,14 @@ public class CubeSphere2 : MonoBehaviour
 
     public void OnValidate()
     {
-            texture = new Texture2D(textureResolution, 1);
+
+
+
+
+
+
+
+        texture = new Texture2D(textureResolution, 1);
         
         Color[] colours = new Color[textureResolution];
 
