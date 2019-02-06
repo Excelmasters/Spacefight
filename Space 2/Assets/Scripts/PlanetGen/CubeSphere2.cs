@@ -128,9 +128,7 @@ public class CubeSphere2 : MonoBehaviour
 
     public void OnValidate()
     {
-
-
-
+        spherematerial = transform.parent.GetComponent<MeshRenderer>().material;
 
 
 
@@ -146,7 +144,6 @@ public class CubeSphere2 : MonoBehaviour
         texture.SetPixels(colours);
         texture.Apply();
         spherematerial.SetTexture("_TextureOfPlanet", texture);
-
 
         v = 0;
         Min = 1;
@@ -263,6 +260,7 @@ public class CubeSphere2 : MonoBehaviour
         mesh.RecalculateNormals();
         Gen.GetComponent<MeshFilter>().mesh = mesh;
         transform.localScale = new Vector3(radius,radius,radius);
+
 
 
     }
