@@ -9,6 +9,7 @@ public class CubeSphere2 : MonoBehaviour
     private GameObject Gen;
     private GameObject meshObj;
     [Range(0, 1000)]
+
     public int resolution = 198;
     public Vector3 center;
     Noise noise = new Noise();
@@ -128,8 +129,39 @@ public class CubeSphere2 : MonoBehaviour
 
     public void OnValidate()
     {
-        spherematerial = transform.parent.GetComponent<MeshRenderer>().material;
+       spherematerial = transform.parent.GetComponent<MeshRenderer>().material;
 
+         //Populate the color keys at the relative time 0 and 1 (0 and 100%)
+       GradientColorKey[] colorKey = new GradientColorKey[7];
+        colorKey[0].time = 0f;
+        colorKey[1].time =0.05f;
+        colorKey[2].time = 0.179f;
+        colorKey[3].time = 0.382f;
+        colorKey[4].time = 0.4f;
+        colorKey[5].time = 0.75f;
+        colorKey[6].time = 1f;
+
+        colorKey[0].color = new Color(0.32f, 0.13f, 0.243f);
+        colorKey[1].color = new Color(0.236f,0.182f,0.19f);
+        colorKey[2].color = new Color(0.24f,0.135f,0.24f);
+        colorKey[3].color = new Color(0.221f,0.142f,0.43f);
+        colorKey[4].color = new Color(0.221f,0.145f,0.42f);
+        colorKey[5].color = new Color(0.217f,0.203f,0.21f);
+        colorKey[6].color = new Color(0.255f, 0.255f,0.255f);
+
+
+        // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
+        GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
+       //alphaKey[0].alpha = 1.0f;
+       // alphaKey[0].time = 0.0f;
+        //alphaKey[1].alpha = 0.0f;
+        //alphaKey[1].time = 1.0f;
+
+        gradient.SetKeys(colorKey, alphaKey);
+
+
+        // What's the color at the relative time 0.25 (25 %) ?
+        // Debug.Log(gradient.Evaluate(0.25f));
 
 
 
