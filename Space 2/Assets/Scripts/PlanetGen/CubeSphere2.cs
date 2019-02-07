@@ -8,8 +8,7 @@ public class CubeSphere2 : MonoBehaviour
 
     private GameObject Gen;
     private GameObject meshObj;
-    [Range(0, 1000)]
-
+    [Range(1,500)]
     public int resolution = 198;
     public Vector3 center;
     Noise noise = new Noise();
@@ -43,7 +42,6 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-    public Gradient gradient;
     private float v;
     Texture2D texture;
     const int textureResolution = 50;
@@ -129,39 +127,78 @@ public class CubeSphere2 : MonoBehaviour
 
     public void OnValidate()
     {
+         GradientColorKey[] colorKey;
+    GradientAlphaKey[] alphaKey;
+        Gradient[] gradient = new Gradient[2];
+        for (int i = 0; i < gradient.Length; i++)
+        {
+            gradient[i] =  new Gradient();
+        }
+
+
+
+
+
+
+
        spherematerial = transform.parent.GetComponent<MeshRenderer>().material;
 
-         //Populate the color keys at the relative time 0 and 1 (0 and 100%)
-       GradientColorKey[] colorKey = new GradientColorKey[7];
+
+
+
+        int Gradientnumber = new int();
+        Gradientnumber = 0;
+        if (Random.Range(0, 1) > 0.5f)
+        {
+            Gradientnumber = 1;
+        }
+        else
+        {
+            Gradientnumber = 0;
+        }
+
+        colorKey = new GradientColorKey[7];
         colorKey[0].time = 0f;
-        colorKey[1].time =0.05f;
+        colorKey[1].time = 0.01f;
         colorKey[2].time = 0.179f;
         colorKey[3].time = 0.382f;
         colorKey[4].time = 0.4f;
         colorKey[5].time = 0.75f;
         colorKey[6].time = 1f;
-
-        colorKey[0].color = new Color(0.32f, 0.13f, 0.243f);
-        colorKey[1].color = new Color(0.236f,0.182f,0.19f);
-        colorKey[2].color = new Color(0.24f,0.135f,0.24f);
-        colorKey[3].color = new Color(0.221f,0.142f,0.43f);
-        colorKey[4].color = new Color(0.221f,0.145f,0.42f);
-        colorKey[5].color = new Color(0.217f,0.203f,0.21f);
-        colorKey[6].color = new Color(0.255f, 0.255f,0.255f);
-
-
-        // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
-        GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
-       //alphaKey[0].alpha = 1.0f;
-       // alphaKey[0].time = 0.0f;
-        //alphaKey[1].alpha = 0.0f;
-        //alphaKey[1].time = 1.0f;
-
-        gradient.SetKeys(colorKey, alphaKey);
+        float b = 100;
+        colorKey[0].color = new Color(32f, 13f, 243f) / b;
+        colorKey[1].color = new Color(236f, 182f, 19f) / b;
+        colorKey[2].color = new Color(24f, 135f, 24f) / b;
+        colorKey[3].color = new Color(221f, 142f, 43f) / b;
+        colorKey[4].color = new Color(221f, 145f, 42f) / b;
+        colorKey[5].color = new Color(217f, 203f, 21f) / b;
+        colorKey[6].color = new Color(255f, 255f, 255f) / b;
+        alphaKey = new GradientAlphaKey[0];
+        gradient[0].SetKeys(colorKey, alphaKey);
 
 
-        // What's the color at the relative time 0.25 (25 %) ?
-        // Debug.Log(gradient.Evaluate(0.25f));
+        colorKey[0].time = 0f;
+        colorKey[1].time = 0.01f;
+        colorKey[2].time = 0.179f;
+        colorKey[3].time = 0.382f;
+        colorKey[4].time = 0.4f;
+        colorKey[5].time = 0.75f;
+        colorKey[6].time = 1f;
+        b = 250;
+        colorKey[0].color = new Color(32f, 13f, 243f) / b;
+        colorKey[1].color = new Color(236f, 182f, 19f) / b;
+        colorKey[2].color = new Color(24f, 135f, 24f) / b;
+        colorKey[3].color = new Color(221f, 142f, 43f) / b;
+        colorKey[4].color = new Color(221f, 145f, 42f) / b;
+        colorKey[5].color = new Color(217f, 203f, 21f) / b;
+        colorKey[6].color = new Color(255f, 255f, 255f) / b;
+        gradient[1].SetKeys(colorKey, alphaKey);
+
+
+
+
+
+
 
 
 
@@ -171,11 +208,18 @@ public class CubeSphere2 : MonoBehaviour
 
         for (int i = 0; i < textureResolution; i++)
         {
-            colours[i] = gradient.Evaluate(i / (textureResolution - 1f));
+            colours[i] = gradient[Gradientnumber].Evaluate(i / (textureResolution - 1f));
         }
         texture.SetPixels(colours);
         texture.Apply();
         spherematerial.SetTexture("_TextureOfPlanet", texture);
+
+
+
+
+
+
+
 
         v = 0;
         Min = 1;
