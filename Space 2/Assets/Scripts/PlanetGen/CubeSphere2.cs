@@ -9,14 +9,14 @@ public class CubeSphere2 : MonoBehaviour
     private GameObject Gen;
     private GameObject meshObj;
     [Range(1,500)]
-    public int resolution = 198;
+    public int resolution = 200;
     public Vector3 center;
     Noise noise = new Noise();
     public int size;
     public Vector3[] normal;
     public bool doesexist = false;
     [Range(0, 5)]
-    public float startingfrequenzy = 0.6f;
+    public float startingfrequenzy = 0.8f;
     [Range(1, 10)]
     public int numsurfaces = 9;
     [Range(1, 5)]
@@ -25,7 +25,7 @@ public class CubeSphere2 : MonoBehaviour
     public float heightchange = 0.25f;
     public float radius = 1;
     [Range(0, 3)]
-    public float minimum = 0.4f;
+    public float minimum = 0.3f;
 
 
 
@@ -125,77 +125,33 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-    public void OnValidate()
+    public void Start()
     {
-         GradientColorKey[] colorKey;
-    GradientAlphaKey[] alphaKey;
-        Gradient[] gradient = new Gradient[2];
-        for (int i = 0; i < gradient.Length; i++)
-        {
-            gradient[i] =  new Gradient();
-        }
-
-
-
-
-
-
-
        spherematerial = transform.parent.GetComponent<MeshRenderer>().material;
 
+        GameObject Generator = transform.parent.gameObject;
+        Debug.Log("This is the Parents gradient" +Generator.GetComponent<MakePlanet>().gradient);
+        Gradient [] gradient = Generator.GetComponent<MakePlanet>().gradient;
 
 
 
-        int Gradientnumber = new int();
-        Gradientnumber = 0;
-        if (Random.Range(0, 1) > 0.5f)
+
+        int Gradientnumber;
+        float random = Random.Range(0f, 1f);
+        Debug.Log("Random number is " + random);
+        if (random > 0.5f)
         {
             Gradientnumber = 1;
+            Debug.Log(Gradientnumber);
+
         }
         else
         {
             Gradientnumber = 0;
+            Debug.Log(Gradientnumber);
         }
 
-        colorKey = new GradientColorKey[7];
-        colorKey[0].time = 0f;
-        colorKey[1].time = 0.01f;
-        colorKey[2].time = 0.179f;
-        colorKey[3].time = 0.382f;
-        colorKey[4].time = 0.4f;
-        colorKey[5].time = 0.75f;
-        colorKey[6].time = 1f;
-        float b = 100;
-        colorKey[0].color = new Color(32f, 13f, 243f) / b;
-        colorKey[1].color = new Color(236f, 182f, 19f) / b;
-        colorKey[2].color = new Color(24f, 135f, 24f) / b;
-        colorKey[3].color = new Color(221f, 142f, 43f) / b;
-        colorKey[4].color = new Color(221f, 145f, 42f) / b;
-        colorKey[5].color = new Color(217f, 203f, 21f) / b;
-        colorKey[6].color = new Color(255f, 255f, 255f) / b;
-        alphaKey = new GradientAlphaKey[0];
-        gradient[0].SetKeys(colorKey, alphaKey);
-
-
-        colorKey[0].time = 0f;
-        colorKey[1].time = 0.01f;
-        colorKey[2].time = 0.179f;
-        colorKey[3].time = 0.382f;
-        colorKey[4].time = 0.4f;
-        colorKey[5].time = 0.75f;
-        colorKey[6].time = 1f;
-        b = 250;
-        colorKey[0].color = new Color(32f, 13f, 243f) / b;
-        colorKey[1].color = new Color(236f, 182f, 19f) / b;
-        colorKey[2].color = new Color(24f, 135f, 24f) / b;
-        colorKey[3].color = new Color(221f, 142f, 43f) / b;
-        colorKey[4].color = new Color(221f, 145f, 42f) / b;
-        colorKey[5].color = new Color(217f, 203f, 21f) / b;
-        colorKey[6].color = new Color(255f, 255f, 255f) / b;
-        gradient[1].SetKeys(colorKey, alphaKey);
-
-
-
+     
 
 
 
@@ -208,7 +164,7 @@ public class CubeSphere2 : MonoBehaviour
 
         for (int i = 0; i < textureResolution; i++)
         {
-            colours[i] = gradient[Gradientnumber].Evaluate(i / (textureResolution - 1f));
+          colours[i] = gradient[1].Evaluate(i / (textureResolution - 1f));
         }
         texture.SetPixels(colours);
         texture.Apply();
@@ -265,8 +221,8 @@ public class CubeSphere2 : MonoBehaviour
                 {
                     Vector2 percent = new Vector2(x, y) / (resolution - 1);
                     Vector3 pointOnUnitCube = normal[k] + (percent.x - .5f) * 2 * AxisA + (percent.y - .5f) * 2 * AxisB;
-                    Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                    vertices.Add(Terrain(pointOnUnitSphere));
+                   // Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
+                    vertices.Add(Terrain(pointOnUnitCube));
 
 
 
