@@ -9,7 +9,7 @@ public class CubeSphere2 : MonoBehaviour
     private GameObject Gen;
     private GameObject meshObj;
     [Range(1,500)]
-    public int resolution = 200;
+    public int resolution = 50;
     public Vector3 center;
     Noise noise = new Noise();
     public int size;
@@ -130,7 +130,7 @@ public class CubeSphere2 : MonoBehaviour
        spherematerial = transform.parent.GetComponent<MeshRenderer>().material;
 
         GameObject Generator = transform.parent.gameObject;
-        Debug.Log("This is the Parents gradient" +Generator.GetComponent<MakePlanet>().gradient);
+        Debug.Log("This is the Parents gradient" + Generator.GetComponent<MakePlanet>().gradient);
         Gradient [] gradient = Generator.GetComponent<MakePlanet>().gradient;
 
 
@@ -221,8 +221,8 @@ public class CubeSphere2 : MonoBehaviour
                 {
                     Vector2 percent = new Vector2(x, y) / (resolution - 1);
                     Vector3 pointOnUnitCube = normal[k] + (percent.x - .5f) * 2 * AxisA + (percent.y - .5f) * 2 * AxisB;
-                   // Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                    vertices.Add(Terrain(pointOnUnitCube));
+                    Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
+                    vertices.Add(Terrain(pointOnUnitSphere));
 
 
 

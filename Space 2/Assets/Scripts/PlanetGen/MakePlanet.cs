@@ -6,6 +6,7 @@ public class MakePlanet : MonoBehaviour
 {
     public bool Gen;
     public Gradient[] gradient = new Gradient[2];
+    public GameObject PlanetTrail;
     
 
 
@@ -63,7 +64,7 @@ public class MakePlanet : MonoBehaviour
 
 
         int PlanetCount;
-        PlanetCount = (int)(Random.Range(1, 5));
+        PlanetCount = (int)(Random.Range(7, 10));           //Number of generated planets
 
         for (int i = 0; i < PlanetCount; i++)
         {
@@ -76,10 +77,12 @@ public class MakePlanet : MonoBehaviour
             planet.GetComponent<Rigidbody>().isKinematic = true;
             planet.AddComponent<SphereCollider>();
             planet.GetComponent<SphereCollider>().radius = 1.05f;
-
+            GameObject PlanetTrailinstance = GameObject.Instantiate(PlanetTrail) as GameObject;
+            PlanetTrailinstance.transform.SetParent(planet.transform);
+            PlanetTrailinstance.transform.position = Vector3.zero;
 
             planet.transform.transform.Rotate(Random.Range(-45, 45), 0, Random.Range(-45, 45));
-            planet.transform.position = planet.transform.position + new Vector3(30 * i + 50, 0, 0);
+            planet.transform.position = planet.transform.position + new Vector3(Random.Range(35f,60f) * i + 150, 0, 0);
         }
     }
 
@@ -94,7 +97,9 @@ public class MakePlanet : MonoBehaviour
     {
         if (Gen == true)
         {
+           // PlanetTrail = GameObject.Find("PlanetTrail");
             GeneratePlanet();
+
             Gen = false;
         }
     }
