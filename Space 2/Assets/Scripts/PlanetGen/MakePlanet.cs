@@ -64,7 +64,7 @@ public class MakePlanet : MonoBehaviour
 
 
         int PlanetCount;
-        PlanetCount = (int)(Random.Range(7, 10));           //Number of generated planets
+        PlanetCount = (int)(Random.Range(1, 10));           //Number of generated planets
 
         for (int i = 0; i < PlanetCount; i++)
         {
