@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -208,8 +208,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139677136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.1}
-  m_LocalScale: {x: 34.36797, y: 34.36797, z: 34.36797}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 29.033579, y: 29.033579, z: 29.033579}
   m_Children: []
   m_Father: {fileID: 1696527646}
   m_RootOrder: 0
@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 1696527648}
   - component: {fileID: 1696527649}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SolarSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -606,6 +606,10 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   PlanetTrail: {fileID: 6437824155209871752, guid: af9f84d64af4710409c5ca1bc9723ec0,
     type: 3}
+  Rotationspeed: 0.1
+  MaxPlanetNumber_Random: 7
+  RandomDistanceVariation: 0
+  Resolution: 47
 --- !u!33 &1696527648
 MeshFilter:
   m_ObjectHideFlags: 0

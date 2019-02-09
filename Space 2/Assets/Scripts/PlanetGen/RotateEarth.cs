@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class RotateEarth : MonoBehaviour
 {
-    private Vector3 position;
     private Rigidbody rb;
-    private float Rotationspeed;
-    private float distance;
+    public float Rotationspeed;
     
-    private float rotationspeed2;
     // Start is called before the first frame update
     void Start()
     {
-        position = transform.position;
         rb = GetComponent<Rigidbody>();
-        Rotationspeed = 1;
         float RotateStart = Random.Range(0f, 1f);
         rb.transform.RotateAround(Vector3.zero, Vector3.up, 360 * RotateStart);
-        float distance = transform.position.magnitude;
-        Debug.Log("The Speed ist equal to    " + distance);
-        rotationspeed2 = 200 * Time.deltaTime * Rotationspeed / distance;
+    
+
+
+        Rotationspeed = Time.deltaTime * 10000000000f / (transform.position.magnitude * 100 * transform.position.magnitude * 100)        * transform.GetComponentInParent<MakeSolarSystem>().Rotationspeed;
+
 
 
     }
@@ -28,8 +25,7 @@ public class RotateEarth : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        rb.transform.RotateAround(Vector3.zero, Vector3.up, rotationspeed2);
+        rb.transform.RotateAround(Vector3.zero, Vector3.up, Rotationspeed);
         
         transform.Rotate(0, 0.1f, 0);
     }

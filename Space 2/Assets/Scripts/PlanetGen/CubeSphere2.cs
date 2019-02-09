@@ -8,8 +8,8 @@ public class CubeSphere2 : MonoBehaviour
 
     private GameObject Gen;
     private GameObject meshObj;
-    [Range(1,500)]
-    public int resolution = 50;
+    [Range(1, 500)]
+    private int resolution;
     public Vector3 center;
     Noise noise = new Noise();
     public int size;
@@ -23,7 +23,7 @@ public class CubeSphere2 : MonoBehaviour
     public float frequenzychange = 4f;
     [Range(0, 1)]
     public float heightchange = 0.25f;
-    public float radius = 1;
+    public float radius = 1.5f;
     [Range(0, 3)]
     public float minimum = 0.3f;
 
@@ -127,32 +127,46 @@ public class CubeSphere2 : MonoBehaviour
 
     public void Start()
     {
-       spherematerial = transform.parent.GetComponent<MeshRenderer>().material;
+        resolution = transform.GetComponentInParent<MakeSolarSystem>().Resolution;
+
+
+
+
+        spherematerial = transform.parent.GetComponent<MeshRenderer>().material;
 
         GameObject Generator = transform.parent.gameObject;
-        Debug.Log("This is the Parents gradient" + Generator.GetComponent<MakePlanet>().gradient);
-        Gradient [] gradient = Generator.GetComponent<MakePlanet>().gradient;
+        /* Gradient [] gradient = Generator.GetComponent<MakeSolarSystem>().gradient;
 
 
 
 
-        int Gradientnumber;
-        float random = Random.Range(0f, 1f);
-        Debug.Log("Random number is " + random);
-        if (random > 0.5f)
+         int Gradientnumber;
+         float random = Random.Range(0f, 1f);
+         if (random > 0.5f)
+         {
+             Gradientnumber = 1;;
+
+         }
+         else
+         {
+             Gradientnumber = 0;
+         }*/
+
+
+        Gradient gradient = new Gradient();
+        if (Random.Range(0, 10) > 5f)
         {
-            Gradientnumber = 1;
-            Debug.Log(Gradientnumber);
-
-        }
-        else
-        {
-            Gradientnumber = 0;
-            Debug.Log(Gradientnumber);
+            gradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(Color.blue, 0f), new GradientColorKey(Color.red, 1f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1f, 1.0f) });
         }
 
-     
-
+        else{
+                gradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(Color.yellow, 0f), new GradientColorKey(Color.red, 1f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1f, 1.0f) });
+        }
+    
 
 
 
@@ -164,7 +178,7 @@ public class CubeSphere2 : MonoBehaviour
 
         for (int i = 0; i < textureResolution; i++)
         {
-          colours[i] = gradient[1].Evaluate(i / (textureResolution - 1f));
+          colours[i] = gradient.Evaluate(i / (textureResolution - 1f));
         }
         texture.SetPixels(colours);
         texture.Apply();
@@ -287,8 +301,6 @@ public class CubeSphere2 : MonoBehaviour
             mesh.vertices = verticesarray;
             int[] trianglearray = triangles.ToArray();
             mesh.triangles = trianglearray;
-        Debug.Log("Das Minimum ist " + Min);
-        Debug.Log("Das Maximum ist " + Max);
         mesh.RecalculateNormals();
         Gen.GetComponent<MeshFilter>().mesh = mesh;
         transform.localScale = new Vector3(radius,radius,radius);
