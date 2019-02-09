@@ -80,6 +80,7 @@ public class MakePlanet : MonoBehaviour
             GameObject PlanetTrailinstance = GameObject.Instantiate(PlanetTrail) as GameObject;
             // PlanetTrailinstance.transform.SetParent(planet.transform);
             // PlanetTrailinstance.transform.position = Vector3.zero;
+
             planet.AddComponent<TrailRenderer>();
             TrailRenderer tr = planet.GetComponent<TrailRenderer>();
             tr.material = new Material(Shader.Find("Sprites/Default"));
