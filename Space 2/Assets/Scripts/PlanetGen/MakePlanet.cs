@@ -78,8 +78,19 @@ public class MakePlanet : MonoBehaviour
             planet.AddComponent<SphereCollider>();
             planet.GetComponent<SphereCollider>().radius = 1.05f;
             GameObject PlanetTrailinstance = GameObject.Instantiate(PlanetTrail) as GameObject;
-            PlanetTrailinstance.transform.SetParent(planet.transform);
-            PlanetTrailinstance.transform.position = Vector3.zero;
+            // PlanetTrailinstance.transform.SetParent(planet.transform);
+            // PlanetTrailinstance.transform.position = Vector3.zero;
+            planet.AddComponent<TrailRenderer>();
+            TrailRenderer tr = planet.GetComponent<TrailRenderer>();
+            tr.material = new Material(Shader.Find("Sprites/Default"));
+            Gradient gradient = new Gradient();
+            gradient.SetKeys(
+                new GradientColorKey[] { new GradientColorKey(Color.blue, 0.0f), new GradientColorKey(Color.blue, 0.9f), new GradientColorKey(Color.grey, 1.0f) },
+                new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.0f), new GradientAlphaKey(0f, 1.0f) }
+            );
+            tr.colorGradient = gradient;
+
+
 
             planet.transform.transform.Rotate(Random.Range(-45, 45), 0, Random.Range(-45, 45));
             planet.transform.position = planet.transform.position + new Vector3(Random.Range(35f,60f) * i + 150, 0, 0);
