@@ -45,6 +45,7 @@ public class CubeSphere2 : MonoBehaviour
     private float v;
     Texture2D texture;
     const int textureResolution = 50;
+    public int Planettype;
 
     public float Min { get; private set; }
     public float Max { get; private set; }
@@ -140,8 +141,15 @@ public class CubeSphere2 : MonoBehaviour
 
         Gradient gradient = new Gradient();
         float rand = Random.Range(0, 10);
-        int Planettype = 1;
-        if (Planettype == 0)
+        if(Planettype> 3) { Planettype = 3; }
+
+
+
+
+
+
+
+        if (Planettype == 1)                //EarthLike Planet
         {
                     startingfrequenzy = 0.8f;
                      numsurfaces = 9;
@@ -170,13 +178,13 @@ public class CubeSphere2 : MonoBehaviour
             gradient.SetKeys(colorKey, alphaKey);
         }
 
-        if (Planettype == 1){
+        if (Planettype == 0){               // Rocky FirePlanet
             startingfrequenzy = 1.92f;
             resolution = 100;
             numsurfaces = 10;
             frequenzychange = 2.67f;
             heightchange = 0.55f;
-            radius = 1.5f;
+            radius = 1f;
             minimum = 0.55f;
 
 
@@ -195,33 +203,54 @@ public class CubeSphere2 : MonoBehaviour
             gradient.SetKeys(colorKey, alphaKey);
 
         }
-        if (Planettype == 2)
+        if (Planettype == 2)                    //Jungle Like Planet
         {
-            startingfrequenzy = 1.92f;
-            resolution = 100;
+            startingfrequenzy = 0.92f;
             numsurfaces = 10;
-            frequenzychange = 2.67f;
-            heightchange = 0.55f;
+            frequenzychange = 2.34f;
+            heightchange = 0.42f;
             radius = 1.5f;
-            minimum = 0.55f;
+            minimum = 0.4f;
 
 
 
             GradientColorKey[] colorKey = new GradientColorKey[4];
             colorKey[0].time = 0f;
-            colorKey[1].time = 0.05f;
-            colorKey[2].time = 0.515f;
+            colorKey[1].time = 0.112f;
+            colorKey[2].time = 0.597f;
             colorKey[3].time = 1f;
             float b = 250;
-            colorKey[0].color = new Color(214f, 11f, 23f) / b;
-            colorKey[1].color = new Color(0f, 0f, 0, 0f) / b;
-            colorKey[2].color = new Color(103f, 89f, 88f) / b;
-            colorKey[3].color = new Color(178f, 51f, 60f) / b;
+            colorKey[0].color = new Color(30f, 103f, 11f) / b;
+            colorKey[1].color = new Color(56f, 180f, 28f) / b;
+            colorKey[2].color = new Color(180f, 233f, 23f) / b;
+            colorKey[3].color = new Color(209f, 209f, 33f) / b;
             GradientAlphaKey[] alphaKey = new GradientAlphaKey[0];
             gradient.SetKeys(colorKey, alphaKey);
 
         }
+        if (Planettype == 3)                    //icy planet
+        {
+            startingfrequenzy = 1f;
+            numsurfaces = 9;
+            frequenzychange = 2.73f;
+            heightchange = 0.4f;
+            radius = 2.5f;
+            minimum = 0.55f;
 
+
+
+            GradientColorKey[] colorKey = new GradientColorKey[3];
+            colorKey[0].time = 0f;
+            colorKey[1].time = 0.165f;
+            colorKey[2].time = 1f;
+            float b = 250;
+            colorKey[0].color = new Color(185f, 240f, 253f) / b;
+            colorKey[1].color = new Color(43f, 173f, 148f) / b;
+            colorKey[2].color = new Color(89f, 222f, 238f) / b;
+            GradientAlphaKey[] alphaKey = new GradientAlphaKey[0];
+            gradient.SetKeys(colorKey, alphaKey);
+
+        }
 
 
 

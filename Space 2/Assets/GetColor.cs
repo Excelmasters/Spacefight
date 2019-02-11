@@ -128,33 +128,11 @@ public class GetColor : MonoBehaviour
 
     public void OnValidate()
     {
-        Gradient gradient = new Gradient();
 
         Material spherematerial = new Material(Shader.Find("Shader Graphs/planet"));
 
 
-        startingfrequenzy = 1.92f;
-        resolution = 100;
-        numsurfaces = 10;
-        frequenzychange = 2.67f;
-        heightchange = 0.55f;
-        radius = 1.5f;
-        minimum = 0.55f;
-
-
-
-        GradientColorKey[] colorKey = new GradientColorKey[4];
-        colorKey[0].time = 0f;
-        colorKey[1].time = 0.05f;
-        colorKey[2].time = 0.515f;
-        colorKey[3].time = 1f;
-        float b = 250;
-        colorKey[0].color = new Color(214f, 11f, 23f);
-        colorKey[1].color = new Color(0f, 0f, 0, 0f);
-        colorKey[2].color = new Color(103f, 89f, 88f);
-        colorKey[3].color = new Color(178f, 51f, 60f);
-        GradientAlphaKey[] alphaKey = new GradientAlphaKey[0];
-        gradient.SetKeys(colorKey, alphaKey);
+        
 
 
 
