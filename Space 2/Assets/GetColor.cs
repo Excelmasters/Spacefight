@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CubeSphere2 : MonoBehaviour
+public class GetColor : MonoBehaviour
 {
 
     private GameObject Gen;
     private GameObject meshObj;
     [Range(1, 500)]
-    private int resolution;
+    public int resolution;
     public Vector3 center;
+    public Gradient gradient;
     Noise noise = new Noise();
     public int size;
     public Vector3[] normal;
@@ -34,7 +35,7 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
- 
+
 
 
 
@@ -78,8 +79,8 @@ public class CubeSphere2 : MonoBehaviour
         return terrainvalue * strength;
     }*/
 
-    
-        
+
+
 
 
 
@@ -125,167 +126,35 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-    public void Start()
+    public void OnValidate()
     {
-        resolution = transform.GetComponentInParent<MakeSolarSystem>().Resolution;
-
-        Material spherematerial =  new Material(Shader.Find("Shader Graphs/planet"));
-
-        GameObject Generator = transform.parent.gameObject;
-
-
-
-
-
-
         Gradient gradient = new Gradient();
-        float rand = Random.Range(0, 10);
-        int Planettype = 1;
-        if (Planettype == 0)
-        {
-                    startingfrequenzy = 0.8f;
-                     numsurfaces = 9;
-                    frequenzychange = 4f;
-                    heightchange = 0.25f;
-                    radius = 1.5f;
-                    minimum = 0.3f;
 
-    GradientColorKey[] colorKey = new GradientColorKey[7];
-            colorKey[0].time = 0f;
-            colorKey[1].time = 0.01f;
-            colorKey[2].time = 0.179f;
-            colorKey[3].time = 0.382f;
-            colorKey[4].time = 0.4f;
-            colorKey[5].time = 0.75f;
-            colorKey[6].time = 1f;
-            float b = 250;
-            colorKey[0].color = new Color(32f, 13f, 243f) / b;
-            colorKey[1].color = new Color(236f, 182f, 19f) / b;
-            colorKey[2].color = new Color(24f, 135f, 24f) / b;
-            colorKey[3].color = new Color(221f, 142f, 43f) / b;
-            colorKey[4].color = new Color(221f, 145f, 42f) / b;
-            colorKey[5].color = new Color(217f, 203f, 21f) / b;
-            colorKey[6].color = new Color(255f, 255f, 255f) / b;
-            GradientAlphaKey[] alphaKey = new GradientAlphaKey[0];
-            gradient.SetKeys(colorKey, alphaKey);
-        }
-
-        if (Planettype == 1){
-            startingfrequenzy = 1.92f;
-            resolution = 100;
-            numsurfaces = 10;
-            frequenzychange = 2.67f;
-            heightchange = 0.55f;
-            radius = 1.5f;
-            minimum = 0.55f;
-
-
-
-            GradientColorKey[] colorKey = new GradientColorKey[4];
-            colorKey[0].time = 0f;
-            colorKey[1].time = 0.05f;
-            colorKey[2].time = 0.515f;
-            colorKey[3].time = 1f;
-            float b = 250;
-            colorKey[0].color = new Color(214f, 11f, 23f) / b;
-            colorKey[1].color = new Color(0f, 0f, 0, 0f) / b;
-            colorKey[2].color = new Color(103f, 89f, 88f) / b;
-            colorKey[3].color = new Color(178f, 51f, 60f) / b;
-            GradientAlphaKey[] alphaKey = new GradientAlphaKey[0];
-            gradient.SetKeys(colorKey, alphaKey);
-
-        }
-        if (Planettype == 2)
-        {
-            startingfrequenzy = 1.92f;
-            resolution = 100;
-            numsurfaces = 10;
-            frequenzychange = 2.67f;
-            heightchange = 0.55f;
-            radius = 1.5f;
-            minimum = 0.55f;
-
-
-
-            GradientColorKey[] colorKey = new GradientColorKey[4];
-            colorKey[0].time = 0f;
-            colorKey[1].time = 0.05f;
-            colorKey[2].time = 0.515f;
-            colorKey[3].time = 1f;
-            float b = 250;
-            colorKey[0].color = new Color(214f, 11f, 23f) / b;
-            colorKey[1].color = new Color(0f, 0f, 0, 0f) / b;
-            colorKey[2].color = new Color(103f, 89f, 88f) / b;
-            colorKey[3].color = new Color(178f, 51f, 60f) / b;
-            GradientAlphaKey[] alphaKey = new GradientAlphaKey[0];
-            gradient.SetKeys(colorKey, alphaKey);
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Material spherematerial = new Material(Shader.Find("Shader Graphs/planet"));
+
+
+        startingfrequenzy = 1.92f;
+        resolution = 100;
+        numsurfaces = 10;
+        frequenzychange = 2.67f;
+        heightchange = 0.55f;
+        radius = 1.5f;
+        minimum = 0.55f;
+
+
+
+        GradientColorKey[] colorKey = new GradientColorKey[4];
+        colorKey[0].time = 0f;
+        colorKey[1].time = 0.05f;
+        colorKey[2].time = 0.515f;
+        colorKey[3].time = 1f;
+        float b = 250;
+        colorKey[0].color = new Color(214f, 11f, 23f);
+        colorKey[1].color = new Color(0f, 0f, 0, 0f);
+        colorKey[2].color = new Color(103f, 89f, 88f);
+        colorKey[3].color = new Color(178f, 51f, 60f);
+        GradientAlphaKey[] alphaKey = new GradientAlphaKey[0];
+        gradient.SetKeys(colorKey, alphaKey);
 
 
 
@@ -297,12 +166,12 @@ public class CubeSphere2 : MonoBehaviour
 
 
         texture = new Texture2D(textureResolution, 1);
-        
+
         Color[] colours = new Color[textureResolution];
 
         for (int i = 0; i < textureResolution; i++)
         {
-          colours[i] = gradient.Evaluate(i / (textureResolution - 1f));
+            colours[i] = gradient.Evaluate(i / (textureResolution - 1f));
         }
         texture.SetPixels(colours);
         texture.Apply();
@@ -331,27 +200,27 @@ public class CubeSphere2 : MonoBehaviour
         Mesh mesh = new Mesh();
 
 
-            if (Gen.GetComponent<MeshFilter>() == null) { Gen.AddComponent<MeshFilter>(); }
-            if (Gen.AddComponent<MeshRenderer>() == null) { Gen.AddComponent<MeshFilter>(); }
+        if (Gen.GetComponent<MeshFilter>() == null) { Gen.AddComponent<MeshFilter>(); }
+        if (Gen.AddComponent<MeshRenderer>() == null) { Gen.AddComponent<MeshFilter>(); }
 
 
-            List<Vector3> vertices = new List<Vector3>();
-            List<int> triangles = new List<int>();
-            mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
-            vertices.Clear();
+        List<Vector3> vertices = new List<Vector3>();
+        List<int> triangles = new List<int>();
+        mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        vertices.Clear();
 
         for (int k = 0; k < 6; k++)
         {
 
 
             Vector3 AxisA = new Vector3(normal[k].y, normal[k].z, normal[k].x);
-            Vector3 AxisB = Vector3.Cross(normal[k] , AxisA);
+            Vector3 AxisB = Vector3.Cross(normal[k], AxisA);
 
-          /* GameObject ball2 = Object.Instantiate(prefab2) as GameObject;
-             ball2.transform.position = AxisA ;
+            /* GameObject ball2 = Object.Instantiate(prefab2) as GameObject;
+               ball2.transform.position = AxisA ;
 
-             GameObject ball3 = Object.Instantiate(prefab2) as GameObject;
-             ball3.transform.position = AxisB;*/
+               GameObject ball3 = Object.Instantiate(prefab2) as GameObject;
+               ball3.transform.position = AxisB;*/
 
             for (int y = 0; y < resolution; y++)
             {
@@ -404,7 +273,6 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-       
 
 
 
@@ -412,7 +280,8 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-             mesh.Clear();
+
+        mesh.Clear();
 
 
 
@@ -420,14 +289,14 @@ public class CubeSphere2 : MonoBehaviour
         Gen.GetComponent<MeshRenderer>().sharedMaterial = spherematerial;
         Gen.GetComponent<MeshRenderer>().sharedMaterial.SetVector("_HeightofVertice", new Vector4(Min, Max));
 
-            Vector3[] verticesarray = new Vector3[vertices.Count];
-            verticesarray = vertices.ToArray();
-            mesh.vertices = verticesarray;
-            int[] trianglearray = triangles.ToArray();
-            mesh.triangles = trianglearray;
+        Vector3[] verticesarray = new Vector3[vertices.Count];
+        verticesarray = vertices.ToArray();
+        mesh.vertices = verticesarray;
+        int[] trianglearray = triangles.ToArray();
+        mesh.triangles = trianglearray;
         mesh.RecalculateNormals();
         Gen.GetComponent<MeshFilter>().mesh = mesh;
-        transform.localScale = new Vector3(radius,radius,radius);
+        transform.localScale = new Vector3(radius, radius, radius);
 
 
 
