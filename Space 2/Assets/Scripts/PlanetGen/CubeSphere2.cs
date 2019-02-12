@@ -128,6 +128,7 @@ public class CubeSphere2 : MonoBehaviour
 
     public void Start()
     {
+
         resolution = transform.GetComponentInParent<MakeSolarSystem>().Resolution;
 
         Material spherematerial =  new Material(Shader.Find("Shader Graphs/planet"));
@@ -136,7 +137,7 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-
+       
 
 
         Gradient gradient = new Gradient();
@@ -322,7 +323,7 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-
+        radius = radius * this.transform.GetComponentInParent<MakeSolarSystem>().SolarSize;
 
 
         texture = new Texture2D(textureResolution, 1);
