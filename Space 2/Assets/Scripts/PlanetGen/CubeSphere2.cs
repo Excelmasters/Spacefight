@@ -142,7 +142,7 @@ public class CubeSphere2 : MonoBehaviour
 
         Gradient gradient = new Gradient();
         float rand = Random.Range(0, 10);
-        if(Planettype> 3) { Planettype = 3; }
+        if(Planettype> 4) { Planettype = 4; }
 
 
 
@@ -248,6 +248,33 @@ public class CubeSphere2 : MonoBehaviour
             colorKey[0].color = new Color(185f, 240f, 253f) / b;
             colorKey[1].color = new Color(43f, 173f, 148f) / b;
             colorKey[2].color = new Color(89f, 222f, 238f) / b;
+            GradientAlphaKey[] alphaKey = new GradientAlphaKey[0];
+            gradient.SetKeys(colorKey, alphaKey);
+
+        }
+        if (Planettype == 4)                    //second icy planet 
+        {
+            startingfrequenzy = 1.49f;
+            numsurfaces = 9;
+            frequenzychange = 4f;
+            heightchange = 0.25f;
+            radius = 2.5f;
+            minimum = 0.3f;
+
+
+
+            GradientColorKey[] colorKey = new GradientColorKey[5];
+            colorKey[0].time = 0f;
+            colorKey[1].time = 0.147f;
+            colorKey[2].time = 0.274f;
+            colorKey[3].time = 0.559f;
+            colorKey[4].time = 1f;
+            float b = 250;
+            colorKey[0].color = new Color(39f, 132f, 156f) / b;
+            colorKey[1].color = new Color(161f, 214f, 204f) / b;
+            colorKey[2].color = new Color(32f, 192f, 119f) / b;
+            colorKey[3].color = new Color(38f, 123f, 84f) / b;
+            colorKey[4].color = new Color(25f, 248f, 144f) / b;
             GradientAlphaKey[] alphaKey = new GradientAlphaKey[0];
             gradient.SetKeys(colorKey, alphaKey);
 

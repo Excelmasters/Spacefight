@@ -53,7 +53,7 @@ public class MakeSolarSystem : MonoBehaviour
 
 
 
-        for (int i = 0; i < MaxPlanetNumber_Randominsystem; i++)
+        for (int i = 0; i < 20; i++)
         {
 
             GameObject planet = new GameObject();
