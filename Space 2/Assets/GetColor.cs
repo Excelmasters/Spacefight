@@ -9,11 +9,11 @@ public class GetColor : MonoBehaviour
     private GameObject Gen;
     private GameObject meshObj;
     [Range(1, 500)]
-    public int resolution;
+    public int resolution = 100;
     public Vector3 center;
     public Gradient gradient;
     Noise noise = new Noise();
-    public int size;
+    public int size = 1;
     public Vector3[] normal;
     public bool doesexist = false;
     [Range(0, 5)]
@@ -131,7 +131,6 @@ public class GetColor : MonoBehaviour
 
         Material spherematerial = new Material(Shader.Find("Shader Graphs/planet"));
 
-
         
 
 
@@ -166,6 +165,7 @@ public class GetColor : MonoBehaviour
         Min = 1;
         Max = 1;
         center = new Vector3(Random.Range(10f, -10f), Random.Range(10f, -10f), Random.Range(10f, -10f));
+        //center = Vector3.zero;
         Gen = this.gameObject;
         normal = new Vector3[6];
         normal[0] = Vector3.up;
