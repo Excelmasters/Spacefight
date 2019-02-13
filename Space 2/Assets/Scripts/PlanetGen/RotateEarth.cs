@@ -25,7 +25,7 @@ public class RotateEarth : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.transform.RotateAround(Vector3.zero, Vector3.up, Rotationspeed);
+        rb.transform.RotateAround(transform.parent.transform.position, Vector3.up, Rotationspeed);
         
         transform.Rotate(0, 0.1f, 0);
     }

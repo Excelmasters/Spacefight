@@ -14,7 +14,7 @@ public class MakeSolarSystem : MonoBehaviour
     [Range(10, 500)]
     public int Resolution = 200;
     [Range(1,20)]
-    public float SolarSize;
+    public float SolarSize = 1;
 
 
     public void Start()
