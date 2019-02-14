@@ -129,8 +129,8 @@ public class RandomPlanet : MonoBehaviour
     public void OnValidate()
     {
 
-        resolution = Random.Range(200, 250);
-        startingfrequenzy = Random.Range(2f, 3f);
+        resolution = Random.Range(300,300);
+        startingfrequenzy = Random.Range(0.5f, 3f);
         numsurfaces = Random.Range(6, 10);
         frequenzychange = Random.Range(2, 5);
         heightchange = Random.Range(0.1f, 0.5f);
