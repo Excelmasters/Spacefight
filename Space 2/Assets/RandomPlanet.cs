@@ -150,7 +150,7 @@ public class RandomPlanet : MonoBehaviour
 
         Material spherematerial = new Material(Shader.Find("Shader Graphs/planet"));
 
-        GradientColorKey[] colorKey = new GradientColorKey[(int) Random.Range(1,11)];
+        GradientColorKey[] colorKey = new GradientColorKey[(int) Random.Range(3,7)];
         for(int i = 0; i < colorKey.Length; i++)
         {
             colorKey[i].time = Random.Range(0f, 1f);

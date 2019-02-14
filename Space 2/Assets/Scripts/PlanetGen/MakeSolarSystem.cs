@@ -5,7 +5,7 @@ using UnityEngine;
 public class MakeSolarSystem : MonoBehaviour
 {
     private bool Gen = false;
-    [Range(0.01f, 1)]
+    [Range(0.01f, 5)]
     public float Rotationspeed = 0.024f;
     [Range(1,15)]
     public int MaxPlanetNumber_Random = 15;
@@ -13,8 +13,8 @@ public class MakeSolarSystem : MonoBehaviour
     public float RandomDistanceVariation = 1.89f;
     [Range(10, 500)]
     public int Resolution = 200;
-    [Range(1,20)]
-    public float SolarSize = 1;
+    [Range(1,200)]
+    public float SolarSize = 50;
 
 
     public void Start()
@@ -28,7 +28,7 @@ public class MakeSolarSystem : MonoBehaviour
     {   
         Rotationspeed = Rotationspeed * (SolarSize * 1.5f);
 
-        int MaxPlanetNumber_Randominsystem = (int)(Random.Range(1, MaxPlanetNumber_Random));           //Number of generated planets
+        int MaxPlanetNumber_Randominsystem = (int)(Random.Range(5, MaxPlanetNumber_Random));           //Number of generated planets
         GameObject Sun = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         Sun.name = "Sun";
         Sun.tag = ("Accident");
@@ -53,7 +53,7 @@ public class MakeSolarSystem : MonoBehaviour
 
 
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < MaxPlanetNumber_Randominsystem; i++)
         {
 
             GameObject planet = new GameObject();

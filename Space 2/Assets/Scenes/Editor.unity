@@ -1618,11 +1618,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb388090adf10b4185866322c7b8f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rotationspeed: 0.625
+  Rotationspeed: 2.73
   MaxPlanetNumber_Random: 15
   RandomDistanceVariation: 1.89
   Resolution: 117
-  SolarSize: 16.12
+  SolarSize: 14
 --- !u!4 &1090619557
 Transform:
   m_ObjectHideFlags: 0
