@@ -15,6 +15,7 @@ public class Octaeder : MonoBehaviour
     Mesh body;
     [Range(0, 7)]
     public int resolution;
+    public Material material;
 
 
 
@@ -165,7 +166,7 @@ public class Octaeder : MonoBehaviour
         body.vertices = verticesarray;
         int[] trianglearray = triangles.ToArray();
          body.triangles = trianglearray;
-        Planet.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Standard"));
+        Planet.GetComponent<MeshRenderer>().material = material;
         body.RecalculateNormals();
         Planet.transform.localScale = new Vector3(radius, radius, radius);
 

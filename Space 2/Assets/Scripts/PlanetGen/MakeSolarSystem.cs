@@ -15,6 +15,8 @@ public class MakeSolarSystem : MonoBehaviour
     public int Resolution = 200;
     [Range(1,200)]
     public float SolarSize = 50;
+    public GameObject ParticleSunprefab;
+    public GameObject PlanetTrailPrefab;
 
 
     public void Start()
@@ -25,30 +27,38 @@ public class MakeSolarSystem : MonoBehaviour
 
 
     private void GeneratePlanet()
-    {   
+    {
+        ParticleSunprefab = GameObject.Find("Sun");
+        PlanetTrailPrefab = GameObject.Find("PlanetTrail");
+
+
+        GameObject ParticleSun = GameObject.Instantiate(ParticleSunprefab) as GameObject;
+        GameObject suncollider = GameObject.CreatePrimitive(PrimitiveType.Sphere) as GameObject;
+        suncollider.GetComponent<MeshRenderer>().enabled = false;
+        suncollider.transform.position = transform.position;
+        suncollider.transform.SetParent(transform);
+        float rad = 45;
+        suncollider.GetComponent<SphereCollider>().transform.localScale = new Vector3(rad, rad, rad);
+        suncollider.tag = ("Accident");
+        suncollider.AddComponent<Rigidbody>();
+        suncollider.GetComponent<Rigidbody>().useGravity = false;
+        suncollider.GetComponent<Rigidbody>().isKinematic = true;
+
+
+
+
+
+        // ParticleSun.GetComponent<SphereCollider>().transform.localScale = new Vector3(2, 2, 2);
+        ParticleSun.transform.position = transform.position;
+        ParticleSun.name = ("ParticleSun");
+        ParticleSun.transform.SetParent(transform);
+
         Rotationspeed = Rotationspeed * (SolarSize * 1.5f);
 
         int MaxPlanetNumber_Randominsystem = (int)(Random.Range(5, MaxPlanetNumber_Random));           //Number of generated planets
-        GameObject Sun = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        Sun.name = "Sun";
-        Sun.tag = ("Accident");
-        Sun.AddComponent<Rigidbody>();
-        Sun.GetComponent<Rigidbody>().useGravity = false;
-        Sun.GetComponent<Rigidbody>().isKinematic = true;
-        Sun.transform.SetParent(transform);
-        Sun.transform.position = transform.position;
-        Sun.transform.localScale = new Vector3(50 * SolarSize, 50 * SolarSize, 50 * SolarSize);
 
 
-        if (MaxPlanetNumber_Randominsystem > 5)
-        {
-            Sun.GetComponent<MeshRenderer>().material.color = Color.blue;
 
-        }
-        else
-        {
-            Sun.GetComponent<MeshRenderer>().material.color = Color.yellow;
-        }
 
 
 
@@ -61,6 +71,9 @@ public class MakeSolarSystem : MonoBehaviour
             planet.transform.SetParent(this.transform);
             planet.tag = ("Accident");
             planet.AddComponent<CubeSphere2>();
+
+            GameObject PlanetTrail = GameObject.Instantiate(PlanetTrailPrefab) as GameObject;
+            PlanetTrail.transform.SetParent(planet.transform);
             planet.AddComponent<RotateEarth>();
             planet.AddComponent<Rigidbody>();
             planet.GetComponent<Rigidbody>().useGravity = false;
@@ -69,26 +82,8 @@ public class MakeSolarSystem : MonoBehaviour
             planet.GetComponent<SphereCollider>().radius = 1.05f;
             planet.GetComponent<CubeSphere2>().Planettype = (int)i / 2;
 
-            planet.AddComponent<TrailRenderer>();
-            TrailRenderer tr = planet.GetComponent<TrailRenderer>();
-            tr.material = new Material(Shader.Find("Sprites/Default"));
-            Gradient gradient = new Gradient();
-            gradient.SetKeys(
-                new GradientColorKey[] { new GradientColorKey(Color.blue, 0.0f), new GradientColorKey(Color.blue, 0.9f), new GradientColorKey(Color.grey, 1.0f) },
-                new GradientAlphaKey[] { new GradientAlphaKey(0.5f, 0.0f), new GradientAlphaKey(0f, 1.0f) }
-            );
-            tr.colorGradient = gradient;
-            tr.time = 100;
 
 
-            AnimationCurve curve = new AnimationCurve();
-
-
-            curve.AddKey(0.0f, 1.0f);
-            curve.AddKey(1.0f, 0.0f);
-
-            tr.widthCurve = curve;
-            tr.widthMultiplier = 1;
 
 
 
@@ -111,6 +106,8 @@ public class MakeSolarSystem : MonoBehaviour
         {
             
             GeneratePlanet();
+            GameObject.Find("Sun").gameObject.SetActive(false);
+            GameObject.Find("PlanetTrail").gameObject.SetActive(false);
         }
         Gen = false;
     }
