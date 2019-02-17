@@ -223,8 +223,8 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_UIInfos: {fileID: 114340500867371532}
   m_ParameterInfo:
-  - name: SunColor
-    path: SunColor
+  - name: SunGradient
+    path: SunGradient
     tooltip: ChangeColor
     sheetType: m_Gradient
     realType: Gradient
@@ -1582,7 +1582,7 @@ VisualEffectResource:
       m_Bool:
         m_Array: []
     m_ExposedExpressions:
-    - nameId: SunColor
+    - nameId: SunGradient
       index: 12
     m_Buffers:
     - type: 1
@@ -4370,7 +4370,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614628}
-  m_exposedName: SunColor
+  m_exposedName: SunGradient
   m_exposed: 1
   m_Order: 0
   m_Category: 
@@ -4388,14 +4388,14 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614628}
       inputSlot: {fileID: 8926484042661614626}
-    position: {x: 569.84875, y: 1327.2781}
+    position: {x: 518.139, y: 1334.8824}
     expandedSlots: []
     expanded: 0
   - m_Id: 1
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614628}
       inputSlot: {fileID: 8926484042661614630}
-    position: {x: 1237.7113, y: 964.7019}
+    position: {x: 1031.3286, y: 903.4867}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614628

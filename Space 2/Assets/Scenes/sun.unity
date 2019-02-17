@@ -193,6 +193,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66a4622c172bde7488f3766d4f9edf75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start: 0
+  sun: {fileID: 321564744}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.104, g: 0.432, b: 0.872, a: 1}
+    key1: {r: 0.416, g: 0.56, b: 0.752, a: 1}
+    key2: {r: 0.976, g: 0.772, b: 0.284, a: 0}
+    key3: {r: 0.764, g: 0.424, b: 0.124, a: 0}
+    key4: {r: 0.6, g: 0.328, b: 0.104, a: 0}
+    key5: {r: 0.024, g: 0.9, b: 0.34, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 388
+    ctime1: 3023
+    ctime2: 19898
+    ctime3: 47882
+    ctime4: 49273
+    ctime5: 63003
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
 --- !u!73398921 &321564743
 VFXRenderer:
   m_ObjectHideFlags: 2
@@ -263,18 +294,18 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 0.62373185, b: 1, a: 1}
-          key1: {r: 0, g: 0.2765956, b: 1, a: 1}
-          key2: {r: 1, g: 0.11818832, b: 0, a: 0.8}
-          key3: {r: 1, g: 0.11818832, b: 0, a: 0}
+          key0: {r: 1, g: 1, b: 1, a: 0}
+          key1: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+          key2: {r: 0, g: 0, b: 0, a: 0.8}
+          key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
           key6: {r: 0, g: 0, b: 0, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
           ctime0: 0
           ctime1: 65535
-          ctime2: 65535
-          ctime3: 65535
+          ctime2: 0
+          ctime3: 0
           ctime4: 0
           ctime5: 0
           ctime6: 0
@@ -290,8 +321,8 @@ VisualEffect:
           m_Mode: 0
           m_NumColorKeys: 2
           m_NumAlphaKeys: 4
-        m_Name: SunColor
-        m_Overridden: 1
+        m_Name: SunGradient
+        m_Overridden: 0
     m_NamedObject:
       m_Array: []
     m_Bool:
@@ -304,7 +335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321564741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.59}
+  m_LocalPosition: {x: 3.29, y: 0, z: -0.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
