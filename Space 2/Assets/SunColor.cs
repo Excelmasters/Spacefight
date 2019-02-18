@@ -20,8 +20,10 @@ public class SunColor : MonoBehaviour
         GradientAlphaKey[] alphaKey = new GradientAlphaKey[0];
         gradient.SetKeys(colorKey, alphaKey);
 
-        sun = GetComponent<VisualEffect>();
         sun.SetGradient(0, gradient);
+
+        
+        
 
 
 

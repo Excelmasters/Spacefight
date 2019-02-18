@@ -197,20 +197,20 @@ MonoBehaviour:
   sun: {fileID: 321564744}
   gradient:
     serializedVersion: 2
-    key0: {r: 0.104, g: 0.432, b: 0.872, a: 1}
-    key1: {r: 0.416, g: 0.56, b: 0.752, a: 1}
-    key2: {r: 0.976, g: 0.772, b: 0.284, a: 0}
-    key3: {r: 0.764, g: 0.424, b: 0.124, a: 0}
-    key4: {r: 0.6, g: 0.328, b: 0.104, a: 0}
-    key5: {r: 0.024, g: 0.9, b: 0.34, a: 0}
+    key0: {r: 0.48, g: 0.124, b: 0.352, a: 1}
+    key1: {r: 0.328, g: 0.728, b: 0.212, a: 1}
+    key2: {r: 0.448, g: 0.34, b: 0.1, a: 0}
+    key3: {r: 0.524, g: 0.376, b: 0.516, a: 0}
+    key4: {r: 0.188, g: 0.428, b: 0.488, a: 0}
+    key5: {r: 1, g: 0.636, b: 0.772, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 388
-    ctime1: 3023
-    ctime2: 19898
-    ctime3: 47882
-    ctime4: 49273
-    ctime5: 63003
+    ctime0: 26968
+    ctime1: 39172
+    ctime2: 39975
+    ctime3: 52041
+    ctime4: 45939
+    ctime5: 50176
     ctime6: 0
     ctime7: 0
     atime0: 0
@@ -222,7 +222,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 5
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
 --- !u!73398921 &321564743
 VFXRenderer:
@@ -294,9 +294,9 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 1, g: 1, b: 1, a: 0}
-          key1: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-          key2: {r: 0, g: 0, b: 0, a: 0.8}
+          key0: {r: 0, g: 0.62373185, b: 1, a: 1}
+          key1: {r: 0, g: 0.2765956, b: 1, a: 1}
+          key2: {r: 1, g: 1, b: 1, a: 0.8}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
@@ -304,7 +304,7 @@ VisualEffect:
           key7: {r: 0, g: 0, b: 0, a: 0}
           ctime0: 0
           ctime1: 65535
-          ctime2: 0
+          ctime2: 65535
           ctime3: 0
           ctime4: 0
           ctime5: 0
@@ -322,7 +322,7 @@ VisualEffect:
           m_NumColorKeys: 2
           m_NumAlphaKeys: 4
         m_Name: SunGradient
-        m_Overridden: 0
+        m_Overridden: 1
     m_NamedObject:
       m_Array: []
     m_Bool:
@@ -419,7 +419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749898270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.74}
+  m_LocalPosition: {x: 3.3, y: 0, z: -4.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
