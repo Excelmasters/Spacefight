@@ -16,19 +16,19 @@ public class camrotate : MonoBehaviour
     void FixedUpdate()
     {
         transform.LookAt(ss.transform);
-        if (Input.GetKey("a"))
+        if (Input.GetKey("a")  && Input.GetKey("left shift") == false)
         {
             transform.Translate(Vector3.right * Time.deltaTime * camspeed);
         }
-        if (Input.GetKey("d"))
+        if (Input.GetKey("d") && Input.GetKey("left shift") == false)
         {
             transform.Translate(Vector3.left * Time.deltaTime * camspeed);
         }
-        if (Input.GetKey("w"))
+        if (Input.GetKey("w") && Input.GetKey("left shift") == false)
         {
             transform.Translate(Vector3.up * Time.deltaTime * camspeed);
         }
-        if (Input.GetKey("s"))
+        if (Input.GetKey("s") && Input.GetKey("left shift") == false)
         {
             transform.Translate(Vector3.down * Time.deltaTime * camspeed);
         }
