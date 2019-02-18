@@ -350,8 +350,8 @@ public class CubeSphere2 : MonoBehaviour
 
 
 
-        radius = radius * this.transform.GetComponentInParent<MakeSolarSystem>().SolarSize;
-
+        //  radius = radius * this.transform.GetComponentInParent<MakeSolarSystem>().SolarSize;
+        radius = radius * 1;
 
         texture = new Texture2D(textureResolution, 1);
         

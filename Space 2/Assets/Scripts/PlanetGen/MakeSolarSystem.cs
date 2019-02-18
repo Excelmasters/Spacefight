@@ -14,7 +14,7 @@ public class MakeSolarSystem : MonoBehaviour
     [Range(10, 500)]
     public int Resolution = 200;
     [Range(1,200)]
-    public float SolarSize = 50;
+    private float SolarSize = 1;
     public GameObject ParticleSunprefab;
     public GameObject PlanetTrailPrefab;
 
