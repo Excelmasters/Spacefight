@@ -144,10 +144,10 @@ MonoBehaviour:
   Rotationspeed: 0.12
   MaxPlanetNumber_Random: 15
   RandomDistanceVariation: 1.89
-  Resolution: 200
+  Resolution: 12
   SolarSize: 1
-  ParticleSunprefab: {fileID: 0}
-  PlanetTrailPrefab: {fileID: 0}
+  ParticleSunprefab: {fileID: 321564741}
+  PlanetTrailPrefab: {fileID: 1810533233}
 --- !u!4 &113542191
 Transform:
   m_ObjectHideFlags: 0
@@ -173,57 +173,13 @@ GameObject:
   - component: {fileID: 321564745}
   - component: {fileID: 321564744}
   - component: {fileID: 321564743}
-  - component: {fileID: 321564742}
   m_Layer: 0
-  m_Name: VisualEffect
+  m_Name: Sun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &321564742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321564741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66a4622c172bde7488f3766d4f9edf75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  start: 0
-  sun: {fileID: 321564744}
-  gradient:
-    serializedVersion: 2
-    key0: {r: 0.48, g: 0.124, b: 0.352, a: 1}
-    key1: {r: 0.328, g: 0.728, b: 0.212, a: 1}
-    key2: {r: 0.448, g: 0.34, b: 0.1, a: 0}
-    key3: {r: 0.524, g: 0.376, b: 0.516, a: 0}
-    key4: {r: 0.188, g: 0.428, b: 0.488, a: 0}
-    key5: {r: 1, g: 0.636, b: 0.772, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 26968
-    ctime1: 39172
-    ctime2: 39975
-    ctime3: 52041
-    ctime4: 45939
-    ctime5: 50176
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 4
-    m_NumAlphaKeys: 2
 --- !u!73398921 &321564743
 VFXRenderer:
   m_ObjectHideFlags: 2
@@ -294,8 +250,8 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 0.62373185, b: 1, a: 1}
-          key1: {r: 0, g: 0.2765956, b: 1, a: 1}
+          key0: {r: 1, g: 0.56397486, b: 0.023584902, a: 1}
+          key1: {r: 1, g: 0.67145586, b: 0, a: 1}
           key2: {r: 1, g: 1, b: 1, a: 0.8}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
