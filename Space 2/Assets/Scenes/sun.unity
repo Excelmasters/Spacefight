@@ -145,7 +145,6 @@ MonoBehaviour:
   MaxPlanetNumber_Random: 15
   RandomDistanceVariation: 1.89
   Resolution: 12
-  SolarSize: 1
   ParticleSunprefab: {fileID: 321564741}
   PlanetTrailPrefab: {fileID: 1810533233}
 --- !u!4 &113542191
@@ -250,8 +249,8 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 1, g: 0.56397486, b: 0.023584902, a: 1}
-          key1: {r: 1, g: 0.67145586, b: 0, a: 1}
+          key0: {r: 0, g: 0.62373185, b: 1, a: 1}
+          key1: {r: 0, g: 0.2765956, b: 1, a: 1}
           key2: {r: 1, g: 1, b: 1, a: 0.8}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
