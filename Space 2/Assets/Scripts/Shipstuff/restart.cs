@@ -5,7 +5,7 @@ using UnityEngine;
 public class restart : MonoBehaviour
 {
     public GameObject ss;
-
+    public Material spherematerial;
 
     // Update is called once per frame
     void Update()
