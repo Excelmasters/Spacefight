@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[AddComponentMenu("Inventory/Holder")]
 public class InventoryHolder : MonoBehaviour
 {
     public int width = 2; 
-    public int height = 6; //Eigenschaften der Slots wie Höhe, Breite etc.
+    public int height = 6; //Eigenschaften der Stacks wie Höhe, Breite etc.
 
-    private int numSlots;
+    private int numStacks;
 
-    private ItemSlot[] slots; //Array mit dem Namen "slots"
+    private ItemStack[] stacks; //Array mit dem Namen "stacks"
 
     void Awake()
     {
-        numSlots = width * height;      //Anzahl der Slots wird berechnet
-        slots = new ItemSlot[numSlots]; // Slots werden erstellt
+        numStacks = width * height;      //Anzahl der Stacks wird berechnet
+        stacks = new ItemStack[numStacks]; // Stacks werden erstellt
+                                           //ItemStacks stack1 = new ItemStack();//Bsp Stack mit Name "stack1"
     }
 
     private int GetPosition(int x, int y) //Position wird gesucht
@@ -24,7 +25,7 @@ public class InventoryHolder : MonoBehaviour
         return y * width + x;
     }
 
-    public ItemSlot GetSlot(int x, int y) //Zugriff auf bestimmte Slots
+    public ItemStack GetStack(int x, int y) //Zugriff auf bestimmte Stacks
     {
         int position = GetPosition(x, y);
 
@@ -34,10 +35,10 @@ public class InventoryHolder : MonoBehaviour
             return null;
         }
 
-            return slots[position]; //die Position des Slots wird ausgegeben
+            return stacks[position]; //die Position des Stacks wird ausgegeben
     }
 
-    public void SetSlot(int x, int y, ItemSlot newSlot) // festlegen eines Slots (x, y, Name)
+    public void SetStack(int x, int y, ItemStack newStack) // festlegen eines Stacks (x, y, Name)
     {
         int position = GetPosition(x, y); //position wird abgefragt
 
@@ -46,6 +47,22 @@ public class InventoryHolder : MonoBehaviour
             Debug.LogWarning("InventoryHolder: Invalid position!");
             return;
         }
-        slots[position] = newSlot; //ist alles korrekt wird dieser Slot erstellt
+        stacks[position] = newStack; //ist alles korrekt wird dieser Stack erstellt
+    }
+    public void AddStack(ItemStack stack)
+    {
+        for (int i = 0; i < numStacks; i++)
+        {
+
+        }
+    }
+
+    public void ClearInventory()
+    {
+        for(int i = 0; i < numStacks; i++)
+        {
+            stacks[i] = null;
+            
+        }
     }
 }
