@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 101154159423270099}
   - component: {fileID: 1112643376854949865}
   - component: {fileID: 7294511177811262561}
+  - component: {fileID: 2636323165562624664}
+  - component: {fileID: 8030447852353744514}
   m_Layer: 0
   m_Name: ramp
   m_TagString: buildingcube
@@ -137,3 +139,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02001866, y: 0.020000316, z: 0.019999996}
   m_Center: {x: -0.000009329524, y: 0.0000001597218, z: 0}
+--- !u!114 &2636323165562624664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7349911733423050400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c17240d367d37344b603fbc72475cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WindowId: 1
+  windowTitle: Inventory
+  itemForTesting: {fileID: 0}
+  item2ForTesting: {fileID: 0}
+--- !u!114 &8030447852353744514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7349911733423050400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cfcc3cb2bfacbe45ae68de545cac333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 2
+  height: 6

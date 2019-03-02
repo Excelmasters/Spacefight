@@ -13,12 +13,4 @@ public class Item : ScriptableObject
 
     [Space(10f)]
     public GameObject item;
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
 }

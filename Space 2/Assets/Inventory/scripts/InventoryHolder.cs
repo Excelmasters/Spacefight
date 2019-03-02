@@ -15,7 +15,7 @@ public class InventoryHolder : MonoBehaviour
     {
         numStacks = width * height;      //Anzahl der Stacks wird berechnet
         stacks = new ItemStack[numStacks]; // Stacks werden erstellt
-                                           //ItemStacks stack1 = new ItemStack();//Bsp Stack mit Name "stack1"
+                                          
     }
 
     private int GetPosition(int x, int y) //Position wird gesucht
@@ -49,15 +49,47 @@ public class InventoryHolder : MonoBehaviour
         }
         stacks[position] = newStack; //ist alles korrekt wird dieser Stack erstellt
     }
-    public void AddStack(ItemStack stack)
+    public ItemStack AddStack(ItemStack newStack) //Funktion zum hinzufügen
     {
-        for (int i = 0; i < numStacks; i++)
+        ItemStack stack = newStack;
+        for (int i = 0; i < numStacks; i++)//geht alle Stacks durch und sucht ob ein Stack schon vorhanden ist werden diese items hinzugefügt 
         {
-
+            if (stacks[i] != null && stacks[i].Id == stack.Id)
+            {
+                stack = stacks[i].combine(stack);
+                if (stack == null)
+                    break;
+            }
         }
+            if(stack != null) //wenn ein Slot immernoch nicht leer ist wird ein leerer gesucht für neues item 
+            {
+            if (stack.itemCount <= 0)
+                stack = null;
+
+                for (int i = 0; i < numStacks; i++)
+                {
+                    if (stacks[i] == null)
+                    {
+                    stacks[i] = stack;
+                    if (stack.itemCount > stack.MaxSize)
+                    {
+                        int oversize = stack.itemCount - stack.MaxSize;
+                        stack.itemCount = stack.MaxSize;
+                        stack = new ItemStack(stack.item, oversize);
+                    }
+                    else
+                    {
+                        stack = null;
+                    }
+                    stack = null;
+                    break;
+                    }
+                }
+            }
+        return stack;
     }
 
-    public void ClearInventory()
+    public void ClearInventory() //alle items im inventar werden gelöscht
     {
         for(int i = 0; i < numStacks; i++)
         {

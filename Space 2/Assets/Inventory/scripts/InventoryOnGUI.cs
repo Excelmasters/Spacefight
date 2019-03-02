@@ -22,6 +22,7 @@ public class InventoryOnGUI : MonoBehaviour
     private InventoryHolder holder;
 
     private Rect windowPosition;
+    private bool isOpen = false;
     void Start()
     {
         holder = GetComponent<InventoryHolder>(); //überprüft ob auf diesem GUI ein InventoryHolder vorhanden ist 
@@ -37,19 +38,23 @@ public class InventoryOnGUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             ItemStack testItem = new ItemStack(Random.Range(1, 100) % 2 == 1 ? itemForTesting : item2ForTesting, 5);
-            holder.SetStack(Random.Range(0, holder.width), Random.Range(0, holder.height), testItem);
+            holder.AddStack(testItem);
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
             holder.ClearInventory();
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            isOpen = !isOpen;
+        }
     }
 
     void OnGUI()
     {
+        if (isOpen)
         GUI.Window(WindowId, windowPosition, InventoryWindow, windowTitle);    //neuer Bereich wird erstellt & Attribute festegelegt
     }
-
     void InventoryWindow(int id)
     {
         for (int i = 0; i < holder.height; i++) // wieviele Slots vertikal gebraucht werden
@@ -64,6 +69,9 @@ public class InventoryOnGUI : MonoBehaviour
                     icon = itemStack.item.itemIcon;
                 }
                 GUI.Box(new Rect(j * BOX_WIDTH + OFFSET_SIDES, i * BOX_HEIGHT + OFFSET_TOP, BOX_WIDTH, BOX_HEIGHT), icon); //Größe des Inventars
+
+                if (icon != null)
+                    GUI.Label(new Rect(j * BOX_WIDTH + OFFSET_SIDES + 5, i * BOX_HEIGHT + OFFSET_TOP + 2, BOX_WIDTH, BOX_HEIGHT), itemStack.itemCount.ToString());
             }
         }
     }
