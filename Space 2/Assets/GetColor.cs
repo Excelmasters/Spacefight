@@ -8,7 +8,7 @@ public class GetColor : MonoBehaviour
 
     private GameObject Gen;
     private GameObject meshObj;
-    [Range(1, 500)]
+    [Range(1, 3000)]
     public int resolution = 100;
     public Vector3 center;
     public Gradient gradient;

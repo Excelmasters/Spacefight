@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class RandomPlanet : MonoBehaviour
 {
 
     private GameObject Gen;
     private GameObject meshObj;
-    [Range(1, 500)]
-    public int resolution = 100;
+    [Range(1, 3000)]
+    public int resolution;
     public Vector3 center;
     public Gradient gradient;
     Noise noise = new Noise();
@@ -27,7 +26,8 @@ public class RandomPlanet : MonoBehaviour
     public float radius = 1.5f;
     [Range(0, 1)]
     public float minimum = 0.3f;
-
+    private float gentime;
+    public float count;
 
 
 
@@ -118,7 +118,7 @@ public class RandomPlanet : MonoBehaviour
 
 
 
-
+    
 
 
 
@@ -129,12 +129,14 @@ public class RandomPlanet : MonoBehaviour
     public void OnValidate()
     {
 
-        resolution = Random.Range(300,300);
+        Debug.Log("Anfang");
+
+
         startingfrequenzy = Random.Range(0.5f, 3f);
         numsurfaces = Random.Range(6, 10);
         frequenzychange = Random.Range(2, 5);
-        heightchange = Random.Range(0.1f, 0.5f);
-        minimum = Random.Range(0.3f, 0.5f);
+        heightchange = Random.Range(0.1f, 0.3f);
+        minimum = Random.Range(0.1f,0.5f);
 
 
 
@@ -320,7 +322,7 @@ public class RandomPlanet : MonoBehaviour
         Gen.GetComponent<MeshFilter>().mesh = mesh;
         transform.localScale = new Vector3(radius, radius, radius);
 
-
+        Debug.Log("Ende");
 
     }
 
