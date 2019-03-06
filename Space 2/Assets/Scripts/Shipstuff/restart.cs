@@ -6,7 +6,8 @@ public class restart : MonoBehaviour
 {
     public GameObject ss;
     public Material spherematerial;
-    public Material ButtonColor;
+    public GameObject prefab;
+
 
     // Update is called once per frame
     void Update()

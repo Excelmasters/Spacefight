@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1057315535108057357}
   - component: {fileID: 9173475840871646973}
   - component: {fileID: 9133046137015341449}
+  - component: {fileID: 8000853970034637106}
   m_Layer: 0
   m_Name: schwerter (1)
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9756b837ecd15746a97b9ccd5661a2b, type: 3}
+  - {fileID: 2100000, guid: 59cdf535f475f8e4bbe228983f81d8ef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,3 +98,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8000853970034637106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6608330536036773871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f347d7b566d7c604b8d50b1ee1c3a8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

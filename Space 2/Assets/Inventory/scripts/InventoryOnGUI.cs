@@ -69,7 +69,7 @@ public class InventoryOnGUI : MonoBehaviour
     }
     void CalcPosition() //Funktion um Position zu berechnen
     {
-        int width = holder.width * BOX_WIDTH + OFFSET_SIDES * 2;
+        int width = holder.width * BOX_WIDTH + OFFSET_SIDES * 2 * 2;
         int height = holder.height * BOX_HEIGHT + OFFSET_TOP * 2;
 
         windowPosition = new Rect(Screen.width / 2 - width, Screen.height / 2 - height, width, height);
