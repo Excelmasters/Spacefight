@@ -17,8 +17,8 @@ public class Ton_build : MonoBehaviour
         cube.SetActive(false);
         ramp.SetActive(false);
         laser.SetActive(false);
-        //Gamemanager.GetComponent<Createcube>().enabled = false;
-       // Gamemanager.GetComponent<Createramp>().enabled = false;
+        Gamemanager.GetComponent<Createcube>().enabled = false;
+      //  Gamemanager.GetComponent<Createramp>().enabled = false;
         enabled = false;
     }
 }

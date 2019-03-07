@@ -9,8 +9,10 @@ public class Shoot : MonoBehaviour
 
     private void Start()
     {
-        prefab = GameObject.Find("Gamemanager").GetComponent<restart>().Projectile;
-
+        if (prefab == null)
+        {
+            prefab = GameObject.Find("Gamemanager").GetComponent<restart>().Projectile;
+        }
     }
 
     // Update is called once per frame
