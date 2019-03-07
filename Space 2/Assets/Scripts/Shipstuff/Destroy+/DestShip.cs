@@ -5,18 +5,23 @@ using UnityEngine;
 public class DestShip : MonoBehaviour
 {
     public Rigidbody prefabcube;
-    public float time; 
+    public float time;
+    public bool dest;
 
     private void Start()
     {
         time = 0;
+        dest = false;
     }
     private void Update()
     {
-        time += Time.deltaTime;
-        if(time >= 10)
+        if (dest == true)
         {
-            Destroy(gameObject);
+            time += Time.deltaTime;
+            if (time >= 10)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -26,7 +31,7 @@ public class DestShip : MonoBehaviour
         {
 
            prefabcube.isKinematic = false;
-
+            dest = true;
 
 
         }

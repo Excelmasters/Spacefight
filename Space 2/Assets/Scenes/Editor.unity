@@ -431,6 +431,7 @@ MonoBehaviour:
   prefab: {fileID: 6608330536036773871, guid: 29ca55c94d5b59141b8e11932f93eb8f, type: 3}
   Projectile: {fileID: 8744140167408243837, guid: 700b3cf078ad9d947b6e1be325a56d47,
     type: 3}
+  UFO: {fileID: 5643420167266094056, guid: 506e594f31866484ea1b677cf5fd66b7, type: 3}
 --- !u!23 &168159309
 MeshRenderer:
   m_ObjectHideFlags: 0

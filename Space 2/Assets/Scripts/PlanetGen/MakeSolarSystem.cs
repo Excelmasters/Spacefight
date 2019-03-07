@@ -91,7 +91,7 @@ public class MakeSolarSystem : MonoBehaviour
 
 
             Button.transform.localScale = new Vector3(0.25f * 0.25f, 0.25f, 0.25f);
-            Button.AddComponent<Buttons>();
+            //Button.AddComponent<Buttons>();
             Button.AddComponent<SphereCollider>();
             Button.GetComponent<SphereCollider>().radius = 5;
             Button.AddComponent<Rigidbody>();
