@@ -16,6 +16,7 @@ public class Changeblock_Laser : MonoBehaviour
         cursor.transform.eulerAngles = new Vector3(0, 180, 0);
         gm.GetComponent<Createcube>().buildingblocknumber = 2;
         cursor.GetComponent<MeshFilter>().sharedMesh = mesh_laser;
+        cursor.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
         enabled = false;
     }
 }

@@ -1877,7 +1877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 671907593}
-  mesh_laser: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  mesh_laser: {fileID: 4300000, guid: 5a5bb41945382154d8d8f2b2067994c3, type: 3}
 --- !u!1 &798692453
 GameObject:
   m_ObjectHideFlags: 0

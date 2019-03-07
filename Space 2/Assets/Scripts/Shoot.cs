@@ -6,6 +6,7 @@ public class Shoot : MonoBehaviour
 {
     public GameObject prefab;
     private Rigidbody rb;
+    private float time;
 
     private void Start()
     {
@@ -13,17 +14,25 @@ public class Shoot : MonoBehaviour
         {
             prefab = GameObject.Find("Gamemanager").GetComponent<restart>().Projectile;
         }
+        time = 0f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown("o"))
+        time += Time.deltaTime;
+        if (time >= 3 && Input.GetMouseButtonDown(0))
         {
             GameObject bullet = GameObject.Instantiate(prefab) as GameObject;
-            bullet.transform.rotation = Quaternion.Euler(0, 0, 0);
+            // bullet.transform.position = bullet.transform.position + new Vector3(0, 0, +3);
+            bullet.transform.position = transform.position + transform.up * 0.5f;
+            bullet.transform.localRotation = transform.rotation;
+            
+
             rb = bullet.GetComponent<Rigidbody>();
-            rb.velocity = new Vector3(0, 5, 0);
+            rb.velocity = transform.up * 30;
+
+            time = 0;
         }
         
     }
