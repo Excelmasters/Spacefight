@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.05659508, g: 0.07961509, b: 0.12583055, a: 1}
+  m_IndirectSpecularColor: {r: 0.0673975, g: 0.08987059, b: 0.1349672, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -398,6 +398,7 @@ MonoBehaviour:
   buildingblocks:
   - {fileID: 5546762532812685323, guid: 033d58c7ae155e244a913b4acc3cbbb6, type: 3}
   - {fileID: 7349911733423050400, guid: cbe763bb5a9816e4b8b50359f0e4c520, type: 3}
+  - {fileID: 4465834690001272883, guid: 0a93c6d5af131584fb371461a5498f6d, type: 3}
   buildingblocknumber: 1
 --- !u!4 &168159307
 Transform:
@@ -428,6 +429,8 @@ MonoBehaviour:
   ss: {fileID: 1651182105}
   spherematerial: {fileID: 2100000, guid: bb3915fbe3778e7488a994eef33c3392, type: 2}
   prefab: {fileID: 6608330536036773871, guid: 29ca55c94d5b59141b8e11932f93eb8f, type: 3}
+  Projectile: {fileID: 8744140167408243837, guid: 700b3cf078ad9d947b6e1be325a56d47,
+    type: 3}
 --- !u!23 &168159309
 MeshRenderer:
   m_ObjectHideFlags: 0

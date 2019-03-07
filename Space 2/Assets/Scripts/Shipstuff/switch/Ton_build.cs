@@ -8,6 +8,7 @@ public class Ton_build : MonoBehaviour
     public GameObject cube;
     public GameObject ramp;
     public GameObject Gamemanager;
+    public GameObject laser;
 
 
     void Update()
@@ -15,8 +16,9 @@ public class Ton_build : MonoBehaviour
         build.SetActive(true);
         cube.SetActive(false);
         ramp.SetActive(false);
-        Gamemanager.GetComponent<Createcube>().enabled = false;
-        Gamemanager.GetComponent<Createramp>().enabled = false;
+        laser.SetActive(false);
+        //Gamemanager.GetComponent<Createcube>().enabled = false;
+       // Gamemanager.GetComponent<Createramp>().enabled = false;
         enabled = false;
     }
 }

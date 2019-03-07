@@ -7,6 +7,7 @@ public class restart : MonoBehaviour
     public GameObject ss;
     public Material spherematerial;
     public GameObject prefab;
+    public GameObject Projectile;
 
 
     // Update is called once per frame
