@@ -12,9 +12,19 @@ public class DestroyProjectile : MonoBehaviour
     {
         time = 0;
     }
+    void OnCollisionEnter(Collision collideinfo)
+    {
+        if (collideinfo.collider.tag == "Accident" && collideinfo.collider.gameObject.name == "UFO")
+        {
+            collideinfo.collider.gameObject.GetComponent<EnemyControle>().health -= 1;
+            Debug.Log("Hit");
 
-    // Update is called once per frame
-    void FixedUpdate()
+
+
+        }
+    }
+
+        void FixedUpdate()
     {
         time += Time.deltaTime;
         if(time >= DestTime)
@@ -22,5 +32,10 @@ public class DestroyProjectile : MonoBehaviour
             Debug.Log("Destroy");
             Destroy(this.gameObject);
         }
+
+
+
+
+
     }
 }

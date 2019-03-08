@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.VFX;
 
 public class restart : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class restart : MonoBehaviour
     public GameObject prefab;
     public GameObject Projectile;
     public GameObject UFO;
+    public VisualEffect visual;
 
 
     // Update is called once per frame

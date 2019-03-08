@@ -22,7 +22,6 @@ public class Buttons : MonoBehaviour
         UFO.transform.SetParent(SolarSystem.transform);
         UFO.name = ("UFO");
         UFO.transform.position = transform.parent.transform.position;
-        UFO.GetComponent<Rigidbody>().isKinematic = true;
         UFO.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 
 

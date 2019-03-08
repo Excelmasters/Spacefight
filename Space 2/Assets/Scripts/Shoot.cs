@@ -30,8 +30,8 @@ public class Shoot : MonoBehaviour
             
 
             rb = bullet.GetComponent<Rigidbody>();
-            rb.velocity = transform.up * 30;
-
+            rb.velocity = transform.up * 30 + gameObject.transform.parent.GetComponent<Rigidbody>().velocity;
+            
             time = 0;
         }
         
