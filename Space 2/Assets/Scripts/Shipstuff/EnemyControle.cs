@@ -11,15 +11,22 @@ public class EnemyControle : MonoBehaviour
     public VisualEffect visu;
     public float time;
     private bool spawned;
+    private AudioSource[] audiosource;
+    private AudioSource sound0;
+    private AudioSource sound1;
     // Start is called before the first frame update
     void Start()
     {
+        AudioSource[] audiosource = new AudioSource[2];
         spawned = false;
         time = 0;
         ss = GameObject.Find("Spaceship");
         rb = gameObject.GetComponent<Rigidbody>();
         health = 1;
         visu = GameObject.Find("Gamemanager").transform.GetChild(0).GetComponent<VisualEffect>() ;
+        audiosource = GetComponents<AudioSource>();
+        sound0 = audiosource[0];
+        sound1 = audiosource[1];
     }
 
     // Update is called once per frame
@@ -35,6 +42,10 @@ public class EnemyControle : MonoBehaviour
                 visualeffect.GetComponent<VisualEffect>().transform.localScale = new Vector3(5, 5, 5);
                 visualeffect.transform.position = gameObject.transform.position;
 
+
+                sound1.Play();
+                sound0.Play();
+                
 
             }
             for(int i = 0; i < 2; i++)

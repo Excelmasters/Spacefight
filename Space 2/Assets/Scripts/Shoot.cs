@@ -7,13 +7,15 @@ public class Shoot : MonoBehaviour
     public GameObject prefab;
     private Rigidbody rb;
     private float time;
-
+    private AudioSource shoot;
     private void Start()
     {
         if (prefab == null)
         {
             prefab = GameObject.Find("Gamemanager").GetComponent<restart>().Projectile;
         }
+
+        shoot = gameObject.GetComponent<AudioSource>();
         time = 0f;
     }
 
@@ -23,6 +25,9 @@ public class Shoot : MonoBehaviour
         time += Time.deltaTime;
         if (time >= 3 && Input.GetMouseButtonDown(0))
         {
+            shoot.Play();
+
+
             GameObject bullet = GameObject.Instantiate(prefab) as GameObject;
             // bullet.transform.position = bullet.transform.position + new Vector3(0, 0, +3);
             bullet.transform.position = transform.position + transform.up * 0.5f;
