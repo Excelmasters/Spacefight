@@ -15,6 +15,7 @@ public class Changeblock_cube : MonoBehaviour
         cursor.transform.localScale = new Vector3(1, 1, 1);
         gm.GetComponent<Createcube>().buildingblocknumber = 0;
         cursor.GetComponent<MeshFilter>().sharedMesh = mesh_cube;
+        cursor.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         enabled = false;
     }
 }

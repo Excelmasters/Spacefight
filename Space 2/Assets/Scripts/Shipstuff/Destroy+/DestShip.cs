@@ -5,6 +5,25 @@ using UnityEngine;
 public class DestShip : MonoBehaviour
 {
     public Rigidbody prefabcube;
+    public float time;
+    public bool dest;
+
+    private void Start()
+    {
+        time = 0;
+        dest = false;
+    }
+    private void Update()
+    {
+        if (dest == true)
+        {
+            time += Time.deltaTime;
+            if (time >= 10)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 
     void OnCollisionEnter(Collision collideinfo)
     {
@@ -12,7 +31,7 @@ public class DestShip : MonoBehaviour
         {
 
            prefabcube.isKinematic = false;
-
+            dest = true;
 
 
         }

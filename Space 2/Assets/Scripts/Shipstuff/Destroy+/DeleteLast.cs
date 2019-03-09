@@ -10,7 +10,10 @@ public class DeleteLast : MonoBehaviour
     void Update()
     {
         x = ss.transform.childCount;
-        Destroy(ss.GetComponent<Transform>().GetChild(x - 1).gameObject);
+        if (x > 1)
+        {
+            Destroy(ss.GetComponent<Transform>().GetChild(x - 1).gameObject);
+        }
         enabled = false;
     }
 }

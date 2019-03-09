@@ -7,15 +7,16 @@ public class RotateEarth : MonoBehaviour
     private Rigidbody rb;
     public float Rotationspeed;
     public GameObject trail;
+    private GameObject button;
 
     // Start is called before the first frame update
     void Start()
     {
         trail = transform.GetChild(0).gameObject;
+        button = transform.GetChild(1).gameObject;
         rb = GetComponent<Rigidbody>();
         float RotateStart = Random.Range(0f, 1f);
         rb.transform.RotateAround(this.transform.parent.transform.position, Vector3.up, 360 * RotateStart);
-    
 
 
         Rotationspeed = (Time.deltaTime * 100000000 / (transform.localPosition.magnitude * transform.localPosition.magnitude * 1000)     )* transform.GetComponentInParent<MakeSolarSystem>().Rotationspeed;
@@ -29,8 +30,9 @@ public class RotateEarth : MonoBehaviour
     {
 
 
-
+        
         trail.transform.position = transform.position;
+        button.transform.position = transform.position + new Vector3(0, 2, 0);
         rb.transform.RotateAround(transform.parent.transform.position, Vector3.up, Rotationspeed);
         
         transform.Rotate(0, 0.1f, 0);

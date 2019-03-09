@@ -9,6 +9,7 @@ public class Toff_build : MonoBehaviour
     public GameObject Gamemanager;
     public GameObject ramp;
     public GameObject canvas;
+    public GameObject laser;
 
     void Update()
     {
@@ -16,6 +17,7 @@ public class Toff_build : MonoBehaviour
         build.SetActive(false);
         cube.SetActive(true);
         ramp.SetActive(true);
+        laser.SetActive(true);
 
         enabled = false;
 

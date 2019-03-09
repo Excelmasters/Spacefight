@@ -14,6 +14,17 @@ public class switch1 : MonoBehaviour
         cr.enabled = true;
         mc.enabled = true;
 
+        /*GameObject canvas = GameObject.Find("Canvas");
+        for(int i = 0; i < canvas.transform.childCount; i++)
+        {
+            if(canvas.transform.GetChild(i).name == "Crosshair")
+            {
+                canvas.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }*/
+
+
+
 
 
 

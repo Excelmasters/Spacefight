@@ -55,7 +55,7 @@ public class MakeSolarSystem : MonoBehaviour
 
         Rotationspeed = Rotationspeed * (SolarSize * 1.5f);
 
-        int MaxPlanetNumber_Randominsystem = (int)(Random.Range(5, MaxPlanetNumber_Random));           //Number of generated planets
+        int MaxPlanetNumber_Randominsystem = (int)(Random.Range(1, MaxPlanetNumber_Random));           //Number of generated planets
 
 
 
@@ -67,7 +67,7 @@ public class MakeSolarSystem : MonoBehaviour
         {
 
             GameObject planet = new GameObject();
-            planet.name = "Planet" + (i+1);
+            planet.name = "Planet";
             planet.transform.SetParent(this.transform);
             planet.tag = ("Accident");
             planet.AddComponent<CubeSphere2>();
@@ -82,14 +82,33 @@ public class MakeSolarSystem : MonoBehaviour
             planet.GetComponent<SphereCollider>().radius = 1.05f;
             planet.GetComponent<CubeSphere2>().Planettype = (int)i / 2;
 
+            GameObject Button = GameObject.Instantiate(GameObject.Find("Gamemanager").gameObject.GetComponent<restart>().prefab) as GameObject;
 
 
+            Button.transform.SetParent(planet.transform);
+            Button.transform.localPosition = new Vector3(0, 0, 0);
+            Button.transform.position += new Vector3(0, 5, 0);
 
 
+            Button.transform.localScale = new Vector3(0.25f * 0.25f, 0.25f, 0.25f);
+            //Button.AddComponent<Buttons>();
+            Button.AddComponent<SphereCollider>();
+            Button.GetComponent<SphereCollider>().radius = 5;
+            Button.AddComponent<Rigidbody>();
+            Button.GetComponent<Rigidbody>().useGravity = false;
 
+
+            float xrot = Random.Range(-45, 45);
+            float zrot = Random.Range(-45, 45);
             planet.transform.position = transform.position;
-            planet.transform.transform.Rotate(Random.Range(-45, 45), 0, Random.Range(-45, 45));
+            Button.GetComponent<Rigidbody>().freezeRotation = true;
+            Button.GetComponent<Rigidbody>().isKinematic = true;
+           // planet.transform.localRotation = Quaternion.Euler(xrot,0,zrot);       
             planet.transform.position = planet.transform.position + new Vector3((Random.Range(20  - RandomDistanceVariation - 5,    20 + RandomDistanceVariation -5) * i + 40) * SolarSize, 0, 0);
+
+
+        
+
         }
     }
 
