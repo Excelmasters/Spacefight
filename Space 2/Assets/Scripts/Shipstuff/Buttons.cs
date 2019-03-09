@@ -18,12 +18,14 @@ public class Buttons : MonoBehaviour
 
     private void SpawnEnemys()
     {
-        GameObject UFO = GameObject.Instantiate(ufo) as GameObject;
-        UFO.transform.SetParent(SolarSystem.transform);
-        UFO.name = ("UFO");
-        UFO.transform.position = transform.parent.transform.position;
-        UFO.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-
+        for (int i = 0; i < Random.Range(1,8); i++)
+        {
+            GameObject UFO = GameObject.Instantiate(ufo) as GameObject;
+            UFO.transform.SetParent(SolarSystem.transform);
+            UFO.name = ("UFO");
+            UFO.transform.position = transform.parent.transform.position + i * Vector3.right * 10;
+            UFO.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+        }
 
 
        
@@ -54,7 +56,7 @@ public class Buttons : MonoBehaviour
     {
         if (isenabled == false)
         {
-            Debug.Log("Loop");
+            
 
             isenabled = true;
             int childnum = SolarSystem.transform.childCount;

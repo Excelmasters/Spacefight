@@ -17,7 +17,6 @@ public class DestroyProjectile : MonoBehaviour
         if (collideinfo.collider.tag == "Accident" && collideinfo.collider.gameObject.name == "UFO")
         {
             collideinfo.collider.gameObject.GetComponent<EnemyControle>().health -= 1;
-            Debug.Log("Hit");
 
 
 
@@ -29,7 +28,7 @@ public class DestroyProjectile : MonoBehaviour
         time += Time.deltaTime;
         if(time >= DestTime)
         {
-            Debug.Log("Destroy");
+
             Destroy(this.gameObject);
         }
 

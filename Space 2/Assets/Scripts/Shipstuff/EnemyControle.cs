@@ -14,6 +14,7 @@ public class EnemyControle : MonoBehaviour
     private AudioSource[] audiosource;
     private AudioSource sound0;
     private AudioSource sound1;
+    private AudioSource sound2;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +28,25 @@ public class EnemyControle : MonoBehaviour
         audiosource = GetComponents<AudioSource>();
         sound0 = audiosource[0];
         sound1 = audiosource[1];
+        sound2 = audiosource[2];
     }
 
     // Update is called once per frame
+
+
+    void OnCollisionEnter(Collision collideinfo)
+    {
+        if (collideinfo.collider.tag == "Core")
+        {
+            Destroy(collideinfo.collider.gameObject.transform.parent.gameObject);
+            sound2.Play();
+
+
+        }
+
+        
+    }
+
     void FixedUpdate()
     {
         if(health < 1) {
@@ -61,10 +78,13 @@ public class EnemyControle : MonoBehaviour
 
 
         }
-        if (health > 0)
+        else
         {
-            transform.LookAt(ss.transform);
-            transform.position = Vector3.MoveTowards(transform.position, ss.transform.position, Time.deltaTime * 10);
+            if (ss.gameObject != null)
+            {
+                transform.LookAt(ss.transform);
+                transform.position = Vector3.MoveTowards(transform.position, ss.transform.position, Time.deltaTime * 10);
+            }
         }
 
     }

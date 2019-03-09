@@ -14,9 +14,11 @@ public class camfollow : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        transform.position = ss.transform.position + offset;
-        transform.LookAt(ss.transform);
+        if (ss.gameObject != null)
+        {
+            transform.position = ss.transform.position + offset;
+            transform.LookAt(ss.transform);
+        }
 
         if(Input.GetKey("c") && Input.GetKey(KeyCode.DownArrow))
         {
@@ -34,6 +36,15 @@ public class camfollow : MonoBehaviour
         {
             offset.y = offset.y + 0.1f;
         }
+
+
+
+
+
+
+
+
+
 
 
         //this.transform.eulerAngles = new Vector3(0, 0, 0);

@@ -13,21 +13,27 @@ public class mousecursor : MonoBehaviour
     private int ssx = 1;
     public GameObject ss;
     private Vector3 posi;
+    public Texture texture;
 
 
     void Update()
 
     {
+        
         StopShip();
+
+
+   
+
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.gameObject.tag == "buildingcube")
+            if (hit.collider.gameObject.tag == "buildingcube" || hit.collider.gameObject.tag == "Core")
             {
                 cursor.GetComponent<MeshRenderer>().enabled = true;
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(1) && hit.collider.gameObject.tag == "buildingcube")
                 {
                     Destroy(hit.collider.gameObject);
                 }

@@ -36,19 +36,19 @@ public class Createcube : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown("d") && Input.GetKey("left shift"))
+        if (Input.GetKeyDown("d") && Input.GetKey("c"))
         {
             cursor.transform.Rotate(0, 90, 0);
         }
-        if (Input.GetKeyDown("a") && Input.GetKey("left shift"))
+        if (Input.GetKeyDown("a") && Input.GetKey("c"))
         {
             cursor.transform.Rotate(0, -90, 0);
         }
-        if (Input.GetKeyDown("w") && Input.GetKey("left shift"))
+        if (Input.GetKeyDown("w") && Input.GetKey("c"))
         {
             cursor.transform.Rotate(90, 0, 0);
         }
-        if (Input.GetKeyDown("s") && Input.GetKey("left shift"))
+        if (Input.GetKeyDown("s") && Input.GetKey("c"))
         {
             cursor.transform.Rotate(-90, 0, 0);
         }
