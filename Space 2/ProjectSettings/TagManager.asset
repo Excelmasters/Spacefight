@@ -8,6 +8,7 @@ TagManager:
   - Accident
   - ball
   - Gm
+  - Core
   layers:
   - Default
   - TransparentFX

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2776819090933820405}
   - component: {fileID: 5526293658545971206}
   - component: {fileID: 7328539926815327996}
-  - component: {fileID: 8275779434543323009}
-  - component: {fileID: 3034518236630168097}
+  - component: {fileID: 738468666715281594}
+  - component: {fileID: 4052172615587068013}
   m_Layer: 0
   m_Name: COre
   m_TagString: Core
@@ -110,7 +110,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8275779434543323009
+--- !u!114 &738468666715281594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,9 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabcube: {fileID: 7328539926815327996}
-  time: 0
+  time: 5
   dest: 0
---- !u!114 &3034518236630168097
+--- !u!114 &4052172615587068013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
