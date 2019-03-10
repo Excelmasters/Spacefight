@@ -12,29 +12,55 @@ public class Createcube : MonoBehaviour
     public GameObject[] buildingblocks;
     public int buildingblocknumber = 0;
 
+    private InventoryHolder holder;
+
+    public int count;
+
+    private void Start()
+    {
+        holder = GetComponent<InventoryHolder>();
+    }
+
     void Update()
     {
+        count = GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().count;
         cursor.GetComponent<Rigidbody>().freezeRotation = false;
         if (Input.GetMouseButtonDown(0) & Input.GetKey("q") == false)
         {
-
-            GameObject cube = Object.Instantiate(buildingblocks[buildingblocknumber]) as GameObject;
-            cube.transform.position = cursor.transform.position;
-            cube.transform.rotation = cursor.transform.rotation;
-            if (buildingblocknumber == 2)
+            if (count != 0)
             {
-                cube.transform.rotation = cube.transform.rotation * Quaternion.Euler(90, 0, 0);
+                GameObject cube = Object.Instantiate(buildingblocks[buildingblocknumber]) as GameObject;
+                cube.transform.position = cursor.transform.position;
+                cube.transform.rotation = cursor.transform.rotation;
+                if (buildingblocknumber == 2)
+                {
+                    cube.transform.rotation = cube.transform.rotation * Quaternion.Euler(90, 0, 0);
+                }
+                cube.transform.parent = ss.transform;
+                GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().count = count - 1;
             }
-            cube.transform.parent = ss.transform;
-        }
-        if (Input.GetMouseButton(0) & Input.GetKey("q"))
-        {
+            else
+            {
+                Debug.Log("Keine Blöcke mehr vorhanden");
+            }
 
-            GameObject cube = Object.Instantiate(buildingblocks[buildingblocknumber]) as GameObject;
-            cube.transform.position = cursor.transform.position;           
-            cube.transform.parent = ss.transform;
-        }
+            if (Input.GetMouseButton(0) & Input.GetKey("q"))
+                if (count != 0)
+                {
+                    {
 
+                        GameObject cube = Object.Instantiate(buildingblocks[buildingblocknumber]) as GameObject;
+                        cube.transform.position = cursor.transform.position;
+                        cube.transform.parent = ss.transform;
+                        GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().count = count - 1;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Keine Blöcke mehr vorhanden");
+                }
+
+        }
 
         if (Input.GetKeyDown("d") && Input.GetKey("c"))
         {

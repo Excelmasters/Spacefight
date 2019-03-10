@@ -4,7 +4,7 @@ using UnityEngine;
 [AddComponentMenu("Inventory/Holder")]
 public class InventoryHolder : MonoBehaviour
 {
-    public int width = 2; 
+    public int width = 2;
     public int height = 6; //Eigenschaften der Stacks wie Höhe, Breite etc.
 
     private int numStacks;
@@ -14,8 +14,8 @@ public class InventoryHolder : MonoBehaviour
     void Awake()
     {
         numStacks = width * height;      //Anzahl der Stacks wird berechnet
-        stacks = new ItemStack[numStacks]; // Stacks werden erstellt
-                                           //ItemStacks stack1 = new ItemStack();//Bsp Stack mit Name "stack1"
+        stacks = new ItemStack[numStacks]; // größe des arrays wird bestimmt
+
     }
 
     private int GetPosition(int x, int y) //Position wird gesucht
@@ -35,7 +35,7 @@ public class InventoryHolder : MonoBehaviour
             return null;
         }
 
-            return stacks[position]; //die Position des Stacks wird ausgegeben
+        return stacks[position];
     }
 
     public void SetStack(int x, int y, ItemStack newStack) // festlegen eines Stacks (x, y, Name)
@@ -49,20 +49,66 @@ public class InventoryHolder : MonoBehaviour
         }
         stacks[position] = newStack; //ist alles korrekt wird dieser Stack erstellt
     }
-    public void AddStack(ItemStack stack)
+    public ItemStack AddStack(ItemStack newStack) //Funktion zum hinzufügen
+    {
+        ItemStack stack = newStack;
+        for (int i = 0; i < numStacks; i++)//geht alle Stacks durch und sucht ob ein Stack schon vorhanden ist werden diese items hinzugefügt 
+        {
+            if (stacks[i] != null && stacks[i].Id == stack.Id)
+            {
+                stack = stacks[i].combine(stack);
+                if (stack == null)
+                    break;
+            }
+        }
+        if (stack != null) //wenn ein Slot immernoch nicht leer ist wird ein leerer gesucht für neues item 
+        {
+            if (stack.itemCount <= 0)
+                stack = null;
+
+            for (int i = 0; i < numStacks; i++)
+            {
+                if (stacks[i] == null)
+                {
+                    stacks[i] = stack;
+                    if (stack.itemCount > stack.MaxSize) // wenn das Stack mehr Items enthält, dann wird hierdurch ein neues Stack erstellt
+                    {
+                        int oversize = stack.itemCount - stack.MaxSize;
+                        stack.itemCount = stack.MaxSize;
+                        stack = new ItemStack(stack.item, oversize);
+                    }
+                    else
+                    {
+                        stack = null;
+                    }
+                    stack = null;
+                    break;
+                }
+            }
+        }
+        return stack;
+    }
+
+    public void ClearInventory() //alle items im inventar werden gelöscht
     {
         for (int i = 0; i < numStacks; i++)
         {
+            stacks[i] = null;
 
         }
     }
-
-    public void ClearInventory()
+    public void Clearblock()
     {
-        for(int i = 0; i < numStacks; i++)
-        {
-            stacks[i] = null;
-            
-        }
+        stacks[0] = null;
+    }
+
+    public void Clearlaser()
+    {
+        stacks[1] = null;
+    }
+
+    public void Clearrocket()
+    {
+        stacks[2] = null;
     }
 }

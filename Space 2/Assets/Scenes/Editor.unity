@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.05619467, g: 0.07932331, b: 0.12575702, a: 1}
+  m_IndirectSpecularColor: {r: 0.06740727, g: 0.08884765, b: 0.13189918, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -369,6 +369,10 @@ GameObject:
   m_Component:
   - component: {fileID: 168159307}
   - component: {fileID: 168159306}
+  - component: {fileID: 168159317}
+  - component: {fileID: 168159314}
+  - component: {fileID: 168159316}
+  - component: {fileID: 168159315}
   - component: {fileID: 168159310}
   - component: {fileID: 168159309}
   - component: {fileID: 168159308}
@@ -401,6 +405,7 @@ MonoBehaviour:
   - {fileID: 7349911733423050400, guid: cbe763bb5a9816e4b8b50359f0e4c520, type: 3}
   - {fileID: 4465834690001272883, guid: 0a93c6d5af131584fb371461a5498f6d, type: 3}
   buildingblocknumber: 1
+  count: 0
 --- !u!4 &168159307
 Transform:
   m_ObjectHideFlags: 0
@@ -601,6 +606,64 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &168159314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168159305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b439350642cb6b49938f61b8f85476d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 19
+  "Bl\xF6cke": {fileID: 11400000, guid: a5755fdddd22af04bbaada92bee09e5b, type: 2}
+  Laser: {fileID: 11400000, guid: 45e8c52a7cd489a43abbacd9c2e7ca04, type: 2}
+  Raketen: {fileID: 11400000, guid: 2957031a80b353c49932471d9efb62b6, type: 2}
+--- !u!114 &168159315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168159305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cfcc3cb2bfacbe45ae68de545cac333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 3
+  height: 1
+--- !u!114 &168159316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168159305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c17240d367d37344b603fbc72475cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WindowId: 1
+  windowTitle: Inventory
+--- !u!114 &168159317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168159305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ee0830b4460b84fb22dcf6560e106e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  amount: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +963,17 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 168159311}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 765180332}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -1233,6 +1307,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 168159308}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 765180332}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -1874,6 +1959,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 765180332}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &730393375
@@ -1930,6 +2026,7 @@ GameObject:
   - component: {fileID: 765180329}
   - component: {fileID: 765180330}
   - component: {fileID: 765180331}
+  - component: {fileID: 765180332}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2099,6 +2196,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 671907593}
   mesh_laser: {fileID: 4300000, guid: 5a5bb41945382154d8d8f2b2067994c3, type: 3}
+--- !u!114 &765180332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765180322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ae6e146e020e949afc85143d983707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  times: 0
 --- !u!1 &798692453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,6 +2280,17 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 168159311}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 765180332}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -2652,8 +2773,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WindowId: 1
   windowTitle: Inventory
-  itemForTesting: {fileID: 0}
-  item2ForTesting: {fileID: 0}
 --- !u!114 &1646805789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2668,8 +2787,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WindowId: 1
   windowTitle: Inventory
-  itemForTesting: {fileID: 11400000, guid: 45e8c52a7cd489a43abbacd9c2e7ca04, type: 2}
-  item2ForTesting: {fileID: 11400000, guid: 2957031a80b353c49932471d9efb62b6, type: 2}
 --- !u!1 &1651182105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2947,6 +3064,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 765180332}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1801299588
@@ -3156,6 +3284,17 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 168159311}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 765180332}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
