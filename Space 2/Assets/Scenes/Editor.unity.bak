@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
+<<<<<<< HEAD
+  m_IndirectSpecularColor: {r: 0.06740727, g: 0.08884765, b: 0.13189918, a: 1}
+=======
   m_IndirectSpecularColor: {r: 0.05619467, g: 0.07932331, b: 0.12575702, a: 1}
+>>>>>>> develop
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2429,7 +2433,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rotationspeed: 0.28
+<<<<<<< HEAD
+  MaxPlanetNumber_Random: 1
+=======
   MaxPlanetNumber_Random: 5
+>>>>>>> develop
   RandomDistanceVariation: 1.89
   Resolution: 94
   ParticleSunprefab: {fileID: 0}
