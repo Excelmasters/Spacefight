@@ -104,11 +104,11 @@ public class InventoryHolder : MonoBehaviour
 
     public void Clearlaser()
     {
-        stacks[1] = null;
+        stacks[2] = null;
     }
 
-    public void Clearrocket()
+    public void Clearramp()
     {
-        stacks[2] = null;
+        stacks[1] = null;
     }
 }

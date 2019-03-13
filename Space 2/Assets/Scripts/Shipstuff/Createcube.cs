@@ -14,7 +14,9 @@ public class Createcube : MonoBehaviour
 
     private InventoryHolder holder;
 
-    public int count;
+    public int blockcount;
+    public int lasercount;
+    public int rampcount;
 
     private void Start()
     {
@@ -23,41 +25,50 @@ public class Createcube : MonoBehaviour
 
     void Update()
     {
-        count = GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().count;
+        blockcount = GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().blockcount;
+        lasercount = GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().lasercount;
+        rampcount = GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().rampcount;
         cursor.GetComponent<Rigidbody>().freezeRotation = false;
         if (Input.GetMouseButtonDown(0) & Input.GetKey("q") == false)
         {
-            if (count != 0)
+            if (blockcount != 0)
             {
                 GameObject cube = Object.Instantiate(buildingblocks[buildingblocknumber]) as GameObject;
                 cube.transform.position = cursor.transform.position;
                 cube.transform.rotation = cursor.transform.rotation;
+                if (buildingblocknumber == 0)
+                {
+                    GetComponent<InventoryUpdate>().blockcount = blockcount - 1;
+                }
+                if (buildingblocknumber == 1)
+                {
+                    GetComponent<InventoryUpdate>().rampcount = rampcount - 1;
+                }
                 if (buildingblocknumber == 2)
                 {
                     cube.transform.rotation = cube.transform.rotation * Quaternion.Euler(90, 0, 0);
+                    GetComponent<InventoryUpdate>().lasercount = lasercount - 1;
                 }
                 cube.transform.parent = ss.transform;
-                GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().count = count - 1;
             }
             else
             {
-                Debug.Log("Keine Blöcke mehr vorhanden");
+                Debug.Log("Keine Bauteile dieser Art mehr vorhanden");
             }
 
             if (Input.GetMouseButton(0) & Input.GetKey("q"))
-                if (count != 0)
+                if (blockcount != 0)
                 {
                     {
 
                         GameObject cube = Object.Instantiate(buildingblocks[buildingblocknumber]) as GameObject;
                         cube.transform.position = cursor.transform.position;
                         cube.transform.parent = ss.transform;
-                        GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().count = count - 1;
                     }
                 }
                 else
                 {
-                    Debug.Log("Keine Blöcke mehr vorhanden");
+                    Debug.Log("Keine Bauteile dieser Art mehr vorhanden");
                 }
 
         }
