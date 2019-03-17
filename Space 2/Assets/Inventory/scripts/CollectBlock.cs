@@ -14,7 +14,7 @@ public class CollectBlock : MonoBehaviour
         if (holder != null)
         {
             amount = GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().blockcount;
-            GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().blockcount = amount + 5;
+            GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().blockcount = amount + 2;
             Destroy(this.gameObject);
         }
     }

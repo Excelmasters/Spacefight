@@ -17,7 +17,7 @@ public class ItemStack    //Slot für ein einziges Item
         itemCount = count;
     }
 
-    public int MaxSize
+    public int MaxSize // Funktion die, auf die maximale Stackgröße eines Items zugreift  
     {
         get
         {
@@ -26,7 +26,7 @@ public class ItemStack    //Slot für ein einziges Item
             return item.maxStackSize;
         }
     }
-    public int Id
+    public int Id // Funktion die auf die ID eines Items zugreift
     {
         get
         {
@@ -37,7 +37,7 @@ public class ItemStack    //Slot für ein einziges Item
 
         }
     }
-    public ItemStack combine(ItemStack stack)
+    public ItemStack combine(ItemStack stack) // Funktion die Itemstacks zusammenfügt
     {
         int combinedCount = this.itemCount + stack.itemCount;
 

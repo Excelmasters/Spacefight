@@ -21,6 +21,7 @@ public class Createcube : MonoBehaviour
     private void Start()
     {
         holder = GetComponent<InventoryHolder>();
+
     }
 
     void Update()
@@ -31,7 +32,7 @@ public class Createcube : MonoBehaviour
         cursor.GetComponent<Rigidbody>().freezeRotation = false;
         if (Input.GetMouseButtonDown(0) & Input.GetKey("q") == false)
         {
-            if (blockcount != 0)
+            if (blockcount != 0 & buildingblocknumber == 0 | lasercount != 0 & buildingblocknumber == 2 | rampcount != 0 & buildingblocknumber == 1) 
             {
                 GameObject cube = Object.Instantiate(buildingblocks[buildingblocknumber]) as GameObject;
                 cube.transform.position = cursor.transform.position;

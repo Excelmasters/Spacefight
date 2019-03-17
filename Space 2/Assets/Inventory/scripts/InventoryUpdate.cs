@@ -11,45 +11,65 @@ public class InventoryUpdate : MonoBehaviour
     public Item Laser;
     public Item Rampen;
     private InventoryHolder holder;
-    public int buildingblocknumber;
+    public int bn;
 
     private void Start()
     {
-        blockcount = 9;
+        blockcount = 10;
         lasercount = 1;
-        rampcount = 9;
+        rampcount = 10;
 
         holder = GetComponent<InventoryHolder>();
 
-        ItemStack block = new ItemStack(Blöcke, 9);
+        ItemStack block = new ItemStack(Blöcke, 10);
         holder.AddStack(block);
+
+        ItemStack ramps = new ItemStack(Rampen, 10);
+        holder.AddStack(ramps);
 
         ItemStack laser = new ItemStack(Laser, 1);
         holder.AddStack(laser);
 
-        ItemStack ramps = new ItemStack(Rampen, 9);
-        holder.AddStack(ramps);
+ 
+
+
     }
     void Update()
     {
-
+        if (blockcount != 0)
+        {
             holder.Clearblock();
             ItemStack block = new ItemStack(Blöcke, blockcount);
             holder.AddStack(block);
+        }
+        else
+        {
+            holder.Clearblock();
+        }
 
-   
 
-        
+        if (lasercount != 0)
+        {
             holder.Clearlaser();
             ItemStack laser = new ItemStack(Laser, lasercount);
             holder.AddStack(laser);
-        
+        }
+        else
+        {
+            holder.Clearlaser();
+        }
 
 
-  
+        if (rampcount != 0)
+        {
             holder.Clearramp();
             ItemStack ramps = new ItemStack(Rampen, rampcount);
             holder.AddStack(ramps);
-    
+        }
+        else
+        {
+            holder.Clearramp();
+        }
+
     }
 }

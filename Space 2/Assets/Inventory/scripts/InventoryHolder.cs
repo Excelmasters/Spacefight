@@ -25,7 +25,7 @@ public class InventoryHolder : MonoBehaviour
         return y * width + x;
     }
 
-    public ItemStack GetStack(int x, int y) //Zugriff auf bestimmte Stacks
+    public ItemStack GetStack(int x, int y) //Zugriff auf Stack an dieser Position
     {
         int position = GetPosition(x, y);
 
@@ -35,7 +35,7 @@ public class InventoryHolder : MonoBehaviour
             return null;
         }
 
-        return stacks[position];
+        return stacks[position]; // zugegriffene Stack wird zurück gegeben
     }
 
     public void SetStack(int x, int y, ItemStack newStack) // festlegen eines Stacks (x, y, Name)
@@ -49,19 +49,19 @@ public class InventoryHolder : MonoBehaviour
         }
         stacks[position] = newStack; //ist alles korrekt wird dieser Stack erstellt
     }
-    public ItemStack AddStack(ItemStack newStack) //Funktion zum hinzufügen
+    public ItemStack AddStack(ItemStack newStack) //Funktion zum hinzufügen von Stacks
     {
         ItemStack stack = newStack;
         for (int i = 0; i < numStacks; i++)//geht alle Stacks durch und sucht ob ein Stack schon vorhanden ist werden diese items hinzugefügt 
         {
-            if (stacks[i] != null && stacks[i].Id == stack.Id)
+            if (stacks[i] != null && stacks[i].Id == stack.Id) // wenn gleiche Stacks vorhanden sind werden sie mit der combine Funktion verbunden
             {
                 stack = stacks[i].combine(stack);
                 if (stack == null)
                     break;
             }
         }
-        if (stack != null) //wenn ein Slot immernoch nicht leer ist wird ein leerer gesucht für neues item 
+        if (stack != null) 
         {
             if (stack.itemCount <= 0)
                 stack = null;
@@ -97,17 +97,17 @@ public class InventoryHolder : MonoBehaviour
 
         }
     }
-    public void Clearblock()
+    public void Clearblock() // nur die Blöcke im Inventar werden gelöscht
     {
         stacks[0] = null;
     }
 
-    public void Clearlaser()
+    public void Clearlaser() // nur die Laser werden gelöscht
     {
         stacks[2] = null;
     }
 
-    public void Clearramp()
+    public void Clearramp() // nur die Rampen werden gelöscht
     {
         stacks[1] = null;
     }

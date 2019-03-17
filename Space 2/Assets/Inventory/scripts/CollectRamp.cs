@@ -14,7 +14,7 @@ public class CollectRamp : MonoBehaviour
         if (holder != null)
         {
             amount = GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().rampcount;
-            GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().rampcount = amount + 5;
+            GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().rampcount = amount + 2;
             Destroy(this.gameObject);
         }
     }

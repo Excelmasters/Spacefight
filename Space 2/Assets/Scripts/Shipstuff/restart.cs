@@ -12,6 +12,9 @@ public class restart : MonoBehaviour
     public GameObject Projectile;
     public GameObject UFO;
     public VisualEffect visual;
+    public GameObject prefab_ab;
+    public GameObject prefab_al;
+    public GameObject prefab_ar;
 
 
     // Update is called once per frame

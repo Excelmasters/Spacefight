@@ -14,6 +14,10 @@ public class mousecursor : MonoBehaviour
     public GameObject ss;
     private Vector3 posi;
     public Texture texture;
+    public int bn;
+    public int blockcount;
+    public int rampcount;
+    public int lasercount;
 
 
     void Update()
@@ -35,6 +39,22 @@ public class mousecursor : MonoBehaviour
                 cursor.GetComponent<MeshRenderer>().enabled = true;
                 if (Input.GetMouseButtonDown(1) && hit.collider.gameObject.tag == "buildingcube")
                 {
+                    bn = GameObject.Find("Gamemanager").GetComponent<Createcube>().buildingblocknumber;
+                    if (bn == 0)
+                    {
+                        blockcount = GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().blockcount;
+                        GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().blockcount = blockcount + 1;
+                    }
+                    if (bn == 1)
+                    {
+                        rampcount = GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().rampcount;
+                        GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().rampcount = rampcount + 1;
+                    }
+                    if (bn == 2)
+                    {
+                        lasercount = GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().lasercount;
+                        GameObject.Find("Gamemanager").GetComponent<InventoryUpdate>().lasercount = lasercount + 1;
+                    }
                     Destroy(hit.collider.gameObject);
                 }
                 posi = hit.point + hit.normal *0.5f; 
