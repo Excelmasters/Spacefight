@@ -89,14 +89,6 @@ public class InventoryHolder : MonoBehaviour
         return stack;
     }
 
-    public void ClearInventory() //alle items im inventar werden gelöscht
-    {
-        for (int i = 0; i < numStacks; i++)
-        {
-            stacks[i] = null;
-
-        }
-    }
     public void Clearblock() // nur die Blöcke im Inventar werden gelöscht
     {
         stacks[0] = null;
